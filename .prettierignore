@@ -1,0 +1,11 @@
+build
+dist
+coverage
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+*.min.*

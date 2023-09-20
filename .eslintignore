@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+.nuxt
+.output
+coverage
+components.d.ts
+next.d.ts
+*.min.*
