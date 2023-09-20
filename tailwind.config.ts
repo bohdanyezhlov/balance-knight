@@ -11,15 +11,15 @@ const config: Config = {
       colors: {
         mainBrown: 'rgb(97 67 38)',
       },
+      fontFamily: {
+        banner: ['var(--font-belwe)', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
+      },
     },
     screens: {
       '2xl': '1600px',
     },
     fontSize: {
       xl: ['20px', '1'],
-    },
-    fontFamily: {
-      banner: ['Belwe-Bold', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
     },
   },
   plugins: [],

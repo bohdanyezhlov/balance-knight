@@ -1,9 +1,11 @@
+import localFont from 'next/font/local';
+import { Open_Sans } from 'next/font/google';
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const belwe = localFont({ src: '../public/fonts/Belwe-Bold.woff', variable: '--font-belwe' });
+const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-opensans' });
 
 export const metadata: Metadata = {
   title: 'Hearthstone',
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={belwe.className}>{children}</body>
     </html>
   );
 };
