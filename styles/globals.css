@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Belwe-Bold';
+  src: url('../public/fonts/Belwe-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
   color: #222;
   background: #f1d4ab;

@@ -4,6 +4,7 @@ const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './utils/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -12,14 +13,14 @@ const config: Config = {
         mainBrown: 'rgb(97 67 38)',
       },
       fontFamily: {
-        banner: ['var(--font-belwe)', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
+        banner: ['Belwe-Bold', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
       },
-    },
-    screens: {
-      '2xl': '1600px',
-    },
-    fontSize: {
-      xl: ['20px', '1'],
+      screens: {
+        '2xl': '1600px',
+      },
+      fontSize: {
+        xl: ['20px', '1'],
+      },
     },
   },
   plugins: [],
