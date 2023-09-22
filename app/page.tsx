@@ -22,12 +22,14 @@ const Home = () => {
   const [cards, setCards] = useState<CardType[]>([]);
   const [page, setPage] = useState(1);
   const [classes, setClasses] = useState<Class[]>([]);
+  const [tokenReceived, setTokenReceived] = useState(false);
 
   const NUM_GHOST_CARDS = 5;
   let globalCardsIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
 
   const fetchToken = async () => {
     await getToken();
+    setTokenReceived(true);
   };
 
   const fetchClasses = async () => {
@@ -42,13 +44,20 @@ const Home = () => {
 
   useEffectOnce(() => {
     fetchToken();
-    fetchClasses();
   });
 
   useEffect(() => {
-    fetchCards();
+    if (tokenReceived) {
+      fetchClasses();
+    }
+  }, [tokenReceived]);
+
+  useEffect(() => {
+    if (tokenReceived) {
+      fetchCards();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, tokenReceived]);
 
   // NOTE Split cards into groups based on classId
   const splitCardsByClassId = () => {
