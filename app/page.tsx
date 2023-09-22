@@ -7,8 +7,8 @@ import { getAllCards } from '@/api/getAllCards';
 import { getAllClasses } from '@/api/getAllClasses';
 import { getToken } from '@/api/getToken';
 import { Card } from '@/components/Card';
-import { ClassBanner } from '@/components/ClassBanner';
-// import { Navbar } from '@/components/Navbar';
+import { ClassTitle } from '@/components/ClassTitle';
+import { Navbar } from '@/components/Navbar';
 import type { Card as CardType, Class } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
@@ -74,14 +74,14 @@ const Home = () => {
     <>
       {/* <Navbar /> */}
 
-      <div className="mx-auto max-w-[1600px] px-2.5">
-        <div className="flex flex-wrap justify-evenly">
+      <div className="mx-auto max-w-[1600px] overflow-x-hidden px-2.5">
+        <div className="">
           {cardsByClassId.map(({ classId, groupOfCards }) => {
-            const className = getClassNameByClassId(classId, classes);
+            const name = getClassNameByClassId(classId, classes);
 
             return (
-              <div key={classId}>
-                {className && <ClassBanner className={className} />}
+              <div key={classId} className="mb-[50px]">
+                {name && <ClassTitle name={name} />}
                 <div className="flex flex-wrap justify-evenly">
                   {groupOfCards.map(({ image, id, slug, name }) => {
                     globalCardsIndex += 1;
