@@ -18,7 +18,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className={`${openSans.variable} ${belwe.variable}`}>{children}</body>
+      <body className={`${openSans.variable} ${belwe.variable} text-[14px] leading-normal`}>
+        {children}
+      </body>
     </html>
   );
 };
