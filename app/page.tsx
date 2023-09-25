@@ -1,118 +1,78 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 
 import { getAllCards } from '@/api/getAllCards';
-import { getAllClasses } from '@/api/getAllClasses';
 import { getToken } from '@/api/getToken';
-import { Card } from '@/components/Card';
-import { ClassTitle } from '@/components/ClassTitle';
+import { getMetadata } from '@/api/getMetadata';
 import { Navbar } from '@/components/Navbar';
-import type { Card as CardType, Class } from '@/types';
-import { generateGhostCards } from '@/utils/generateGhostCards';
-import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
-
-type CardsByClassId = {
-  classId: number;
-  groupOfCards: CardType[];
-};
+import type { Card as CardType, Metadata } from '@/types';
+import { CardList } from '@/components/CardList';
 
 const Home = () => {
   const [cards, setCards] = useState<CardType[]>([]);
+  const [cardCount, setCardCount] = useState(0);
   const [page, setPage] = useState(1);
-  const [classes, setClasses] = useState<Class[]>([]);
+  const [pageCount, setPageCount] = useState(1);
+  const [metadata, setMetadata] = useState<Metadata>();
   const [tokenReceived, setTokenReceived] = useState(false);
 
-  const NUM_GHOST_CARDS = 5;
-  let globalCardsIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
-
-  const fetchToken = async () => {
-    await getToken();
-    setTokenReceived(true);
-  };
-
-  const fetchClasses = async () => {
-    const classesData = await getAllClasses();
-    setClasses(classesData);
-  };
-
-  const fetchCards = useCallback(async () => {
-    const { cards: cardsData } = await getAllCards(page);
-    setCards((prev) => [...prev, ...cardsData]);
-  }, [page]);
-
   useEffectOnce(() => {
+    const fetchToken = async () => {
+      await getToken();
+      setTokenReceived(true);
+    };
+
     fetchToken();
   });
 
   useEffect(() => {
+    const fetchMetadata = async () => {
+      const metadata = await getMetadata();
+      setMetadata(metadata);
+    };
+
     if (tokenReceived) {
-      fetchClasses();
+      fetchMetadata();
     }
   }, [tokenReceived]);
 
   useEffect(() => {
+    const fetchCards = async (page: number) => {
+      if (page > pageCount) return;
+
+      const { cards: cardsData, pageCount: pageCountData, cardCount } = await getAllCards({ page });
+
+      setCardCount(cardCount);
+      setPageCount(pageCountData);
+      setCards((prev) => [...prev, ...cardsData]);
+    };
+
     if (tokenReceived) {
-      fetchCards();
+      fetchCards(page);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, tokenReceived]);
 
-  // NOTE Split cards into groups based on classId
-  const splitCardsByClassId = () => {
-    const cardsByClassId: CardsByClassId[] = [];
+  // useEffect(() => {
+  //   const fetchCards = async (manaCost: string) => {
+  //     if (page > pageCount) return;
+  //     const { cards: cardsData, pageCount: pageCountData } = await getAllCards({ manaCost });
+  //     setPageCount(pageCountData);
+  //     setCards((prev) => [...prev, ...cardsData]); // setCards(cardsData)
+  //   };
 
-    cards.forEach((card) => {
-      const { classId } = card;
-      const existingEntry = cardsByClassId.find((entry) => entry.classId === classId);
+  //   if (tokenReceived) {
+  //     fetchCards(manaCost);
+  //   }
+  // }, [manaCost, page]);
 
-      if (!existingEntry) {
-        cardsByClassId.push({ classId, groupOfCards: [card] });
-      } else {
-        existingEntry.groupOfCards.push(card);
-      }
-    });
-
-    return cardsByClassId;
-  };
-
-  const cardsByClassId: CardsByClassId[] = splitCardsByClassId();
+  if (!metadata) return null; // FIXME make it better
 
   return (
     <>
-      {/* <Navbar /> */}
-
-      <div className="mx-auto max-w-[1600px] overflow-x-hidden px-2.5">
-        <div className="">
-          {cardsByClassId.map(({ classId, groupOfCards }) => {
-            const name = getClassNameByClassId(classId, classes);
-
-            return (
-              <div key={classId} className="mb-[50px]">
-                {name && <ClassTitle name={name} />}
-                <div className="flex flex-wrap justify-evenly">
-                  {groupOfCards.map(({ image, id, slug, name }) => {
-                    globalCardsIndex += 1;
-                    return (
-                      <Card
-                        key={id}
-                        slug={slug}
-                        imgSrc={image}
-                        alt={name}
-                        isLast={globalCardsIndex === cards.length - 1}
-                        newLimit={() => setPage(page + 1)}
-                      />
-                    );
-                  })}
-
-                  {generateGhostCards(NUM_GHOST_CARDS)}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <Navbar metadata={metadata} cardCount={cardCount} />
+      <CardList cards={cards} metadata={metadata} setPage={setPage} page={page} />
     </>
   );
 };
