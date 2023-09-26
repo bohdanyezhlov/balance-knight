@@ -16,6 +16,7 @@ const config: Config = {
         banner: ['var(--font-belwe)', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
       },
       screens: {
+        '961': '961px',
         '2xl': '1600px',
       },
       fontSize: {
