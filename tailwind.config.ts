@@ -25,6 +25,19 @@ const config: Config = {
       flexGrow: {
         2: '2',
       },
+      backgroundImage: {
+        'baseLayer-middle': 'url("../public/bgMiddleTile.png")',
+        'baseLayer-left': 'url("../public/bgLeftTile.png")',
+        'baseLayer-right': 'url("../public/bgRightTile.png")',
+        //
+        'topLayer-middle': 'url("../public/dropdownMiddleStretch.png")',
+        'topLayer-left': 'url("../public/dropdownLeft.png")',
+        'topLayer-right': 'url("../public/dropdownRight.png")',
+        //
+        'topLayer-middle-hover': 'url("../public/dropdownMiddleStretchHoverSelected.png")',
+        'topLayer-left-hover': 'url("../public/dropdownLeftHoverSelected.png")',
+        'topLayer-right-hover': 'url("../public/dropdownRightHoverSelected.png")',
+      },
     },
   },
   plugins: [],
