@@ -2,6 +2,8 @@ import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 import { Checkbox } from './Checkbox';
 import ArrowIndicator from '../public/arrowIndicator.svg';
 import { useState } from 'react';
+import { BaseLayer } from './BaseLayer';
+import { TopLayerWithHover } from './TopLayerWithHover';
 
 type OptionValue = {
   slug: string;
@@ -110,8 +112,8 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
             <p className="mb-2.5 block pl-[15px]">Sort By:</p>
 
             <div>
-              <div className="relative ml-[34px] h-[54px] bg-[url(../public/bgMiddleTile.png)] bg-center bg-repeat-x py-1.5 before:absolute before:-left-[30px] before:top-0 before:h-[54px] before:w-[34px] before:bg-[url(../public/bgLeftTile.png)] before:bg-left before:bg-no-repeat before:content-[''] after:absolute after:-right-[30px] after:top-0 after:h-[54px] after:w-[34px] after:bg-[url(../public/bgRightTile.png)] after:bg-right after:bg-no-repeat after:content-['']">
-                <div className="relative z-[1] -mx-[3px] flex h-[42px] cursor-pointer items-center bg-[url(../public/dropdownMiddleStretch.png)] bg-center transition-all duration-150 ease-[ease] before:absolute before:-left-[23px] before:top-0 before:h-[42px] before:w-[24px] before:bg-[url(../public/dropdownLeft.png)] before:bg-left before:bg-no-repeat before:transition-all before:duration-150 before:ease-[ease] before:content-[''] after:absolute after:-right-[23px] after:top-0 after:z-[1] after:h-[42px] after:w-[24px] after:bg-[url(../public/dropdownRight.png)] after:bg-right after:bg-no-repeat after:transition-all after:duration-150 after:ease-[ease] after:content-[''] hover:bg-[url(../public/dropdownMiddleStretchHoverSelected.png)] hover:before:bg-[url(../public/dropdownLeftHoverSelected.png)] hover:after:bg-[url(../public/dropdownRightHoverSelected.png)]">
+              <BaseLayer tag="div">
+                <TopLayerWithHover tag="div">
                   <div className="flex w-full max-w-[155px] text-ellipsis min-[414px]:max-w-[250px]">
                     <h6 className="ml-2.5 mr-[30px] flex-1 overflow-hidden text-ellipsis whitespace-nowrap font-banner text-[16px] leading-none text-mainBrown">
                       {selectedOption.name}
@@ -131,8 +133,8 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
                       </option>
                     ))}
                   </select>
-                </div>
-              </div>
+                </TopLayerWithHover>
+              </BaseLayer>
             </div>
           </div>
         </div>
