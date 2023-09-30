@@ -1,6 +1,6 @@
-import { Class } from '@/types';
+import { TClass } from '@/types';
 
-export const getClassNameByClassId = (classId: number, classes: Class[]) => {
+export const getClassNameByClassId = (classId: number, classes: TClass[]) => {
   const classInfo = classes.find((c) => c.id === classId);
 
   return classInfo ? classInfo.name : null;

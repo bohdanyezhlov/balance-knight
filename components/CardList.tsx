@@ -1,4 +1,4 @@
-import type { Card as CardType, Metadata } from '@/types';
+import type { TCard, TMetadata } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
 import { ClassTitle } from './ClassTitle';
@@ -6,12 +6,12 @@ import { Card } from './Card';
 
 type CardsByClassId = {
   classId: number;
-  groupOfCards: CardType[];
+  groupOfCards: TCard[];
 };
 
 type Props = {
-  cards: CardType[];
-  metadata: Metadata;
+  cards: TCard[];
+  metadata: TMetadata;
   setPage: (page: number) => void;
   page: number;
 };

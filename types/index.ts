@@ -1,13 +1,13 @@
 import type { FilterableField, NumericFields } from '@/enums';
 
-export type CardList = {
+export type TCardList = {
   cardCount: number;
-  cards: Card[];
+  cards: TCard[];
   page: number;
   pageCount: number;
 };
 
-export type Card = {
+export type TCard = {
   artistName: string;
   cardSetId: number;
   cardTypeId: number;
@@ -30,13 +30,13 @@ export type Card = {
   ghostCard?: boolean;
 };
 
-export type CardBackCategory = {
+export type TCardBackCategory = {
   slug: string;
   id: number;
   name: string;
 };
 
-export type Class = {
+export type TClass = {
   id: number;
   name: string;
   slug: string;
@@ -45,13 +45,13 @@ export type Class = {
   heroPowerCardId?: number;
 };
 
-export type GameMode = {
+export type TGameMode = {
   slug: string;
   id: number;
   name: string;
 };
 
-export type Keyword = {
+export type TKeyword = {
   id: number;
   slug: string;
   name: string;
@@ -59,14 +59,14 @@ export type Keyword = {
   text: string;
 };
 
-export type MinionType = {
+export type TMinionType = {
   slug: string;
   id: number;
   name: string;
-  gameModes?: GameMode[];
+  gameModes?: TGameMode[];
 };
 
-export type Rarity = {
+export type TRarity = {
   slug: string;
   id: number;
   craftingCost: number[];
@@ -74,7 +74,7 @@ export type Rarity = {
   name: string;
 };
 
-export type SetGroup = {
+export type TSetGroup = {
   slug: string;
   year?: number;
   svg?: string | null;
@@ -84,7 +84,7 @@ export type SetGroup = {
   yearRange?: string;
 };
 
-export type CardSet = {
+export type TCardSet = {
   id: number;
   name: string;
   slug: string;
@@ -95,30 +95,30 @@ export type CardSet = {
   nonCollectibleRevealedCount: number;
 };
 
-export type SpellSchool = {
+export type TSpellSchool = {
   slug: string;
   id: number;
   name: string;
 };
 
-export type Type = {
+export type TType = {
   slug: string;
   id: number;
   name: string;
-  gameModes: GameMode[];
+  gameModes: TGameMode[];
 };
 
-export type Metadata = {
-  cardBackCategories: CardBackCategory[];
-  classes: Class[];
+export type TMetadata = {
+  cardBackCategories: TCardBackCategory[];
+  classes: TClass[];
   filterableFields: FilterableField;
-  gameModes: GameMode[];
-  keywords: Keyword[];
-  minionTypes: MinionType[];
+  gameModes: TGameMode[];
+  keywords: TKeyword[];
+  minionTypes: TMinionType[];
   numericFields: NumericFields;
-  rarities: Rarity[];
-  setGroups: SetGroup[];
-  sets: CardSet[];
-  spellSchools: SpellSchool[];
-  types: Type[];
+  rarities: TRarity[];
+  setGroups: TSetGroup[];
+  sets: TCardSet[];
+  spellSchools: TSpellSchool[];
+  types: TType[];
 };

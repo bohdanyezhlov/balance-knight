@@ -4,12 +4,14 @@ import Settings from '../public/settings.svg';
 import { SwipeableDrawer } from './SwipeableDrawer';
 import { BaseLayer } from './BaseLayer';
 import { TopLayerWithHover } from './TopLayerWithHover';
+import type { TMetadata } from '@/types';
 
 type Props = {
   cardCount: number;
+  metadata: TMetadata;
 };
 
-export const FilterDrawer: React.FC<Props> = ({ cardCount }) => {
+export const FilterDrawer: React.FC<Props> = ({ cardCount, metadata }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -35,7 +37,12 @@ export const FilterDrawer: React.FC<Props> = ({ cardCount }) => {
         </BaseLayer>
       </div>
 
-      <SwipeableDrawer isOpen={isOpen} cardCount={cardCount} toggleDrawer={toggleDrawer} />
+      <SwipeableDrawer
+        isOpen={isOpen}
+        cardCount={cardCount}
+        toggleDrawer={toggleDrawer}
+        metadata={metadata}
+      />
     </>
   );
 };
