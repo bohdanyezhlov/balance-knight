@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       colors: {
         mainBrown: 'rgb(97 67 38)',
+        lightBrown: 'rgb(143, 110, 110)',
       },
       fontFamily: {
         banner: ['var(--font-belwe)', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
