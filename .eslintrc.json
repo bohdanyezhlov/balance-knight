@@ -52,16 +52,7 @@
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
         "react/function-component-definition": [2, { "namedComponents": "arrow-function" }], // Prefer arrow fn
-        "no-console": "off",
-        "tailwindcss/no-custom-classname": {
-          "tailwindcss": {
-            "callees": ["classnames", "clsx", "ctl"],
-            "config": "tailwind.config.ts",
-            "prependCustom": false,
-            "removeDuplicates": true,
-            "whitelist": ["mainBrown", "font-banner"]
-          }
-        }
+        "no-console": "off"
       }
     }
   ]
