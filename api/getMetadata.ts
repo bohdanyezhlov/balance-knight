@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import type { Metadata } from '@/types';
+import type { TMetadata } from '@/types';
 
 const baseUrl = 'https://us.api.blizzard.com/hearthstone/metadata';
 
-export const getMetadata = async (): Promise<Metadata> => {
+export const getMetadata = async (): Promise<TMetadata> => {
   try {
     const accessToken = localStorage.getItem('access_token');
 

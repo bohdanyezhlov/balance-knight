@@ -37,7 +37,7 @@ export type TCardBackCategory = {
 };
 
 export type TClass = {
-  id: number;
+  id: number | string;
   name: string;
   slug: string;
   alternateHeroCardIds?: number[];
@@ -68,9 +68,9 @@ export type TMinionType = {
 
 export type TRarity = {
   slug: string;
-  id: number;
-  craftingCost: number[];
-  dustValue: number[];
+  id: number | string;
+  craftingCost?: number[];
+  dustValue?: number[];
   name: string;
 };
 
@@ -103,9 +103,9 @@ export type TSpellSchool = {
 
 export type TType = {
   slug: string;
-  id: number;
+  id: number | string;
   name: string;
-  gameModes: TGameMode[];
+  gameModes?: TGameMode[];
 };
 
 export type TMetadata = {

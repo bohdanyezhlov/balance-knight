@@ -4,18 +4,18 @@ import { useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 
 import { getAllCards } from '@/api/getAllCards';
-import { getToken } from '@/api/getToken';
 import { getMetadata } from '@/api/getMetadata';
-import { Navbar } from '@/components/Navbar';
-import type { Card as CardType, Metadata } from '@/types';
+import { getToken } from '@/api/getToken';
 import { CardList } from '@/components/CardList';
+import { Navbar } from '@/components/Navbar';
+import type { TCard, TMetadata } from '@/types';
 
 const Home = () => {
-  const [cards, setCards] = useState<CardType[]>([]);
+  const [cards, setCards] = useState<TCard[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
-  const [metadata, setMetadata] = useState<Metadata>();
+  const [metadata, setMetadata] = useState<TMetadata>();
   const [tokenReceived, setTokenReceived] = useState(false);
 
   useEffectOnce(() => {
@@ -29,8 +29,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchMetadata = async () => {
-      const metadata = await getMetadata();
-      setMetadata(metadata);
+      const response = await getMetadata();
+      setMetadata(response);
     };
 
     if (tokenReceived) {
@@ -39,12 +39,16 @@ const Home = () => {
   }, [tokenReceived]);
 
   useEffect(() => {
-    const fetchCards = async (page: number) => {
-      if (page > pageCount) return;
+    const fetchCards = async (numPage: number) => {
+      if (numPage > pageCount) return;
 
-      const { cards: cardsData, pageCount: pageCountData, cardCount } = await getAllCards({ page });
+      const {
+        cards: cardsData,
+        pageCount: pageCountData,
+        cardCount: cardCountData,
+      } = await getAllCards({ page });
 
-      setCardCount(cardCount);
+      setCardCount(cardCountData);
       setPageCount(pageCountData);
       setCards((prev) => [...prev, ...cardsData]);
     };

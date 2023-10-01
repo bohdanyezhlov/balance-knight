@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import type { CardList } from '@/types';
+import type { TCardList } from '@/types';
 
 const baseUrl = 'https://us.api.blizzard.com/hearthstone/cards';
 const PAGE_SIZE = 100;
@@ -11,7 +11,7 @@ export const getAllCards = async ({
   set = 'standard',
   heroClass = 'all',
   textFilter = '',
-}): Promise<CardList> => {
+}): Promise<TCardList> => {
   try {
     const accessToken = localStorage.getItem('access_token');
 
