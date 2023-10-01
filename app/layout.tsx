@@ -1,8 +1,8 @@
-import localFont from 'next/font/local';
-import { Open_Sans } from 'next/font/google';
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
+import { Open_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 
 const belwe = localFont({
   src: '../public/fonts/Belwe-Bold.woff',

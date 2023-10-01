@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import Settings from '../public/settings.svg';
-import { SwipeableDrawer } from './SwipeableDrawer';
-import { BaseLayer } from './BaseLayer';
-import { TopLayerWithHover } from './TopLayerWithHover';
 import type { TMetadata } from '@/types';
+
+import Settings from '../public/settings.svg';
+import { BaseLayer } from './BaseLayer';
+import { SwipeableDrawer } from './SwipeableDrawer';
+import { TopLayerWithHover } from './TopLayerWithHover';
 
 type Props = {
   cardCount: number;

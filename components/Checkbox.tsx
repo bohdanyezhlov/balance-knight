@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
+
 import CheckImage from '../public/check.png';
 
 export const Checkbox = () => {
@@ -8,7 +9,7 @@ export const Checkbox = () => {
   return (
     <label
       htmlFor="groupByClass"
-      className="mb-2.5 block cursor-pointer overflow-clip whitespace-nowrap font-banner text-[16px] text-white"
+      className="mb-2.5 block cursor-pointer text-clip whitespace-nowrap font-banner text-[16px] text-white"
     >
       <input
         type="checkbox"

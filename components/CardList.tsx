@@ -1,8 +1,9 @@
 import type { TCard, TMetadata } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
-import { ClassTitle } from './ClassTitle';
+
 import { Card } from './Card';
+import { ClassTitle } from './ClassTitle';
 
 type CardsByClassId = {
   classId: number;
@@ -44,11 +45,11 @@ export const CardList: React.FC<Props> = ({ cards, metadata, setPage, page }) =>
   return (
     <div className="mx-auto max-w-[1600px] overflow-x-hidden px-2.5 pt-10">
       {cardsByClassId.map(({ classId, groupOfCards }) => {
-        const name = getClassNameByClassId(classId, classes);
+        const classname = getClassNameByClassId(classId, classes);
 
         return (
           <div key={classId} className="mb-[50px]">
-            {name && <ClassTitle name={name} />}
+            {classname && <ClassTitle name={classname} />}
             <div className="flex flex-wrap justify-evenly">
               {groupOfCards.map(({ image, id, slug, name }) => {
                 globalCardIndex += 1;
