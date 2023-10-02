@@ -1,14 +1,10 @@
 import type { TCard, TMetadata } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
+import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
 
 import { Card } from './Card';
 import { ClassTitle } from './ClassTitle';
-
-type CardsByClassId = {
-  classId: number;
-  groupOfCards: TCard[];
-};
 
 type Props = {
   cards: TCard[];
@@ -19,28 +15,9 @@ type Props = {
 
 export const CardList: React.FC<Props> = ({ cards, metadata, setPage, page }) => {
   const { classes } = metadata;
+  const cardsByClassId = splitCardsByClassId(cards);
   const NUM_GHOST_CARDS = 5;
   let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
-
-  // NOTE Split cards into groups based on classId
-  const splitCardsByClassId = () => {
-    const cardsByClassId: CardsByClassId[] = [];
-
-    cards.forEach((card) => {
-      const { classId } = card;
-      const existingEntry = cardsByClassId.find((entry) => entry.classId === classId);
-
-      if (!existingEntry) {
-        cardsByClassId.push({ classId, groupOfCards: [card] });
-      } else {
-        existingEntry.groupOfCards.push(card);
-      }
-    });
-
-    return cardsByClassId;
-  };
-
-  const cardsByClassId: CardsByClassId[] = splitCardsByClassId();
 
   return (
     <div className="mx-auto max-w-[1600px] overflow-x-hidden px-2.5 pt-10">
