@@ -56,20 +56,8 @@ const Home = () => {
     if (tokenReceived) {
       fetchCards(page);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, tokenReceived]);
-
-  // useEffect(() => {
-  //   const fetchCards = async (manaCost: string) => {
-  //     if (page > pageCount) return;
-  //     const { cards: cardsData, pageCount: pageCountData } = await getAllCards({ manaCost });
-  //     setPageCount(pageCountData);
-  //     setCards((prev) => [...prev, ...cardsData]); // setCards(cardsData)
-  //   };
-
-  //   if (tokenReceived) {
-  //     fetchCards(manaCost);
-  //   }
-  // }, [manaCost, page]);
 
   if (!metadata) return null; // FIXME make it better
 

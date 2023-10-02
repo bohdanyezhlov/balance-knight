@@ -11,7 +11,7 @@ type Props = {
 
 export const Card: React.FC<Props> = ({ slug, imgSrc, alt, isLast, newLimit }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
-
+  console.log(slug);
   useEffect(() => {
     if (!cardRef?.current) return;
 

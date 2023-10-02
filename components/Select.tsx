@@ -30,7 +30,7 @@ export const Select: React.FC<Props> = ({ id, options, selectedOption, handleOpt
         value={JSON.stringify(selectedOption)}
         onChange={handleOptionChange}
       >
-        {options.map((option) => (
+        {options.map((option: any) => (
           <option key={option.name} value={JSON.stringify(option)}>
             {option.name}
           </option>
