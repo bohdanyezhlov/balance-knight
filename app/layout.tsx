@@ -19,7 +19,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={`${openSans.variable} ${belwe.variable} text-[14px] leading-normal`}>
-        {children}
+        <div className="bg-[#f1d4ab] bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
       </body>
     </html>
   );
