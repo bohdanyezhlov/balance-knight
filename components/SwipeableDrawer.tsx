@@ -1,80 +1,52 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
-import { Checkbox } from './Checkbox';
-import ArrowIndicator from '../public/arrowIndicator.svg';
 import { useState } from 'react';
+
+import type { TClass, TMetadata, TRarity, TType } from '@/types';
+import { getDynamicOptions } from '@/utils/getDynamicOptions';
+import { getStaticOptions } from '@/utils/getStaticOptions';
+
 import { BaseLayer } from './BaseLayer';
+import { Checkbox } from './Checkbox';
+import { Select } from './Select';
 import { TopLayerWithHover } from './TopLayerWithHover';
-
-type OptionValue = {
-  slug: string;
-  loc: string;
-  param: string;
-  name: string;
-};
-
-const options: OptionValue[] = [
-  {
-    slug: 'manaCost:asc',
-    loc: 'card.sort.manaAsc',
-    param: 'manaCost:asc,name:asc,classes:asc',
-    name: 'Mana: low to high',
-  },
-  {
-    slug: 'manaCost:desc',
-    loc: 'card.sort.manaDesc',
-    param: 'manaCost:desc,name:asc,classes:asc',
-    name: 'Mana: high to low',
-  },
-  {
-    slug: 'name:asc',
-    loc: 'card.sort.nameAsc',
-    param: 'name:asc,classes:asc',
-    name: 'Card Name: A to Z',
-  },
-  {
-    slug: 'name:desc',
-    loc: 'card.sort.nameDesc',
-    param: 'name:desc,classes:asc',
-    name: 'Card Name: Z to A',
-  },
-  {
-    slug: 'attack:asc',
-    loc: 'card.sort.attackAsc',
-    param: 'attack:asc,name:asc,classes:asc',
-    name: 'Attack: low to high',
-  },
-  {
-    slug: 'attack:desc',
-    loc: 'card.sort.attackDesc',
-    param: 'attack:desc,name:asc,classes:asc',
-    name: 'Attack: high to low',
-  },
-  {
-    slug: 'health:asc',
-    loc: 'card.sort.healthAsc',
-    param: 'health:asc,name:asc,classes:asc',
-    name: 'Health: low to high',
-  },
-  {
-    slug: 'health:desc',
-    loc: 'card.sort.healthDesc',
-    param: 'health:desc,name:asc,classes:asc',
-    name: 'Health: high to low',
-  },
-];
-
-const defaultOption: OptionValue = options[0];
 
 type Props = {
   cardCount: number;
   isOpen: boolean;
   toggleDrawer: (v: boolean) => React.ReactEventHandler<{}>;
+  metadata: TMetadata;
 };
 
-export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDrawer }) => {
-  const [selectedOption, setSelectedOption] = useState(defaultOption);
+export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDrawer, metadata }) => {
+  const { classes, types, rarities } = metadata;
+  const [defaultClassOption, classOptions] = getDynamicOptions({
+    name: 'All Classes',
+    data: classes,
+  });
+  const [defaultCardTypeOption, cardTypeOptions] = getDynamicOptions({
+    name: 'All Type',
+    data: types,
+    excludedIds: [10, 40],
+  });
+  const [defaultRarityOption, rarityOptions] = getDynamicOptions({
+    name: 'All Rarity',
+    data: rarities,
+  });
+  const [defaultSortOption, sortOptions] = getStaticOptions('sort');
+  const [defaultManaOption, manaOptions] = getStaticOptions('mana');
 
-  const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const [selectedSortOption, setSelectedSortOption] = useState(defaultSortOption);
+  const [selectedClassOption, setSelectedClassOption] = useState<TClass>(defaultClassOption);
+  const [selectedManaOption, setSelectedManaOption] = useState(defaultManaOption);
+  const [selectedRarityOption, setSelectedRarityOption] = useState<TRarity>(defaultRarityOption);
+  const [selectedCardTypeOption, setSelectedCardTypeOption] =
+    useState<TType>(defaultCardTypeOption);
+
+  const handleOptionChange = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    setSelectedOption: React.Dispatch<React.SetStateAction<any>>
+  ) => {
     setSelectedOption(JSON.parse(e.target.value));
   };
 
@@ -84,13 +56,13 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
       open={isOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
-      // hideBackdrop
     >
       <div className="h-full w-[300px] bg-transparent bg-[url(../public/bgFilterTabletMobile.jpeg)] bg-left-top bg-repeat-y">
         <div className="flex touch-pan-y select-none flex-wrap px-5 pb-[100px] pt-5">
           <div className="flex w-full flex-wrap border-b border-solid border-[#450f0f] py-2.5 text-white">
             <div className="mb-[15px] w-full">
               <button
+                type="button"
                 className="inline pl-[5px] text-[16px] font-bold hover:underline hover:underline-offset-1"
                 onClick={toggleDrawer(false)}
               >
@@ -103,40 +75,91 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
             <div className="pl-[15px]">{cardCount} cards found</div>
           </div>
 
-          <div className="relative mr-[30px] w-full py-[20px] text-[#8f6e6e]">
+          <div className="relative mr-[30px] w-full py-[20px] text-lightBrown">
             <div className="pl-[15px]">
               {/* NOTE push to url CgroupByClass%3Aasc, default groupByClass:asc ? */}
               <Checkbox />
             </div>
 
-            <p className="mb-2.5 block pl-[15px]">Sort By:</p>
+            <label className="mb-2.5 block pl-[15px]">Sort By:</label>
 
             <div>
               <BaseLayer tag="div">
                 <TopLayerWithHover tag="div">
-                  <div className="flex w-full max-w-[155px] text-ellipsis min-[414px]:max-w-[250px]">
-                    <h6 className="ml-2.5 mr-[30px] flex-1 overflow-hidden text-ellipsis whitespace-nowrap font-banner text-[16px] leading-none text-mainBrown">
-                      {selectedOption.name}
-                    </h6>
-                    <div className="absolute -right-1 z-[2] mt-px h-[17px] w-[17px] rotate-90">
-                      <ArrowIndicator />
-                    </div>
-                  </div>
-                  <select
-                    className="absolute -left-6 top-0 z-[2] h-full w-[calc(100%_+_48px)] appearance-none border-0 bg-transparent -indent-[1000em] focus:outline-none"
-                    value={JSON.stringify(selectedOption)}
-                    onChange={handleOptionChange}
-                  >
-                    {options.map((option) => (
-                      <option key={option.slug} value={JSON.stringify(option)}>
-                        {option.name}
-                      </option>
-                    ))}
-                  </select>
+                  <Select
+                    id="CardSortControl"
+                    options={sortOptions}
+                    selectedOption={selectedSortOption}
+                    handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      handleOptionChange(e, setSelectedSortOption)
+                    }
+                  />
                 </TopLayerWithHover>
               </BaseLayer>
             </div>
           </div>
+
+          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
+            <label htmlFor="ClassControl" className="mb-2.5 block pl-[15px]">
+              Filters:
+            </label>
+
+            <BaseLayer tag="div">
+              <TopLayerWithHover tag="div">
+                <Select
+                  id="ClassControl"
+                  options={classOptions}
+                  selectedOption={selectedClassOption}
+                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    handleOptionChange(e, setSelectedClassOption)
+                  }
+                />
+              </TopLayerWithHover>
+            </BaseLayer>
+          </div>
+
+          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
+            <BaseLayer tag="div">
+              <TopLayerWithHover tag="div">
+                <Select
+                  options={manaOptions}
+                  selectedOption={selectedManaOption}
+                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    handleOptionChange(e, setSelectedManaOption)
+                  }
+                />
+              </TopLayerWithHover>
+            </BaseLayer>
+          </div>
+
+          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
+            <BaseLayer tag="div">
+              <TopLayerWithHover tag="div">
+                <Select
+                  options={cardTypeOptions}
+                  selectedOption={selectedCardTypeOption}
+                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    handleOptionChange(e, setSelectedCardTypeOption)
+                  }
+                />
+              </TopLayerWithHover>
+            </BaseLayer>
+          </div>
+
+          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
+            <BaseLayer tag="div">
+              <TopLayerWithHover tag="div">
+                <Select
+                  options={rarityOptions}
+                  selectedOption={selectedRarityOption}
+                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    handleOptionChange(e, setSelectedRarityOption)
+                  }
+                />
+              </TopLayerWithHover>
+            </BaseLayer>
+          </div>
+          {/*  */}
         </div>
       </div>
     </SwipeableDrawerMUI>
