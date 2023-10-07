@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import type { TCardList } from '@/types';
 
-const baseUrl = 'https://us.api.blizzard.com/hearthstone/cards';
+const BASE_URL = 'https://us.api.blizzard.com/hearthstone/cards';
 const PAGE_SIZE = 100;
 
 export const getAllCards = async ({
@@ -11,13 +11,25 @@ export const getAllCards = async ({
   set = 'standard',
   heroClass = 'all',
   textFilter = '',
+  isGroupByClass = true,
 }): Promise<TCardList> => {
   try {
     const accessToken = localStorage.getItem('access_token');
 
-    const apiUrl = `${baseUrl}?class=${heroClass}&textFilter=${textFilter}&manaCost=${manaCost}&locale=en_US&page=${page}&pageSize=${PAGE_SIZE}&set=${set}&sort=manaCost:asc,name:asc,classes:asc,groupByClass:asc`;
+    const queryParams = new URLSearchParams({
+      class: heroClass,
+      textFilter,
+      manaCost,
+      locale: 'en_US',
+      page: page.toString(),
+      pageSize: PAGE_SIZE.toString(),
+      set,
+      sort: `manaCost:asc,name:asc,classes:asc,${isGroupByClass ? 'groupByClass:asc' : ''}`,
+    });
 
-    const response = await axios.get(apiUrl, {
+    const cardApiUrl = `${BASE_URL}?${queryParams.toString()}`;
+
+    const response = await axios.get(cardApiUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
