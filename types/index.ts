@@ -122,3 +122,8 @@ export type TMetadata = {
   spellSchools: TSpellSchool[];
   types: TType[];
 };
+
+export type TCardsByClassId = {
+  classId: number;
+  groupOfCards: TCard[];
+};
