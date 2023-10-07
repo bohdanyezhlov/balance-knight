@@ -1,3 +1,4 @@
+import AllCards from '../public/AllCards.svg';
 import DeathKnight from '../public/DeathKnight.svg';
 import DemonHunter from '../public/DemonHunter.svg';
 import Druid from '../public/Druid.svg';
@@ -10,7 +11,7 @@ import Rogue from '../public/Rogue.svg';
 import Shaman from '../public/Shaman.svg';
 import Warlock from '../public/Warlock.svg';
 import Warrior from '../public/Warrior.svg';
-import { capitalizeWords } from './capitalizeWords';
+import { normalizeWords } from './normalizeWords';
 
 type SvgMapping = {
   [className: string]: string;
@@ -29,10 +30,11 @@ const classToSvgMapping: SvgMapping = {
   Warlock,
   Warrior,
   Neutral,
+  'All Cards': AllCards,
 };
 
 export const getSvgForTitle = (name: string) => {
-  const className = capitalizeWords(name);
+  const className = normalizeWords(name);
 
   if (className in classToSvgMapping) {
     return classToSvgMapping[className];
