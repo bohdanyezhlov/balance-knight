@@ -1,52 +1,58 @@
-import type { TCard, TMetadata } from '@/types';
-import { generateGhostCards } from '@/utils/generateGhostCards';
-import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
+import { useState } from 'react';
+
+import type { TCard, TCardsByClassId, TMetadata } from '@/types';
 import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
 
-import { Card } from './Card';
-import { ClassTitle } from './ClassTitle';
+import { Modal } from './Modal';
+import { RenderAllCards } from './RenderAllCards';
+import { RenderCardsByGroup } from './RenderCardsByGroup';
 
 type Props = {
   cards: TCard[];
   metadata: TMetadata;
   setPage: (page: number) => void;
   page: number;
+  isGroupByClass: boolean;
 };
 
-export const CardList: React.FC<Props> = ({ cards, metadata, setPage, page }) => {
+export const CardList: React.FC<Props> = ({ cards, metadata, setPage, page, isGroupByClass }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalCardId, setModalCardId] = useState(0);
   const { classes } = metadata;
-  const cardsByClassId = splitCardsByClassId(cards);
-  const NUM_GHOST_CARDS = 5;
-  let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
+  const cardsData = isGroupByClass ? splitCardsByClassId(cards) : cards;
+
+  if (!cardsData.length) return null;
+
+  const showModal = (id: number) => {
+    setIsOpen(true);
+    setModalCardId(id);
+  };
 
   return (
     <div className="mx-auto max-w-[1600px] overflow-x-hidden px-2.5 pt-10">
-      {cardsByClassId.map(({ classId, groupOfCards }) => {
-        const classname = getClassNameByClassId(classId, classes);
-
-        return (
-          <div key={classId} className="mb-[50px]">
-            {classname && <ClassTitle name={classname} />}
-            <div className="flex flex-wrap justify-evenly">
-              {groupOfCards.map(({ image, id, slug, name }) => {
-                globalCardIndex += 1;
-                return (
-                  <Card
-                    key={id}
-                    slug={slug}
-                    imgSrc={image}
-                    alt={name}
-                    isLast={globalCardIndex === cards.length - 1}
-                    newLimit={() => setPage(page + 1)}
-                  />
-                );
-              })}
-
-              {generateGhostCards(NUM_GHOST_CARDS)}
-            </div>
-          </div>
-        );
-      })}
+      {isGroupByClass ? (
+        <RenderCardsByGroup
+          cards={cardsData as TCardsByClassId[]}
+          page={page}
+          setPage={setPage}
+          classes={classes}
+          showModal={showModal}
+        />
+      ) : (
+        <RenderAllCards
+          cards={cardsData as TCard[]}
+          page={page}
+          setPage={setPage}
+          showModal={showModal}
+        />
+      )}
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        id={modalCardId}
+        cards={cards}
+        metadata={metadata}
+      />
     </div>
   );
 };
