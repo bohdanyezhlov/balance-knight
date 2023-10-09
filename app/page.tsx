@@ -17,6 +17,7 @@ const Home = () => {
   const [pageCount, setPageCount] = useState(1);
   const [metadata, setMetadata] = useState<TMetadata>();
   const [tokenReceived, setTokenReceived] = useState(false);
+  const [isGroupByClass, setIsGroupByClass] = useState(true);
 
   useEffectOnce(() => {
     const fetchToken = async () => {
@@ -50,7 +51,7 @@ const Home = () => {
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);
-      setCards((prev) => [...prev, ...cardsData]);
+      setCards(page === 1 ? cardsData : (prev) => [...prev, ...cardsData]);
     };
 
     if (tokenReceived) {
@@ -59,12 +60,44 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, tokenReceived]);
 
-  if (!metadata) return null; // FIXME make it better
+  useEffect(() => {
+    const fetchCards = async (numPage: number) => {
+      if (numPage > pageCount) return;
+
+      const {
+        cards: cardsData,
+        pageCount: pageCountData,
+        cardCount: cardCountData,
+      } = await getAllCards({ isGroupByClass });
+
+      setCardCount(cardCountData);
+      setPageCount(pageCountData);
+      setCards(page === 1 ? cardsData : (prev) => [...prev, ...cardsData]);
+    };
+
+    if (tokenReceived) {
+      fetchCards(page);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isGroupByClass]);
+
+  if (!metadata) return null; // REVIEW
 
   return (
     <>
-      <Navbar metadata={metadata} cardCount={cardCount} />
-      <CardList cards={cards} metadata={metadata} setPage={setPage} page={page} />
+      <Navbar
+        metadata={metadata}
+        cardCount={cardCount}
+        isGroupByClass={isGroupByClass}
+        setIsGroupByClass={setIsGroupByClass}
+      />
+      <CardList
+        cards={cards}
+        metadata={metadata}
+        setPage={setPage}
+        page={page}
+        isGroupByClass={isGroupByClass}
+      />
     </>
   );
 };

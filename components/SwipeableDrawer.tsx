@@ -16,9 +16,18 @@ type Props = {
   isOpen: boolean;
   toggleDrawer: (v: boolean) => React.ReactEventHandler<{}>;
   metadata: TMetadata;
+  isGroupByClass: boolean;
+  setIsGroupByClass: (v: boolean) => void;
 };
 
-export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDrawer, metadata }) => {
+export const SwipeableDrawer: React.FC<Props> = ({
+  cardCount,
+  isOpen,
+  toggleDrawer,
+  metadata,
+  isGroupByClass,
+  setIsGroupByClass,
+}) => {
   const { classes, types, rarities } = metadata;
   const [defaultClassOption, classOptions] = getDynamicOptions({
     name: 'All Classes',
@@ -57,7 +66,7 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
     >
-      <div className="h-full w-[300px] bg-transparent bg-[url(../public/bgFilterTabletMobile.jpeg)] bg-left-top bg-repeat-y">
+      <div className="h-full w-[300px] overflow-y-scroll bg-transparent bg-[url(../public/bgFilterTabletMobile.jpeg)] bg-left-top bg-repeat-y">
         <div className="flex touch-pan-y select-none flex-wrap px-5 pb-[100px] pt-5">
           <div className="flex w-full flex-wrap border-b border-solid border-[#450f0f] py-2.5 text-white">
             <div className="mb-[15px] w-full">
@@ -66,7 +75,7 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
                 className="inline pl-[5px] text-[16px] font-bold hover:underline hover:underline-offset-1"
                 onClick={toggleDrawer(false)}
               >
-                <span className="relative top-1 mr-[5px] inline-block text-[25px] text-[#fcd144]">
+                <span className="relative top-1 mr-[5px] inline-block text-[25px] text-gold">
                   ✕
                 </span>
                 Close
@@ -77,15 +86,14 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
 
           <div className="relative mr-[30px] w-full py-[20px] text-lightBrown">
             <div className="pl-[15px]">
-              {/* NOTE push to url CgroupByClass%3Aasc, default groupByClass:asc ? */}
-              <Checkbox />
+              <Checkbox isGroupByClass={isGroupByClass} setIsGroupByClass={setIsGroupByClass} />
             </div>
 
             <label className="mb-2.5 block pl-[15px]">Sort By:</label>
 
             <div>
-              <BaseLayer tag="div">
-                <TopLayerWithHover tag="div">
+              <BaseLayer as="div">
+                <TopLayerWithHover as="div">
                   <Select
                     id="CardSortControl"
                     options={sortOptions}
@@ -104,8 +112,8 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
               Filters:
             </label>
 
-            <BaseLayer tag="div">
-              <TopLayerWithHover tag="div">
+            <BaseLayer as="div">
+              <TopLayerWithHover as="div">
                 <Select
                   id="ClassControl"
                   options={classOptions}
@@ -119,8 +127,8 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
           </div>
 
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer tag="div">
-              <TopLayerWithHover tag="div">
+            <BaseLayer as="div">
+              <TopLayerWithHover as="div">
                 <Select
                   options={manaOptions}
                   selectedOption={selectedManaOption}
@@ -133,8 +141,8 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
           </div>
 
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer tag="div">
-              <TopLayerWithHover tag="div">
+            <BaseLayer as="div">
+              <TopLayerWithHover as="div">
                 <Select
                   options={cardTypeOptions}
                   selectedOption={selectedCardTypeOption}
@@ -147,8 +155,8 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
           </div>
 
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer tag="div">
-              <TopLayerWithHover tag="div">
+            <BaseLayer as="div">
+              <TopLayerWithHover as="div">
                 <Select
                   options={rarityOptions}
                   selectedOption={selectedRarityOption}

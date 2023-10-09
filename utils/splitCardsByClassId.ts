@@ -1,12 +1,7 @@
-import type { TCard } from '@/types';
-
-type CardsByClassId = {
-  classId: number;
-  groupOfCards: TCard[];
-};
+import type { TCard, TCardsByClassId } from '@/types';
 
 export const splitCardsByClassId = (cards: TCard[]) => {
-  const cardsByClassId: CardsByClassId[] = [];
+  const cardsByClassId: TCardsByClassId[] = [];
 
   cards.forEach((card) => {
     const { classId } = card;

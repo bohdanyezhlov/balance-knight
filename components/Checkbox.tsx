@@ -1,24 +1,26 @@
 import Image from 'next/image';
-import { useState } from 'react';
 
 import CheckImage from '../public/check.png';
 
-export const Checkbox = () => {
-  const [isChecked, setIsChecked] = useState(false);
+type Props = {
+  isGroupByClass: boolean;
+  setIsGroupByClass: (v: boolean) => void;
+};
 
+export const Checkbox: React.FC<Props> = ({ isGroupByClass, setIsGroupByClass }) => {
   return (
     <label
       htmlFor="groupByClass"
-      className="mb-2.5 block cursor-pointer text-clip whitespace-nowrap font-banner text-[16px] text-white"
+      className="mb-2.5 block cursor-pointer text-clip whitespace-nowrap font-serif text-[16px] text-white"
     >
       <input
         type="checkbox"
         name="groupByClass"
         id="groupByClass"
         className="sr-only"
-        checked={isChecked}
+        checked={isGroupByClass}
         onChange={() => {
-          setIsChecked(!isChecked);
+          setIsGroupByClass(!isGroupByClass);
         }}
       />
       <div
@@ -30,7 +32,7 @@ export const Checkbox = () => {
           height={23}
           src={CheckImage}
           alt="Checkbox"
-          className={`${isChecked ? 'opacity-100' : 'opacity-0'} absolute inset-0 h-[23px]`}
+          className={`${isGroupByClass ? 'opacity-100' : 'opacity-0'} absolute inset-0 h-[23px]`}
         />
       </div>
       Group By Class
