@@ -16,3 +16,14 @@ export enum NumericFields {
   Health = 'health',
   Armor = 'armor',
 }
+
+export enum CardAttributes {
+  Type = 'Type',
+  Rarity = 'Rarity',
+  Set = 'Set',
+  Class = 'Class',
+  CostToCraft = 'Cost to Craft',
+  DisenchantingYield = 'Disenchanting Yield',
+  Artist = 'Artist',
+  Collectible = 'Collectible',
+}
