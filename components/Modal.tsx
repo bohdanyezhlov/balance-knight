@@ -48,7 +48,10 @@ export const Modal: React.FC<Props> = ({ isOpen, setIsOpen, id, cards, metadata 
             <h3 className="mt-[0.15em] break-keep font-serif text-[22px] leading-[1] min-[375px]:text-[calc(22.781px_+_8.219_*_((100vw_-_375px)_/_1225))]">
               {card.name}
             </h3>
-            <p className="my-[5px] break-keep text-[18px] italic opacity-50">{card.flavorText}</p>
+            <p
+              dangerouslySetInnerHTML={{ __html: card.flavorText }}
+              className="my-[5px] break-keep text-[18px] italic opacity-50"
+            />
             <p
               dangerouslySetInnerHTML={{ __html: card.text }}
               className="my-[5px] break-keep text-[18px]"
