@@ -8,17 +8,30 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      min: '320px',
+      xs: '480px',
+      sm: '720px',
+      md: '960px',
+      'md+': '961px',
+      lg: '1200px',
+      xl: '1400px',
+      xxl: '1600px',
+      max: '2600px',
+    },
+    fontFamily: {
+      serif: ['var(--font-belwe)', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
+      sansSerif: ['var(--font-opensans)', 'Helvetica', 'Arial', 'sans-serif'],
+    },
     extend: {
       colors: {
         mainBrown: 'rgb(97 67 38)',
-        lightBrown: 'rgb(143, 110, 110)',
+        lightBrown: 'rgb(143 110 110)',
+        gold: 'rgb(252 209 68)',
+        lightGold: 'rgb(255, 229, 172)',
       },
-      fontFamily: {
-        banner: ['var(--font-belwe)', 'Georgia', 'Times', '"Times New Roman"', 'serif'],
-      },
-      screens: {
-        '961': '961px',
-        '2xl': '1600px',
+      listStyleType: {
+        square: 'square',
       },
       fontSize: {
         xl: ['20px', '1'],
