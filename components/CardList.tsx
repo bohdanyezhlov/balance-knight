@@ -37,6 +37,7 @@ export const CardList: React.FC<Props> = ({ cards, metadata, setPage, page, isGr
           setPage={setPage}
           classes={classes}
           showModal={showModal}
+          cardsLength={cards.length - 1}
         />
       ) : (
         <RenderAllCards
@@ -44,6 +45,7 @@ export const CardList: React.FC<Props> = ({ cards, metadata, setPage, page, isGr
           page={page}
           setPage={setPage}
           showModal={showModal}
+          cardsLength={cards.length - 1}
         />
       )}
       <Modal

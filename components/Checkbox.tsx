@@ -5,9 +5,15 @@ import CheckImage from '../public/check.png';
 type Props = {
   isGroupByClass: boolean;
   setIsGroupByClass: (v: boolean) => void;
+  setPage: (page: number) => void;
 };
 
-export const Checkbox: React.FC<Props> = ({ isGroupByClass, setIsGroupByClass }) => {
+export const Checkbox: React.FC<Props> = ({ isGroupByClass, setIsGroupByClass, setPage }) => {
+  const handleChange = () => {
+    setPage(1);
+    setIsGroupByClass(!isGroupByClass);
+  };
+
   return (
     <label
       htmlFor="groupByClass"
@@ -19,9 +25,7 @@ export const Checkbox: React.FC<Props> = ({ isGroupByClass, setIsGroupByClass })
         id="groupByClass"
         className="sr-only"
         checked={isGroupByClass}
-        onChange={() => {
-          setIsGroupByClass(!isGroupByClass);
-        }}
+        onChange={handleChange}
       />
       <div
         aria-hidden="true"

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useEffectOnce } from 'react-use';
 
 import { getAllCards } from '@/api/getAllCards';
 import { getMetadata } from '@/api/getMetadata';
@@ -19,14 +18,14 @@ const Home = () => {
   const [tokenReceived, setTokenReceived] = useState(false);
   const [isGroupByClass, setIsGroupByClass] = useState(true);
 
-  useEffectOnce(() => {
+  useEffect(() => {
     const fetchToken = async () => {
       await getToken();
       setTokenReceived(true);
     };
 
     fetchToken();
-  });
+  }, []);
 
   useEffect(() => {
     const fetchMetadata = async () => {
@@ -47,7 +46,7 @@ const Home = () => {
         cards: cardsData,
         pageCount: pageCountData,
         cardCount: cardCountData,
-      } = await getAllCards({ page });
+      } = await getAllCards({ page, isGroupByClass });
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);
@@ -58,28 +57,7 @@ const Home = () => {
       fetchCards(page);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, tokenReceived]);
-
-  useEffect(() => {
-    const fetchCards = async (numPage: number) => {
-      if (numPage > pageCount) return;
-
-      const {
-        cards: cardsData,
-        pageCount: pageCountData,
-        cardCount: cardCountData,
-      } = await getAllCards({ isGroupByClass });
-
-      setCardCount(cardCountData);
-      setPageCount(pageCountData);
-      setCards(page === 1 ? cardsData : (prev) => [...prev, ...cardsData]);
-    };
-
-    if (tokenReceived) {
-      fetchCards(page);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGroupByClass]);
+  }, [page, tokenReceived, isGroupByClass]);
 
   if (!metadata) return null; // REVIEW
 
@@ -90,6 +68,7 @@ const Home = () => {
         cardCount={cardCount}
         isGroupByClass={isGroupByClass}
         setIsGroupByClass={setIsGroupByClass}
+        setPage={setPage}
       />
       <CardList
         cards={cards}

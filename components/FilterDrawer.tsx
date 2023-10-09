@@ -12,6 +12,7 @@ type Props = {
   metadata: TMetadata;
   isGroupByClass: boolean;
   setIsGroupByClass: (v: boolean) => void;
+  setPage: (page: number) => void;
 };
 
 export const FilterDrawer: React.FC<Props> = ({
@@ -19,6 +20,7 @@ export const FilterDrawer: React.FC<Props> = ({
   metadata,
   isGroupByClass,
   setIsGroupByClass,
+  setPage,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -52,6 +54,7 @@ export const FilterDrawer: React.FC<Props> = ({
         metadata={metadata}
         isGroupByClass={isGroupByClass}
         setIsGroupByClass={setIsGroupByClass}
+        setPage={setPage}
       />
     </>
   );

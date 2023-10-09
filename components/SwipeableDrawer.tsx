@@ -18,6 +18,7 @@ type Props = {
   metadata: TMetadata;
   isGroupByClass: boolean;
   setIsGroupByClass: (v: boolean) => void;
+  setPage: (page: number) => void;
 };
 
 export const SwipeableDrawer: React.FC<Props> = ({
@@ -27,6 +28,7 @@ export const SwipeableDrawer: React.FC<Props> = ({
   metadata,
   isGroupByClass,
   setIsGroupByClass,
+  setPage,
 }) => {
   const { classes, types, rarities } = metadata;
   const [defaultClassOption, classOptions] = getDynamicOptions({
@@ -86,7 +88,11 @@ export const SwipeableDrawer: React.FC<Props> = ({
 
           <div className="relative mr-[30px] w-full py-[20px] text-lightBrown">
             <div className="pl-[15px]">
-              <Checkbox isGroupByClass={isGroupByClass} setIsGroupByClass={setIsGroupByClass} />
+              <Checkbox
+                isGroupByClass={isGroupByClass}
+                setIsGroupByClass={setIsGroupByClass}
+                setPage={setPage}
+              />
             </div>
 
             <label className="mb-2.5 block pl-[15px]">Sort By:</label>

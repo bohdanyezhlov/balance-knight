@@ -6,7 +6,6 @@ import { Card } from './Card';
 import { ClassTitle } from './ClassTitle';
 
 const NUM_GHOST_CARDS = 5;
-let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
 
 type Props = {
   cards: TCardsByClassId[];
@@ -14,6 +13,7 @@ type Props = {
   setPage: (page: number) => void;
   page: number;
   showModal: (id: number) => void;
+  cardsLength: number;
 };
 
 export const RenderCardsByGroup: React.FC<Props> = ({
@@ -22,7 +22,10 @@ export const RenderCardsByGroup: React.FC<Props> = ({
   page,
   setPage,
   showModal,
+  cardsLength,
 }) => {
+  let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
+
   return cards.map(({ classId, groupOfCards }) => {
     const classname = getClassNameByClassId(classId, classes);
 
@@ -41,7 +44,7 @@ export const RenderCardsByGroup: React.FC<Props> = ({
                 slug={slug}
                 imgSrc={image}
                 alt={name}
-                isLast={globalCardIndex === cards.length - 1}
+                isLast={globalCardIndex === cardsLength}
                 newLimit={() => setPage(page + 1)}
                 showModal={showModal}
               />

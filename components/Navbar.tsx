@@ -7,6 +7,7 @@ type Props = {
   cardCount: number;
   isGroupByClass: boolean;
   setIsGroupByClass: (v: boolean) => void;
+  setPage: (page: number) => void;
 };
 
 export const Navbar: React.FC<Props> = ({
@@ -14,6 +15,7 @@ export const Navbar: React.FC<Props> = ({
   cardCount,
   isGroupByClass,
   setIsGroupByClass,
+  setPage,
 }) => {
   return (
     <div className="relative overflow-hidden bg-[url(../public/bgFilterMiddleTile.jpeg)] pt-[11px] before:absolute before:top-0 before:h-[60px] before:w-full before:bg-[url(../public/bgFilterTopTile.png)] before:bg-top before:bg-repeat-x before:content-[''] after:absolute after:bottom-[-15px] after:h-[60px] after:w-full after:bg-[url(../public/bgFilterBottomTile.png)] after:bg-top after:bg-repeat-x after:content-['']">
@@ -23,6 +25,7 @@ export const Navbar: React.FC<Props> = ({
           metadata={metadata}
           isGroupByClass={isGroupByClass}
           setIsGroupByClass={setIsGroupByClass}
+          setPage={setPage}
         />
       </nav>
     </div>
