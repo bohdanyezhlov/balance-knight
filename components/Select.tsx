@@ -1,4 +1,4 @@
-import ArrowIndicator from '../public/arrowIndicator.svg';
+import ArrowIndicatorIcon from '../public/arrowIndicatorIcon.svg';
 
 type Props = {
   id?: string;
@@ -21,7 +21,7 @@ export const Select: React.FC<Props> = ({ id, options, selectedOption, handleOpt
           {selectedOption.name}
         </h6>
         <div className="absolute -right-1 z-[2] mt-px h-[17px] w-[17px] rotate-90">
-          <ArrowIndicator />
+          <ArrowIndicatorIcon />
         </div>
       </div>
       <select

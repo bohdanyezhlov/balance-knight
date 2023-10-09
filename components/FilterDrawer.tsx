@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { TMetadata } from '@/types';
 
-import Settings from '../public/settings.svg';
+import SettingsIcon from '../public/settingsIcon.svg';
 import { BaseLayer } from './BaseLayer';
 import { SwipeableDrawer } from './SwipeableDrawer';
 import { TopLayerWithHover } from './TopLayerWithHover';
@@ -38,7 +38,7 @@ export const FilterDrawer: React.FC<Props> = ({
         <BaseLayer as="div">
           <TopLayerWithHover as="button" onClick={toggleDrawer(true)}>
             <div className="absolute left-[-5px] top-1.5 z-[101] h-[30px] w-[30px] fill-mainBrown">
-              <Settings />
+              <SettingsIcon />
             </div>
             <h6 className="mx-2.5 hidden font-serif font-bold text-mainBrown min-[1261px]:block">
               Filters

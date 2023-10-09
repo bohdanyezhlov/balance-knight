@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import CheckImage from '../public/check.png';
+import CheckIcon from '../public/checkIcon.png';
 
 type Props = {
   isGroupByClass: boolean;
@@ -34,7 +34,7 @@ export const Checkbox: React.FC<Props> = ({ isGroupByClass, setIsGroupByClass, s
         <Image
           width={23}
           height={23}
-          src={CheckImage}
+          src={CheckIcon}
           alt="Checkbox"
           className={`${isGroupByClass ? 'opacity-100' : 'opacity-0'} absolute inset-0 h-[23px]`}
         />
