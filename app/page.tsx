@@ -1,5 +1,9 @@
 'use client';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { getAllCards } from '@/api/getAllCards';
@@ -17,6 +21,10 @@ const Home = () => {
   const [metadata, setMetadata] = useState<TMetadata>();
   const [tokenReceived, setTokenReceived] = useState(false);
   const [isGroupByClass, setIsGroupByClass] = useState(true);
+  const queryClient = new QueryClient();
+
+  const searchParams = useSearchParams();
+  const textFilter = searchParams.get('textFilter') || '';
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -46,7 +54,7 @@ const Home = () => {
         cards: cardsData,
         pageCount: pageCountData,
         cardCount: cardCountData,
-      } = await getAllCards({ page, isGroupByClass });
+      } = await getAllCards({ page, isGroupByClass, textFilter });
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);
@@ -57,12 +65,12 @@ const Home = () => {
       fetchCards(page);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, tokenReceived, isGroupByClass]);
+  }, [page, tokenReceived, isGroupByClass, textFilter]);
 
   if (!metadata) return null; // REVIEW
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Navbar
         metadata={metadata}
         cardCount={cardCount}
@@ -77,7 +85,8 @@ const Home = () => {
         page={page}
         isGroupByClass={isGroupByClass}
       />
-    </>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 };
 
