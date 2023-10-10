@@ -1,6 +1,6 @@
 import type { FilterableField, NumericFields } from '@/enums';
 
-export type TCardList = {
+export type TCardData = {
   cardCount: number;
   cards: TCard[];
   page: number;
