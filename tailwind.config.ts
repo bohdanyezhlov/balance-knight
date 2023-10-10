@@ -51,6 +51,14 @@ const config: Config = {
         'topLayer-middle-hover': 'url("../public/dropdownMiddleStretchHoverSelected.png")',
         'topLayer-left-hover': 'url("../public/dropdownLeftHoverSelected.png")',
         'topLayer-right-hover': 'url("../public/dropdownRightHoverSelected.png")',
+        //
+        'topLayer-middle-search': 'url("../public/searchMiddleStretch.png")',
+        'topLayer-left-search': 'url("../public/searchLeft.png")',
+        'topLayer-right-search': 'url("../public/searchRight.png")',
+        //
+        'topLayer-middle-hover-search': 'url("../public/searchMiddleStretchHoverSelected.png")',
+        'topLayer-left-hover-search': 'url("../public/searchLeftHoverSelected.png")',
+        'topLayer-right-hover-search': 'url("../public/searchRightHoverSelected.png")',
       },
     },
   },
