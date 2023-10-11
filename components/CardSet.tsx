@@ -37,8 +37,8 @@ export const CardSet = () => {
 
   return (
     <div className="relative mr-[30px]">
-      <BaseLayer as="div">
-        <TopLayerWithHover as="div" hasIcon>
+      <BaseLayer>
+        <TopLayerWithHover hasIcon>
           <Select
             options={metadata.sets}
             selectedOption={selectedCardSetOption}

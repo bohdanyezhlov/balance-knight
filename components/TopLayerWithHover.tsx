@@ -11,7 +11,7 @@ const searchRight = 'after:bg-topLayer-right-search hover:after:bg-topLayer-righ
 const iconLeft = 'before:bg-topLayer-left-icon hover:before:bg-topLayer-left-icon-hover';
 
 type Props = {
-  as: 'div' | 'button';
+  as?: 'div' | 'button';
   imgSet?: string;
   onClick?: (event: React.KeyboardEvent | React.MouseEvent) => void;
   children: React.ReactNode;

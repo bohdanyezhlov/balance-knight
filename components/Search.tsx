@@ -37,8 +37,8 @@ export const Search: React.FC<Props> = () => {
   return (
     <div className="relative mr-[30px] flex-1 md+:flex-none">
       <div className="mx-auto max-w-[300px]">
-        <BaseLayer as="div">
-          <TopLayerWithHover as="div" imgSet="search">
+        <BaseLayer>
+          <TopLayerWithHover imgSet="search">
             {!textFilter && (
               <div className="absolute right-[-9px] top-[9px] z-[1] h-[24px] w-[24px] cursor-pointer bg-contain fill-[gold]">
                 <SearchIcon />
@@ -52,7 +52,7 @@ export const Search: React.FC<Props> = () => {
                 onChange={handleInputChange}
                 value={textFilter}
                 placeholder="Search"
-                className="w-[calc(100%_-_20px)] appearance-none border-none bg-transparent font-serif text-white focus:outline-none"
+                className="w-[calc(100%_-_20px)] appearance-none border-none bg-transparent font-serif text-white placeholder:text-[#967464] focus:outline-none"
               />
             </form>
           </TopLayerWithHover>

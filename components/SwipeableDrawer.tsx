@@ -95,11 +95,13 @@ export const SwipeableDrawer: React.FC<Props> = ({
               />
             </div>
 
-            <label className="mb-2.5 block pl-[15px]">Sort By:</label>
+            <label htmlFor="CardSortControl" className="mb-2.5 block pl-[15px]">
+              Sort By:
+            </label>
 
             <div>
-              <BaseLayer as="div">
-                <TopLayerWithHover as="div">
+              <BaseLayer>
+                <TopLayerWithHover>
                   <Select
                     id="CardSortControl"
                     options={sortOptions}
@@ -118,8 +120,8 @@ export const SwipeableDrawer: React.FC<Props> = ({
               Filters:
             </label>
 
-            <BaseLayer as="div">
-              <TopLayerWithHover as="div" hasIcon>
+            <BaseLayer>
+              <TopLayerWithHover hasIcon>
                 <Select
                   id="ClassControl"
                   options={classOptions}
@@ -133,8 +135,8 @@ export const SwipeableDrawer: React.FC<Props> = ({
           </div>
 
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer as="div">
-              <TopLayerWithHover as="div" hasIcon>
+            <BaseLayer>
+              <TopLayerWithHover hasIcon>
                 <Select
                   options={manaOptions}
                   selectedOption={selectedManaOption}
@@ -147,8 +149,8 @@ export const SwipeableDrawer: React.FC<Props> = ({
           </div>
 
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer as="div">
-              <TopLayerWithHover as="div">
+            <BaseLayer>
+              <TopLayerWithHover>
                 <Select
                   options={cardTypeOptions}
                   selectedOption={selectedCardTypeOption}
@@ -161,8 +163,8 @@ export const SwipeableDrawer: React.FC<Props> = ({
           </div>
 
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer as="div">
-              <TopLayerWithHover as="div">
+            <BaseLayer>
+              <TopLayerWithHover>
                 <Select
                   options={rarityOptions}
                   selectedOption={selectedRarityOption}

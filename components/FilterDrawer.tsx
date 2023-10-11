@@ -31,7 +31,7 @@ export const FilterDrawer: React.FC<Props> = ({
   return (
     <>
       <div className="relative mr-[30px] flex justify-end md+:flex-1">
-        <BaseLayer as="div">
+        <BaseLayer>
           <TopLayerWithHover as="button" onClick={toggleDrawer(true)}>
             <div className="absolute left-[-5px] top-1.5 z-[101] h-[30px] w-[30px] fill-darkBrown">
               <SettingsIcon />
