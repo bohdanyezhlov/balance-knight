@@ -13,7 +13,6 @@ export const getAllCards = async ({
   textFilter = '',
   isGroupByClass = true,
 }): Promise<TCardData> => {
-  console.log(textFilter, 'getall');
   try {
     const accessToken = localStorage.getItem('access_token');
 
