@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import type { TCard, TCardsByClassId, TMetadata } from '@/types';
+import { useMetadataContext } from '@/contexts/MetadataContext';
+import type { TCard, TCardsByClassId } from '@/types';
 import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
 
 import { Modal } from './Modal';
@@ -9,19 +10,20 @@ import { RenderCardsByGroup } from './RenderCardsByGroup';
 
 type Props = {
   cards: TCard[];
-  metadata: TMetadata;
   setPage: (page: number) => void;
   page: number;
   isGroupByClass: boolean;
 };
 
-export const CardList: React.FC<Props> = ({ cards, metadata, setPage, page, isGroupByClass }) => {
+export const CardList: React.FC<Props> = ({ cards, setPage, page, isGroupByClass }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
-  const { classes } = metadata;
-  const cardsData = isGroupByClass ? splitCardsByClassId(cards) : cards;
+  const metadata = useMetadataContext();
 
-  if (!cardsData.length) return null;
+  if (!metadata || !cards) return null;
+
+  const { classes } = metadata!;
+  const cardsData = isGroupByClass ? splitCardsByClassId(cards) : cards;
 
   const showModal = (id: number) => {
     setIsOpen(true);

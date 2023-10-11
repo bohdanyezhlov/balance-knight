@@ -2,7 +2,8 @@
 import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 import { useState } from 'react';
 
-import type { TClass, TMetadata, TRarity, TType } from '@/types';
+import { useMetadataContext } from '@/contexts/MetadataContext';
+import type { TClass, TRarity, TType } from '@/types';
 import { getDynamicOptions } from '@/utils/getDynamicOptions';
 import { getStaticOptions } from '@/utils/getStaticOptions';
 
@@ -15,7 +16,6 @@ type Props = {
   cardCount: number;
   isOpen: boolean;
   toggleDrawer: (v: boolean) => React.ReactEventHandler<{}>;
-  metadata: TMetadata;
   isGroupByClass: boolean;
   setIsGroupByClass: (v: boolean) => void;
   setPage: (page: number) => void;
@@ -25,24 +25,24 @@ export const SwipeableDrawer: React.FC<Props> = ({
   cardCount,
   isOpen,
   toggleDrawer,
-  metadata,
   isGroupByClass,
   setIsGroupByClass,
   setPage,
 }) => {
-  const { classes, types, rarities } = metadata;
+  const metadata = useMetadataContext();
+  const { classes, types, rarities } = metadata || {};
   const [defaultClassOption, classOptions] = getDynamicOptions({
     name: 'All Classes',
-    data: classes,
+    data: classes || [],
   });
   const [defaultCardTypeOption, cardTypeOptions] = getDynamicOptions({
     name: 'All Type',
-    data: types,
+    data: types || [],
     excludedIds: [10, 40],
   });
   const [defaultRarityOption, rarityOptions] = getDynamicOptions({
     name: 'All Rarity',
-    data: rarities,
+    data: rarities || [],
   });
   const [defaultSortOption, sortOptions] = getStaticOptions('sort');
   const [defaultManaOption, manaOptions] = getStaticOptions('mana');
@@ -119,7 +119,7 @@ export const SwipeableDrawer: React.FC<Props> = ({
             </label>
 
             <BaseLayer as="div">
-              <TopLayerWithHover as="div">
+              <TopLayerWithHover as="div" hasIcon>
                 <Select
                   id="ClassControl"
                   options={classOptions}
@@ -134,7 +134,7 @@ export const SwipeableDrawer: React.FC<Props> = ({
 
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
             <BaseLayer as="div">
-              <TopLayerWithHover as="div">
+              <TopLayerWithHover as="div" hasIcon>
                 <Select
                   options={manaOptions}
                   selectedOption={selectedManaOption}

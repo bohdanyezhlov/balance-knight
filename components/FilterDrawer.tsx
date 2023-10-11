@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import type { TMetadata } from '@/types';
-
 import SettingsIcon from '../public/settingsIcon.svg';
 import { BaseLayer } from './BaseLayer';
 import { SwipeableDrawer } from './SwipeableDrawer';
@@ -9,7 +7,6 @@ import { TopLayerWithHover } from './TopLayerWithHover';
 
 type Props = {
   cardCount: number;
-  metadata: TMetadata;
   isGroupByClass: boolean;
   setIsGroupByClass: (v: boolean) => void;
   setPage: (page: number) => void;
@@ -17,7 +14,6 @@ type Props = {
 
 export const FilterDrawer: React.FC<Props> = ({
   cardCount,
-  metadata,
   isGroupByClass,
   setIsGroupByClass,
   setPage,
@@ -37,7 +33,7 @@ export const FilterDrawer: React.FC<Props> = ({
       <div className="relative mr-[30px] flex justify-end md+:flex-1">
         <BaseLayer as="div">
           <TopLayerWithHover as="button" onClick={toggleDrawer(true)}>
-            <div className="absolute left-[-5px] top-1.5 z-[101] h-[30px] w-[30px] fill-mainBrown">
+            <div className="absolute left-[-5px] top-1.5 z-[101] h-[30px] w-[30px] fill-darkBrown">
               <SettingsIcon />
             </div>
             <h6 className="mx-2.5 hidden font-serif font-bold text-mainBrown min-[1261px]:block">
@@ -51,7 +47,6 @@ export const FilterDrawer: React.FC<Props> = ({
         isOpen={isOpen}
         cardCount={cardCount}
         toggleDrawer={toggleDrawer}
-        metadata={metadata}
         isGroupByClass={isGroupByClass}
         setIsGroupByClass={setIsGroupByClass}
         setPage={setPage}

@@ -1,30 +1,30 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { getAllCards } from '@/api/getAllCards';
-import { getMetadata } from '@/api/getMetadata';
 import { getToken } from '@/api/getToken';
 import { CardList } from '@/components/CardList';
 import { Navbar } from '@/components/Navbar';
-import type { TCard, TMetadata } from '@/types';
+import { MetadataContextProvider } from '@/providers/MetadataContextProvider';
+import { TokenContextProvider } from '@/providers/TokenContextProvider';
+import type { TCard } from '@/types';
 
 const Home = () => {
   const [cards, setCards] = useState<TCard[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
-  const [metadata, setMetadata] = useState<TMetadata>();
   const [tokenReceived, setTokenReceived] = useState(false);
   const [isGroupByClass, setIsGroupByClass] = useState(true);
   const queryClient = new QueryClient();
 
   const searchParams = useSearchParams();
   const textFilter = searchParams.get('textFilter') || '';
+  const set = searchParams.get('set') || '';
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -36,17 +36,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const fetchMetadata = async () => {
-      const response = await getMetadata();
-      setMetadata(response);
-    };
-
-    if (tokenReceived) {
-      fetchMetadata();
-    }
-  }, [tokenReceived]);
-
-  useEffect(() => {
     const fetchCards = async (numPage: number) => {
       if (numPage > pageCount) return;
 
@@ -54,7 +43,7 @@ const Home = () => {
         cards: cardsData,
         pageCount: pageCountData,
         cardCount: cardCountData,
-      } = await getAllCards({ page, isGroupByClass, textFilter });
+      } = await getAllCards({ page, isGroupByClass, textFilter, set });
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);
@@ -65,28 +54,25 @@ const Home = () => {
       fetchCards(page);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, tokenReceived, isGroupByClass, textFilter]);
-
-  if (!metadata) return null; // REVIEW
+  }, [page, tokenReceived, isGroupByClass, textFilter, set]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Navbar
-        metadata={metadata}
-        cardCount={cardCount}
-        isGroupByClass={isGroupByClass}
-        setIsGroupByClass={setIsGroupByClass}
-        setPage={setPage}
-      />
-      <CardList
-        cards={cards}
-        metadata={metadata}
-        setPage={setPage}
-        page={page}
-        isGroupByClass={isGroupByClass}
-      />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <TokenContextProvider>
+      <MetadataContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <Navbar
+            cardCount={cardCount}
+            isGroupByClass={isGroupByClass}
+            setIsGroupByClass={setIsGroupByClass}
+            setPage={setPage}
+          />
+
+          <CardList cards={cards} setPage={setPage} page={page} isGroupByClass={isGroupByClass} />
+
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </MetadataContextProvider>
+    </TokenContextProvider>
   );
 };
 
