@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { getAllCards } from '@/api/getAllCards';
+import { getCards } from '@/api/getCards';
 import { getToken } from '@/api/getToken';
 import { CardGridLayout } from '@/components/CardGridLayout';
 import { FilterBar } from '@/components/FilterBar';
@@ -44,7 +44,7 @@ const Home = () => {
         cards: cardsData,
         pageCount: pageCountData,
         cardCount: cardCountData,
-      } = await getAllCards({ page, isGroupByClass, textFilter, set });
+      } = await getCards({ page, isGroupByClass, textFilter, set });
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);

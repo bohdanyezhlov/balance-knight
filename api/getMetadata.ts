@@ -1,16 +1,24 @@
-import axios from 'axios';
+import type { AxiosResponse } from 'axios';
+import axios, { isAxiosError } from 'axios';
 
 import type { TMetadata } from '@/types';
 
-const baseUrl = 'https://us.api.blizzard.com/hearthstone/metadata';
+const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
+const metadataPath = 'metadata';
 
-export const getMetadata = async (): Promise<TMetadata> => {
+const BASE_URL = `${apiEndpoint}${metadataPath}`;
+
+export const getMetadata = async () => {
   try {
     const accessToken = localStorage.getItem('access_token');
 
-    const apiUrl = `${baseUrl}?locale=en_US`;
+    if (!accessToken) {
+      throw new Error('Access token not found in localStorage');
+    }
 
-    const response = await axios.get(apiUrl, {
+    const apiUrl = `${BASE_URL}?locale=en_US`;
+
+    const response: AxiosResponse<TMetadata> = await axios.get(apiUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -18,7 +26,12 @@ export const getMetadata = async (): Promise<TMetadata> => {
 
     return response.data;
   } catch (error) {
-    console.error('Error:', error);
+    if (isAxiosError(error)) {
+      console.error('Axios error:', error.response?.data || error.message);
+    } else {
+      console.error('Generic error:', error);
+    }
+
     throw error;
   }
 };

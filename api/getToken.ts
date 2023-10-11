@@ -1,10 +1,27 @@
-import axios from 'axios';
+import type { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { isAxiosError } from 'axios';
 
 const clientId = process.env.NEXT_PUBLIC_ID;
 const clientSecret = process.env.NEXT_PUBLIC_SECRET;
-const tokenEndpoint = process.env.NEXT_PUBLIC_TOKENENDPOINT;
+const tokenEndpoint = process.env.NEXT_PUBLIC_TOKEN_ENDPOINT;
 
-export const getToken = async (): Promise<string> => {
+const axiosInstance: AxiosInstance = axios.create({
+  baseURL: tokenEndpoint,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  auth: {
+    username: clientId || '',
+    password: clientSecret || '',
+  },
+});
+
+type TokenResponse = {
+  access_token: string;
+  expires_in: number;
+};
+
+export const getToken = async () => {
   const storedToken = localStorage.getItem('access_token');
   const storedTokenExpiration = localStorage.getItem('token_expiration');
 
@@ -17,17 +34,12 @@ export const getToken = async (): Promise<string> => {
     }
   }
 
-  const basicAuth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
-  const headers = {
-    Authorization: `Basic ${basicAuth}`,
-    'Content-Type': 'application/x-www-form-urlencoded',
-  };
-
-  const data = new URLSearchParams();
-  data.append('grant_type', 'client_credentials');
-
   try {
-    const response = await axios.post(tokenEndpoint!, data, { headers });
+    const response: AxiosResponse<TokenResponse> = await axiosInstance.post(
+      '',
+      'grant_type=client_credentials'
+    );
+
     const token = response.data.access_token;
     const expiresIn = response.data.expires_in;
     const expirationTime = Date.now() + expiresIn * 1000;
@@ -37,7 +49,12 @@ export const getToken = async (): Promise<string> => {
 
     return token;
   } catch (error) {
-    console.error(error);
+    if (isAxiosError(error)) {
+      console.error('Axios error:', error.response?.data || error.message);
+    } else {
+      console.error('Generic error:', error);
+    }
+
     throw error;
   }
 };
