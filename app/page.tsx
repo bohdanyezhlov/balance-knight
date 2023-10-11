@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react';
 
 import { getAllCards } from '@/api/getAllCards';
 import { getToken } from '@/api/getToken';
-import { CardList } from '@/components/CardList';
-import { Navbar } from '@/components/Navbar';
+import { CardGridLayout } from '@/components/CardGridLayout';
+import { FilterBar } from '@/components/FilterBar';
+import { StatusBar } from '@/components/StatusBar';
 import { MetadataContextProvider } from '@/providers/MetadataContextProvider';
 import { TokenContextProvider } from '@/providers/TokenContextProvider';
 import type { TCard } from '@/types';
@@ -24,7 +25,7 @@ const Home = () => {
 
   const searchParams = useSearchParams();
   const textFilter = searchParams.get('textFilter') || '';
-  const set = searchParams.get('set') || '';
+  const set = searchParams.get('set') || 'standard';
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -60,14 +61,23 @@ const Home = () => {
     <TokenContextProvider>
       <MetadataContextProvider>
         <QueryClientProvider client={queryClient}>
-          <Navbar
+          <FilterBar
             cardCount={cardCount}
             isGroupByClass={isGroupByClass}
             setIsGroupByClass={setIsGroupByClass}
             setPage={setPage}
           />
 
-          <CardList cards={cards} setPage={setPage} page={page} isGroupByClass={isGroupByClass} />
+          <div className="mt-[104px]">
+            <StatusBar />
+
+            <CardGridLayout
+              cards={cards}
+              setPage={setPage}
+              page={page}
+              isGroupByClass={isGroupByClass}
+            />
+          </div>
 
           <ReactQueryDevtools />
         </QueryClientProvider>

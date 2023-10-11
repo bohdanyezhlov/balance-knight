@@ -15,14 +15,14 @@ type Props = {
   isGroupByClass: boolean;
 };
 
-export const CardList: React.FC<Props> = ({ cards, setPage, page, isGroupByClass }) => {
+export const CardGridLayout: React.FC<Props> = ({ cards, setPage, page, isGroupByClass }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
   const metadata = useMetadataContext();
 
   if (!metadata || !cards) return null;
 
-  const { classes } = metadata!;
+  const { classes } = metadata;
   const cardsData = isGroupByClass ? splitCardsByClassId(cards) : cards;
 
   const showModal = (id: number) => {
