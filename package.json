@@ -8,10 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx",
-    "lint:js:fix": "eslint --fix --ext .js,.ts,.tsx",
-    "format:check": "prettier --check \"**/*.{js,ts,jsx,tsx,json,md,html,scss}\"",
-    "format:fix": "prettier --write \"**/*.{js,ts,jsx,tsx,json,md,html,scss}\"",
+    "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:js:fix": "eslint . --fix --ext .js,.ts,.tsx",
+    "format:check": "prettier --check \"**/*.{js,ts,jsx,tsx,md,html,scss}\"",
+    "format:fix": "prettier --write \"**/*.{js,ts,jsx,tsx,md,html,scss}\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
