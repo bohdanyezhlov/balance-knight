@@ -51,7 +51,7 @@ export const Search: React.FC<Props> = () => {
                 id="textFilter"
                 onChange={handleInputChange}
                 value={textFilter}
-                placeholder="Search..."
+                placeholder="Search"
                 className="w-[calc(100%_-_20px)] appearance-none border-none bg-transparent font-serif text-white focus:outline-none"
               />
             </form>
