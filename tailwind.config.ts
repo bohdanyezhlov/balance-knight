@@ -27,8 +27,9 @@ const config: Config = {
       colors: {
         mainBrown: 'rgb(97 67 38)',
         lightBrown: 'rgb(143 110 110)',
+        darkBrown: 'rgb(71 44 17)',
         gold: 'rgb(252 209 68)',
-        lightGold: 'rgb(255, 229, 172)',
+        lightGold: 'rgb(255 229 172)',
       },
       listStyleType: {
         square: 'square',
@@ -59,6 +60,9 @@ const config: Config = {
         'topLayer-middle-hover-search': 'url("../public/searchMiddleStretchHoverSelected.png")',
         'topLayer-left-hover-search': 'url("../public/searchLeftHoverSelected.png")',
         'topLayer-right-hover-search': 'url("../public/searchRightHoverSelected.png")',
+        //
+        'topLayer-left-icon': 'url("../public/dropdownWithIconLeft.png")',
+        'topLayer-left-icon-hover': 'url("../public/dropdownWithIconLeftHoverSelected.png")',
       },
     },
   },
