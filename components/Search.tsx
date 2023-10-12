@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
@@ -40,9 +41,12 @@ export const Search: React.FC<Props> = () => {
         <BaseLayer>
           <TopLayerWithHover imgSet="search">
             {!textFilter && (
-              <div className="absolute right-[-9px] top-[9px] z-[1] h-[24px] w-[24px] cursor-pointer bg-contain fill-[gold]">
+              <label
+                htmlFor="textFilter"
+                className="absolute right-[-9px] top-[9px] z-[1] h-[24px] w-[24px] cursor-pointer bg-contain fill-[gold]"
+              >
                 <SearchIcon />
-              </div>
+              </label>
             )}
             <form onSubmit={handleSubmit}>
               <input
