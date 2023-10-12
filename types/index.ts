@@ -19,7 +19,7 @@ export type TCard = {
   id: number;
   image: string;
   imageGold: string;
-  keywordIds: number[];
+  keywordIds?: number[];
   manaCost: number;
   multiClassIds: number[];
   name: string;
