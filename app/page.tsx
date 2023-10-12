@@ -69,7 +69,7 @@ const Home = () => {
           />
 
           <div className="mt-[104px]">
-            <StatusBar />
+            <StatusBar cardCount={cardCount} />
 
             <CardGridLayout
               cards={cards}
