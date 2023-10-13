@@ -53,6 +53,7 @@ export const Modal: React.FC<Props> = ({ isOpen, setIsOpen, id, cards, metadata 
   return (
     <ModalMUI
       open={isOpen}
+      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       slotProps={{ backdrop: { className: '!bg-[rgba(0,0,0,0.9)]' } }}
@@ -70,7 +71,11 @@ export const Modal: React.FC<Props> = ({ isOpen, setIsOpen, id, cards, metadata 
           <div className="pointer-events-auto relative md+:mr-[25px] md+:w-[375px]">
             <div className="relative mx-auto flex h-full w-[80%] items-center justify-center md+:w-full">
               {/* <CardImage imgSrc={card.image} alt={card.name} /> */}
-              <img src={card.image} alt={card.name} />
+              <img
+                src={card.image}
+                alt={card.name}
+                className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)] transition-all duration-300 ease-[ease] hover:scale-110 hover:drop-shadow-[0_0_3px_rgb(255,255,255)]"
+              />
             </div>
           </div>
 

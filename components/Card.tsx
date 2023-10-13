@@ -45,7 +45,7 @@ export const Card: React.FC<Props> = ({ slug, id, imgSrc, alt, isLast, newLimit,
               sizes="100%, 100%"
               src={imgSrc}
               alt={alt}
-              className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)] transition-opacity duration-300 ease-[ease] hover:drop-shadow-[0_0_3px_rgb(255,255,255)]"
+              className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)] transition-all duration-300 ease-[ease] hover:scale-110 hover:drop-shadow-[0_0_3px_rgb(255,255,255)]"
               priority
             />
           </div>
