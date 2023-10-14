@@ -1,12 +1,25 @@
 export const updateSortParam = (sortParam: string, criteriaName: string, isAscending: boolean) => {
-  const updatedCriteria = sortParam.split(',').map((criteria) => {
-    if (criteria.startsWith(`${criteriaName}:`)) {
-      const newDirection = isAscending ? 'asc' : 'desc';
-      return `${criteriaName}:${newDirection}`;
-    }
+  const sortParamsObject: Record<string, string> = sortParam
+    .split(',')
+    .reduce((acc: Record<string, string>, criteria) => {
+      const [key, value] = criteria.split(':');
 
-    return criteria;
-  });
+      if (key && value) {
+        acc[key] = value;
+      }
+
+      return acc;
+    }, {});
+
+  if (isAscending) {
+    sortParamsObject[criteriaName] = 'asc';
+  } else {
+    delete sortParamsObject[criteriaName];
+  }
+
+  const updatedCriteria = Object.keys(sortParamsObject).map(
+    (key) => `${key}:${sortParamsObject[key]}`
+  );
 
   return updatedCriteria.join(',');
 };

@@ -32,8 +32,8 @@ export const CardGridLayout: React.FC<Props> = ({ cards, setPage, page }) => {
     const newSortParam =
       searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc';
     const newIsGroupByClass = extractParameterValue(newSortParam, SortParamsOptions.GroupByClass);
+
     if (newIsGroupByClass !== isGroupByClass) {
-      console.log(isGroupByClass, newIsGroupByClass);
       setIsGroupByClass(newIsGroupByClass);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
