@@ -25,11 +25,11 @@ export const getCards = async ({
 }) => {
   try {
     const accessToken = localStorage.getItem('access_token');
-
+    console.log(cardSetParam, textFilterParam, sortParam);
     const response: AxiosResponse<TCardData> = await axiosInstance.get('', {
       params: {
         class: heroClass,
-        textFilterParam,
+        textFilter: textFilterParam,
         manaCost,
         locale: 'en_US',
         page: page.toString(),
