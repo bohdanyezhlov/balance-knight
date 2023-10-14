@@ -46,7 +46,7 @@ export const Select: React.FC<Props> = ({
             }
           )}
         >
-          {selectedOption?.name}
+          {selectedOption.name || selectedOption}
         </h6>
         <div
           className={cn('absolute -right-1 z-[2] mt-px h-[17px] w-[17px] rotate-90', {

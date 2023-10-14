@@ -1,5 +1,5 @@
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useMetadataContext } from '@/contexts/MetadataContext';
 import type { TCardSet } from '@/types';
@@ -8,17 +8,29 @@ import { BaseLayer } from './BaseLayer';
 import { Select } from './Select';
 import { TopLayerWithHover } from './TopLayerWithHover';
 
-export const CardSet = () => {
+type Props = {
+  setPage: (page: number) => void;
+};
+
+export const CardSet: React.FC<Props> = ({ setPage }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const metadata = useMetadataContext();
-  const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSet | null>(null);
+  const cardSetParam = searchParams.get('cardSet') || 'standard';
+  const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSet | string>(
+    cardSetParam
+  ); // NOTE standard instead of null?
 
   useEffect(() => {
     if (metadata) {
       setSelectedCardSetOption(metadata.sets[0]);
     }
   }, [metadata]);
+
+  useEffect(() => {
+    setSelectedCardSetOption(cardSetParam);
+    // console.log(cardSetParam); // FIXME
+  }, [cardSetParam]);
 
   if (!metadata || !selectedCardSetOption) return null;
 
@@ -32,6 +44,8 @@ export const CardSet = () => {
 
       router.replace(`?${currentSearchParams.toString()}`);
       setSelectedCardSetOption(selectedOption);
+
+      setPage(1);
     }
   };
 

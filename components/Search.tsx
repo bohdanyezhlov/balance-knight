@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ClearSearchIcon from '@/public/clearSearchIcon.svg';
 import SearchIcon from '@/public/searchIcon.svg';
@@ -13,7 +13,12 @@ type Props = {};
 export const Search: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [textFilter, setTextFilter] = useState(searchParams.get('textFilter') || '');
+  const textFilterParam = searchParams.get('textFilter') || '';
+  const [textFilter, setTextFilter] = useState('');
+
+  useEffect(() => {
+    setTextFilter(textFilterParam);
+  }, [textFilterParam]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextFilter(e.target.value);
