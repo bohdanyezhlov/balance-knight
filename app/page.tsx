@@ -8,24 +8,24 @@ import { getToken } from '@/api/getToken';
 import { CardGridLayout } from '@/components/CardGridLayout';
 import { FilterBar } from '@/components/FilterBar';
 import { StatusBar } from '@/components/StatusBar';
+import { useTokenContext } from '@/contexts/TokenContext';
 import type { TCard } from '@/types';
 
 const Home: React.FC = () => {
+  const token = useTokenContext();
   const [cards, setCards] = useState<TCard[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
-  const [tokenReceived, setTokenReceived] = useState(false);
   const [isGroupByClass, setIsGroupByClass] = useState(true);
 
   const searchParams = useSearchParams();
   const textFilter = searchParams.get('textFilter') || '';
-  const set = searchParams.get('set') || 'standard';
+  const cardSet = searchParams.get('set') || 'standard';
 
   useEffect(() => {
     const fetchToken = async () => {
       await getToken();
-      setTokenReceived(true);
     };
 
     fetchToken();
@@ -39,18 +39,18 @@ const Home: React.FC = () => {
         cards: cardsData,
         pageCount: pageCountData,
         cardCount: cardCountData,
-      } = await getCards({ page, isGroupByClass, textFilter, set });
+      } = await getCards({ page, isGroupByClass, textFilter, cardSet });
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);
       setCards(page === 1 ? cardsData : (prev) => [...prev, ...cardsData]);
     };
 
-    if (tokenReceived) {
+    if (token) {
       fetchCards(page);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, tokenReceived, isGroupByClass, textFilter, set]);
+  }, [page, token, isGroupByClass, textFilter, cardSet]);
 
   return (
     <>

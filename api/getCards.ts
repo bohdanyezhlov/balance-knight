@@ -18,7 +18,7 @@ const axiosInstance: AxiosInstance = axios.create({
 export const getCards = async ({
   page = 1,
   manaCost = '',
-  set = 'standard',
+  cardSet = 'standard',
   heroClass = 'all',
   textFilter = '',
   isGroupByClass = true,
@@ -34,7 +34,7 @@ export const getCards = async ({
         locale: 'en_US',
         page: page.toString(),
         pageSize: PAGE_SIZE.toString(),
-        set,
+        set: cardSet,
         sort: `manaCost:asc,name:asc,classes:asc,${isGroupByClass ? 'groupByClass:asc' : ''}`,
       },
       headers: {
