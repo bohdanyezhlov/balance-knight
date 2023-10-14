@@ -5,6 +5,8 @@ import { Open_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { Wrapper } from '@/components/Wrapper';
+import { MetadataContextProvider } from '@/providers/MetadataContextProvider';
+import { TokenContextProvider } from '@/providers/TokenContextProvider';
 
 const belwe = localFont({
   src: '../public/fonts/Belwe-Bold.woff',
@@ -21,9 +23,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={`${openSans.variable} ${belwe.variable}`}>
       <body className="bg-[#f1d4ab] font-sansSerif text-[14px] font-normal leading-normal text-black">
-        <Wrapper>
-          <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
-        </Wrapper>
+        <TokenContextProvider>
+          <MetadataContextProvider>
+            <Wrapper>
+              <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
+            </Wrapper>
+          </MetadataContextProvider>
+        </TokenContextProvider>
       </body>
     </html>
   );
