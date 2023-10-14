@@ -25,7 +25,7 @@ export const StatusBar: React.FC<Props> = ({ cardCount }) => {
           </div>
 
           {activeFilters.map(({ key, value }) => {
-            if (key === 'set') return null;
+            if (key === 'set' || key === 'sort') return null;
 
             return (
               <div

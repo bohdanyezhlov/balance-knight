@@ -27,3 +27,11 @@ export enum CardAttributes {
   Artist = 'Artist',
   Collectible = 'Collectible',
 }
+
+export enum SortParamsOptions {
+  ManaCost = 'manaCost',
+  Classes = 'classes',
+  Attack = 'attack',
+  Health = 'health',
+  GroupByClass = 'groupByClass',
+}

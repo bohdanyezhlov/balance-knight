@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { useMetadataContext } from '@/contexts/MetadataContext';
+import { SortParamsOptions } from '@/enums';
 import type { TCard, TCardsByClassId } from '@/types';
+import { extractParameterValue } from '@/utils/extractParameterValue';
 import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
 
 import { Modal } from './Modal';
@@ -12,13 +15,29 @@ type Props = {
   cards: TCard[];
   setPage: (page: number) => void;
   page: number;
-  isGroupByClass: boolean;
 };
 
-export const CardGridLayout: React.FC<Props> = ({ cards, setPage, page, isGroupByClass }) => {
+export const CardGridLayout: React.FC<Props> = ({ cards, setPage, page }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
   const metadata = useMetadataContext();
+  const searchParams = useSearchParams();
+  const sortParam =
+    searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW
+  const [isGroupByClass, setIsGroupByClass] = useState(
+    extractParameterValue(sortParam, SortParamsOptions.GroupByClass)
+  );
+
+  useEffect(() => {
+    const newSortParam =
+      searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc';
+    const newIsGroupByClass = extractParameterValue(newSortParam, SortParamsOptions.GroupByClass);
+    if (newIsGroupByClass !== isGroupByClass) {
+      console.log(isGroupByClass, newIsGroupByClass);
+      setIsGroupByClass(newIsGroupByClass);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   if (!metadata || !cards) return null;
 

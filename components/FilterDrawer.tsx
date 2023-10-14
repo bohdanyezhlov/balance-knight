@@ -7,17 +7,10 @@ import { TopLayerWithHover } from './TopLayerWithHover';
 
 type Props = {
   cardCount: number;
-  isGroupByClass: boolean;
-  setIsGroupByClass: (v: boolean) => void;
   setPage: (page: number) => void;
 };
 
-export const FilterDrawer: React.FC<Props> = ({
-  cardCount,
-  isGroupByClass,
-  setIsGroupByClass,
-  setPage,
-}) => {
+export const FilterDrawer: React.FC<Props> = ({ cardCount, setPage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -47,8 +40,6 @@ export const FilterDrawer: React.FC<Props> = ({
         isOpen={isOpen}
         cardCount={cardCount}
         toggleDrawer={toggleDrawer}
-        isGroupByClass={isGroupByClass}
-        setIsGroupByClass={setIsGroupByClass}
         setPage={setPage}
       />
     </>

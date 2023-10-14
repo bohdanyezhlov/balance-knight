@@ -1,17 +1,41 @@
 import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+
+import { SortParamsOptions } from '@/enums';
+import { extractParameterValue } from '@/utils/extractParameterValue';
+import { updateSortParam } from '@/utils/updateSortParam';
 
 import CheckIcon from '../public/checkIcon.png';
 
 type Props = {
-  isGroupByClass: boolean;
-  setIsGroupByClass: (v: boolean) => void;
   setPage: (page: number) => void;
 };
 
-export const Checkbox: React.FC<Props> = ({ isGroupByClass, setIsGroupByClass, setPage }) => {
+export const Checkbox: React.FC<Props> = ({ setPage }) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const sortParam =
+    searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW
+  const [isGroupByClass, setIsGroupByClass] = useState(
+    extractParameterValue(sortParam, SortParamsOptions.GroupByClass)
+  );
+
   const handleChange = () => {
+    const updatedGroupByClass = !isGroupByClass;
+    setIsGroupByClass(updatedGroupByClass);
+
+    const updatedSortParams = updateSortParam(
+      sortParam,
+      SortParamsOptions.GroupByClass,
+      updatedGroupByClass
+    );
+
+    const currentSearchParams = new URLSearchParams(searchParams.toString());
+    currentSearchParams.set('sort', updatedSortParams);
+    router.replace(`?${currentSearchParams.toString()}`);
+
     setPage(1);
-    setIsGroupByClass(!isGroupByClass);
   };
 
   return (
