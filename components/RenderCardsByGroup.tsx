@@ -1,3 +1,4 @@
+import { usePageContext } from '@/contexts/PageContext';
 import type { TCardsByClassId, TClass } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
@@ -10,20 +11,12 @@ const NUM_GHOST_CARDS = 5;
 type Props = {
   cards: TCardsByClassId[];
   classes: TClass[];
-  setPage: (page: number) => void;
-  page: number;
   showModal: (id: number) => void;
   cardsLength: number;
 };
 
-export const RenderCardsByGroup: React.FC<Props> = ({
-  cards,
-  classes,
-  page,
-  setPage,
-  showModal,
-  cardsLength,
-}) => {
+export const RenderCardsByGroup: React.FC<Props> = ({ cards, classes, showModal, cardsLength }) => {
+  const { page, setPage } = usePageContext()!;
   let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
 
   return cards.map(({ classId, groupOfCards }) => {

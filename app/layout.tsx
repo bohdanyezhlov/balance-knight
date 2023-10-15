@@ -6,6 +6,7 @@ import localFont from 'next/font/local';
 
 import { Wrapper } from '@/components/Wrapper';
 import { MetadataContextProvider } from '@/providers/MetadataContextProvider';
+import { PageContextProvider } from '@/providers/PageContextProvider';
 import { TokenContextProvider } from '@/providers/TokenContextProvider';
 
 const belwe = localFont({
@@ -25,9 +26,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <body className="bg-[#f1d4ab] font-sansSerif text-[14px] font-normal leading-normal text-black">
         <TokenContextProvider>
           <MetadataContextProvider>
-            <Wrapper>
-              <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
-            </Wrapper>
+            <PageContextProvider>
+              <Wrapper>
+                <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
+              </Wrapper>
+            </PageContextProvider>
           </MetadataContextProvider>
         </TokenContextProvider>
       </body>

@@ -17,7 +17,7 @@ const axiosInstance: AxiosInstance = axios.create({
 
 export const getCards = async ({
   page = 1,
-  manaCost = '',
+  manaCostParam = '',
   cardSetParam = 'standard',
   heroClass = 'all',
   textFilterParam = '',
@@ -25,12 +25,12 @@ export const getCards = async ({
 }) => {
   try {
     const accessToken = localStorage.getItem('access_token');
-    console.log(cardSetParam, textFilterParam, sortParam);
+
     const response: AxiosResponse<TCardData> = await axiosInstance.get('', {
       params: {
         class: heroClass,
         textFilter: textFilterParam,
-        manaCost,
+        manaCost: manaCostParam,
         locale: 'en_US',
         page: page.toString(),
         pageSize: PAGE_SIZE.toString(),

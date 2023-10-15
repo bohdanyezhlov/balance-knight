@@ -13,11 +13,9 @@ import { RenderCardsByGroup } from './RenderCardsByGroup';
 
 type Props = {
   cards: TCard[];
-  setPage: (page: number) => void;
-  page: number;
 };
 
-export const CardGridLayout: React.FC<Props> = ({ cards, setPage, page }) => {
+export const CardGridLayout: React.FC<Props> = ({ cards }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
   const metadata = useMetadataContext();
@@ -54,8 +52,6 @@ export const CardGridLayout: React.FC<Props> = ({ cards, setPage, page }) => {
       {isGroupByClass ? (
         <RenderCardsByGroup
           cards={cardsData as TCardsByClassId[]}
-          page={page}
-          setPage={setPage}
           classes={classes}
           showModal={showModal}
           cardsLength={cards.length - 1}
@@ -63,8 +59,6 @@ export const CardGridLayout: React.FC<Props> = ({ cards, setPage, page }) => {
       ) : (
         <RenderAllCards
           cards={cardsData as TCard[]}
-          page={page}
-          setPage={setPage}
           showModal={showModal}
           cardsLength={cards.length - 1}
         />

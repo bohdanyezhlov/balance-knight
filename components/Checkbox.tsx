@@ -2,19 +2,19 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
+import { usePageContext } from '@/contexts/PageContext';
 import { SortParamsOptions } from '@/enums';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 import { updateSortParam } from '@/utils/updateSortParam';
 
 import CheckIcon from '../public/checkIcon.png';
 
-type Props = {
-  setPage: (page: number) => void;
-};
+type Props = {};
 
-export const Checkbox: React.FC<Props> = ({ setPage }) => {
+export const Checkbox: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { setPage } = usePageContext()!; // REVIEW
   const sortParam =
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW
   const [isGroupByClass, setIsGroupByClass] = useState(

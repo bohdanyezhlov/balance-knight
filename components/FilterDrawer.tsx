@@ -7,10 +7,9 @@ import { TopLayerWithHover } from './TopLayerWithHover';
 
 type Props = {
   cardCount: number;
-  setPage: (page: number) => void;
 };
 
-export const FilterDrawer: React.FC<Props> = ({ cardCount, setPage }) => {
+export const FilterDrawer: React.FC<Props> = ({ cardCount }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -36,12 +35,7 @@ export const FilterDrawer: React.FC<Props> = ({ cardCount, setPage }) => {
         </BaseLayer>
       </div>
 
-      <SwipeableDrawer
-        isOpen={isOpen}
-        cardCount={cardCount}
-        toggleDrawer={toggleDrawer}
-        setPage={setPage}
-      />
+      <SwipeableDrawer isOpen={isOpen} cardCount={cardCount} toggleDrawer={toggleDrawer} />
     </>
   );
 };

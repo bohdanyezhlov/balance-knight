@@ -4,6 +4,7 @@ import { Modal as ModalMUI } from '@mui/material';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import { usePageContext } from '@/contexts/PageContext';
 import { CardAttributes } from '@/enums';
 import type { TCard, TMetadata } from '@/types';
 import { getPropertyForAttribute } from '@/utils/getPropertyForAttribute';
@@ -21,6 +22,7 @@ type Props = {
 export const Modal: React.FC<Props> = ({ isOpen, setIsOpen, id, cards, metadata }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { setPage } = usePageContext()!; // REVIEW
   const [card] = cards.filter((c) => c.id === id);
   const { keywords } = metadata;
 
@@ -41,6 +43,7 @@ export const Modal: React.FC<Props> = ({ isOpen, setIsOpen, id, cards, metadata 
     router.replace(`?${currentSearchParams.toString()}`);
 
     setIsOpen(false);
+    setPage(1);
   };
 
   const { keywordIds } = card;

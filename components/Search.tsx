@@ -2,6 +2,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { usePageContext } from '@/contexts/PageContext';
 import ClearSearchIcon from '@/public/clearSearchIcon.svg';
 import SearchIcon from '@/public/searchIcon.svg';
 
@@ -13,6 +14,7 @@ type Props = {};
 export const Search: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { setPage } = usePageContext()!; // REVIEW
   const textFilterParam = searchParams.get('textFilter') || '';
   const [textFilter, setTextFilter] = useState('');
 
@@ -30,6 +32,8 @@ export const Search: React.FC<Props> = () => {
     const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.set('textFilter', textFilter);
     router.replace(`?${currentSearchParams.toString()}`);
+
+    setPage(1);
   };
 
   const handleClearSearch = () => {
@@ -38,6 +42,8 @@ export const Search: React.FC<Props> = () => {
     const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.delete('textFilter');
     router.replace(`?${currentSearchParams.toString()}`);
+
+    setPage(1);
   };
 
   return (

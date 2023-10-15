@@ -8,14 +8,15 @@ import { getToken } from '@/api/getToken';
 import { CardGridLayout } from '@/components/CardGridLayout';
 import { FilterBar } from '@/components/FilterBar';
 import { StatusBar } from '@/components/StatusBar';
+import { usePageContext } from '@/contexts/PageContext';
 import { useTokenContext } from '@/contexts/TokenContext';
 import type { TCard } from '@/types';
 
 const Home: React.FC = () => {
   const token = useTokenContext();
+  const { page } = usePageContext()!; // REVIEW
   const [cards, setCards] = useState<TCard[]>([]);
   const [cardCount, setCardCount] = useState(0);
-  const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
 
   const searchParams = useSearchParams();
@@ -34,7 +35,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const fetchCards = async (numPage: number) => {
-      if (numPage > pageCount) return;
+      if (numPage > pageCount && pageCount !== 0) return;
 
       const {
         cards: cardsData,
@@ -55,12 +56,12 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <FilterBar cardCount={cardCount} setPage={setPage} />
+      <FilterBar cardCount={cardCount} />
 
       <div className="mt-[104px]">
         <StatusBar cardCount={cardCount} />
 
-        <CardGridLayout cards={cards} setPage={setPage} page={page} />
+        <CardGridLayout cards={cards} />
       </div>
     </>
   );

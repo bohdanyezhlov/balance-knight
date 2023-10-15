@@ -2,24 +2,24 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import { useMetadataContext } from '@/contexts/MetadataContext';
+import { usePageContext } from '@/contexts/PageContext';
 import type { TCardSet } from '@/types';
 
 import { BaseLayer } from './BaseLayer';
 import { Select } from './Select';
 import { TopLayerWithHover } from './TopLayerWithHover';
 
-type Props = {
-  setPage: (page: number) => void;
-};
+type Props = {};
 
-export const CardSet: React.FC<Props> = ({ setPage }) => {
+export const CardSet: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { setPage } = usePageContext()!; // REVIEW
   const metadata = useMetadataContext();
   const cardSetParam = searchParams.get('cardSet') || 'standard';
   const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSet | string>(
     cardSetParam
-  ); // NOTE standard instead of null?
+  );
 
   useEffect(() => {
     if (metadata) {
