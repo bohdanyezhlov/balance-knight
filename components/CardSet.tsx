@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useMetadataContext } from '@/contexts/MetadataContext';
 import { usePageContext } from '@/contexts/PageContext';
@@ -18,21 +18,10 @@ export const CardSet: React.FC<Props> = () => {
   const router = useRouter();
   const { setPage } = usePageContext()!; // REVIEW
   const metadata = useMetadataContext();
-  const cardSetParam = searchParams.get('cardSet') || 'standard';
+  const cardSetParam = searchParams.get('set') || 'standard';
   const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSet | string>(
     cardSetParam
   );
-
-  useEffect(() => {
-    if (metadata) {
-      setSelectedCardSetOption(metadata.sets[0]);
-    }
-  }, [metadata]);
-
-  useEffect(() => {
-    setSelectedCardSetOption(cardSetParam);
-    // console.log(cardSetParam); // FIXME
-  }, [cardSetParam]);
 
   if (!metadata || !selectedCardSetOption) return null;
 

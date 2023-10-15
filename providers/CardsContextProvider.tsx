@@ -28,7 +28,6 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const fetchCards = async (numPage = page) => {
-      console.log(page, numPage, 'inside fetchCards');
       if (numPage > pageCount && pageCount !== 0) return;
 
       const {

@@ -1,6 +1,13 @@
+import type { TCardSet } from '@/types';
 import { cn } from '@/utils/cn';
 
 import ArrowIndicatorIcon from '../public/arrowIndicatorIcon.svg';
+
+const getOptionNameBySlug = (slug: string, options: TCardSet[]): string => {
+  const option = options.find((opt) => opt.slug === slug);
+
+  return option ? option.name : 'Option not found';
+};
 
 type Props = {
   id?: string;
@@ -11,11 +18,6 @@ type Props = {
   variant?: 'cardSet';
 };
 
-/* TODO
-  add icons (set, class, attack, health)
-  Any Rarity => Rarity (h6 default value)
-  fix ts
-*/
 export const Select: React.FC<Props> = ({
   id,
   options,
@@ -46,7 +48,9 @@ export const Select: React.FC<Props> = ({
             }
           )}
         >
-          {selectedOption.name || selectedOption}
+          {typeof selectedOption === 'string'
+            ? getOptionNameBySlug(selectedOption, options)
+            : selectedOption.name}
         </h6>
         <div
           className={cn('absolute -right-1 z-[2] mt-px h-[17px] w-[17px] rotate-90', {
@@ -57,6 +61,7 @@ export const Select: React.FC<Props> = ({
           <ArrowIndicatorIcon />
         </div>
       </div>
+
       <select
         {...(id ? { id } : {})}
         className="absolute -left-6 top-0 z-[2] h-full w-[calc(100%_+_48px)] appearance-none border-0 bg-transparent indent-[-1000em] focus:outline-none"
