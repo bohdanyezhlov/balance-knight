@@ -1,22 +1,42 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useCards } from '@/hooks/useCards';
 import ClearAllFilters from '@/public/clearAllFilters.svg';
+
+const preservedKeys = ['set', 'sort', 'locale'];
 
 type Props = {};
 
 export const StatusBar: React.FC<Props> = () => {
   const { cardCount } = useCards();
   const searchParams = useSearchParams();
-  // const textFilter = searchParams.get('textFilter') || '';
+  const router = useRouter();
   const set = searchParams.get('set') || 'standard';
-  const queries = Array.from(searchParams).map(([key, value]) => ({ key, value }));
+  const params = Array.from(searchParams).map(([param, value]) => ({ param, value }));
 
-  const activeFilters = [...queries];
+  const activeFilters = params.filter((p) => !preservedKeys.includes(p.param));
 
-  const handleClearSingleParam = (v: string) => () => console.log(v);
+  const handleClearSingleParam = (param: string) => () => {
+    const currentSearchParams = new URLSearchParams(searchParams.toString());
+    currentSearchParams.delete(param);
+    router.replace(`?${currentSearchParams.toString()}`);
+  };
+
+  const handleClearAllParams = () => {
+    const currentSearchParams = new URLSearchParams(searchParams.toString());
+
+    const newSearchParams = Array.from(currentSearchParams).reduce((acc, [key, value]) => {
+      if (preservedKeys.includes(key)) {
+        acc.set(key, value);
+      }
+
+      return acc;
+    }, new URLSearchParams());
+
+    router.replace(`?${newSearchParams.toString()}`);
+  };
 
   return (
     <div className="relative z-[2] py-10">
@@ -26,9 +46,7 @@ export const StatusBar: React.FC<Props> = () => {
             {`${cardCount} cards found for ${set}`}
           </div>
 
-          {activeFilters.map(({ key, value }) => {
-            if (key === 'set' || key === 'sort') return null;
-
+          {activeFilters.map(({ param, value }) => {
             return (
               <div
                 key={value}
@@ -38,7 +56,7 @@ export const StatusBar: React.FC<Props> = () => {
                 <button
                   type="button"
                   className="ml-2.5 inline text-gold"
-                  onClick={handleClearSingleParam(key)}
+                  onClick={handleClearSingleParam(param)}
                 >
                   ✕
                 </button>
@@ -50,7 +68,7 @@ export const StatusBar: React.FC<Props> = () => {
             <button
               type="button"
               className="relative h-[25px] border-none bg-none px-10 py-[3px] text-[14px] text-[#233a6e]"
-              // onClick={}
+              onClick={handleClearAllParams}
             >
               <div>
                 <ClearAllFilters />
