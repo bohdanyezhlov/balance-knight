@@ -5,9 +5,12 @@ import { Open_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { Wrapper } from '@/components/Wrapper';
-import { MetadataContextProvider } from '@/providers/MetadataContextProvider';
-import { PageContextProvider } from '@/providers/PageContextProvider';
-import { TokenContextProvider } from '@/providers/TokenContextProvider';
+import {
+  CardsContextProvider,
+  MetadataContextProvider,
+  PageContextProvider,
+  TokenContextProvider,
+} from '@/providers';
 
 const belwe = localFont({
   src: '../public/fonts/Belwe-Bold.woff',
@@ -27,9 +30,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <TokenContextProvider>
           <MetadataContextProvider>
             <PageContextProvider>
-              <Wrapper>
-                <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
-              </Wrapper>
+              <CardsContextProvider>
+                <Wrapper>
+                  <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
+                </Wrapper>
+              </CardsContextProvider>
             </PageContextProvider>
           </MetadataContextProvider>
         </TokenContextProvider>

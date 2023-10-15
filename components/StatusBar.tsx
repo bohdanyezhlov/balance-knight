@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useCards } from '@/hooks/useCards';
+import { useCardsContext } from '@/contexts/CardsContext';
 import ClearAllFilters from '@/public/clearAllFilters.svg';
 
 const preservedKeys = ['set', 'sort', 'locale'];
@@ -10,7 +10,7 @@ const preservedKeys = ['set', 'sort', 'locale'];
 type Props = {};
 
 export const StatusBar: React.FC<Props> = () => {
-  const { cardCount } = useCards();
+  const { cardCount } = useCardsContext()!; // REVIEW
   const searchParams = useSearchParams();
   const router = useRouter();
   const set = searchParams.get('set') || 'standard';

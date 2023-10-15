@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { useCards } from '@/hooks/useCards';
+import { useCardsContext } from '@/contexts/CardsContext';
 
 import SettingsIcon from '../public/settingsIcon.svg';
 import { BaseLayer } from './BaseLayer';
@@ -12,7 +12,7 @@ import { TopLayerWithHover } from './TopLayerWithHover';
 type Props = {};
 
 export const FilterDrawer: React.FC<Props> = () => {
-  const { cardCount } = useCards();
+  const { cardCount } = useCardsContext()!; // REVIEW
 
   const [isOpen, setIsOpen] = useState(false);
 

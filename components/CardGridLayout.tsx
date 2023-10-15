@@ -3,9 +3,9 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { useCardsContext } from '@/contexts/CardsContext';
 import { useMetadataContext } from '@/contexts/MetadataContext';
 import { SortParamsOptions } from '@/enums';
-import { useCards } from '@/hooks/useCards';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
@@ -17,7 +17,7 @@ import { RenderCardsByGroup } from './RenderCardsByGroup';
 type Props = {};
 
 export const CardGridLayout: React.FC<Props> = () => {
-  const { cards } = useCards();
+  const { cards } = useCardsContext()!; // REVIEW
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
   const metadata = useMetadataContext();

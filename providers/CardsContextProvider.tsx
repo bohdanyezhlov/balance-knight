@@ -1,16 +1,21 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { getCards } from '@/api/getCards';
+import { CardsContext } from '@/contexts/CardsContext';
 import { usePageContext } from '@/contexts/PageContext';
 import { useTokenContext } from '@/contexts/TokenContext';
 import type { TCard } from '@/types';
 
-export const useCards = () => {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const CardsContextProvider: React.FC<Props> = ({ children }) => {
   const token = useTokenContext();
-  const { page } = usePageContext()!; // REVIEW
+  const { page } = usePageContext()!;
   const [cards, setCards] = useState<TCard[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [pageCount, setPageCount] = useState(1);
@@ -22,7 +27,8 @@ export const useCards = () => {
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW this string repeats many times
 
   useEffect(() => {
-    const fetchCards = async (numPage: number) => {
+    const fetchCards = async (numPage = page) => {
+      console.log(page, numPage, 'inside fetchCards');
       if (numPage > pageCount && pageCount !== 0) return;
 
       const {
@@ -37,10 +43,13 @@ export const useCards = () => {
     };
 
     if (token) {
-      fetchCards(page);
+      fetchCards();
     }
+    // NOTE DO NOT add pageCount to dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, token, textFilterParam, cardSetParam, sortParam]);
 
-  return { cards, cardCount };
+  const contextValue = useMemo(() => ({ cards, cardCount }), [cards, cardCount]);
+
+  return <CardsContext.Provider value={contextValue}>{children}</CardsContext.Provider>;
 };
