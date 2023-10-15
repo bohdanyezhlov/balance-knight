@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -59,6 +61,7 @@ export const Search: React.FC<Props> = () => {
                 <SearchIcon />
               </label>
             )}
+
             <form onSubmit={handleSubmit}>
               <input
                 type="search"
@@ -71,6 +74,7 @@ export const Search: React.FC<Props> = () => {
               />
             </form>
           </TopLayerWithHover>
+
           {textFilter && (
             <button
               type="button"

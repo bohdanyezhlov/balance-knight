@@ -1,12 +1,14 @@
+'use client';
+
 import { useSearchParams } from 'next/navigation';
 
+import { useCards } from '@/hooks/useCards';
 import ClearAllFilters from '@/public/clearAllFilters.svg';
 
-type Props = {
-  cardCount: number;
-};
+type Props = {};
 
-export const StatusBar: React.FC<Props> = ({ cardCount }) => {
+export const StatusBar: React.FC<Props> = () => {
+  const { cardCount } = useCards();
   const searchParams = useSearchParams();
   // const textFilter = searchParams.get('textFilter') || '';
   const set = searchParams.get('set') || 'standard';

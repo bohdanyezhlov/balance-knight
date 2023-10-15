@@ -1,8 +1,11 @@
+'use client';
+
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { useMetadataContext } from '@/contexts/MetadataContext';
 import { SortParamsOptions } from '@/enums';
+import { useCards } from '@/hooks/useCards';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
@@ -11,11 +14,10 @@ import { Modal } from './Modal';
 import { RenderAllCards } from './RenderAllCards';
 import { RenderCardsByGroup } from './RenderCardsByGroup';
 
-type Props = {
-  cards: TCard[];
-};
+type Props = {};
 
-export const CardGridLayout: React.FC<Props> = ({ cards }) => {
+export const CardGridLayout: React.FC<Props> = () => {
+  const { cards } = useCards();
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
   const metadata = useMetadataContext();

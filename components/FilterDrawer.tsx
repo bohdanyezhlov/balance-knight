@@ -1,15 +1,19 @@
+'use client';
+
 import { useState } from 'react';
+
+import { useCards } from '@/hooks/useCards';
 
 import SettingsIcon from '../public/settingsIcon.svg';
 import { BaseLayer } from './BaseLayer';
 import { SwipeableDrawer } from './SwipeableDrawer';
 import { TopLayerWithHover } from './TopLayerWithHover';
 
-type Props = {
-  cardCount: number;
-};
+type Props = {};
 
-export const FilterDrawer: React.FC<Props> = ({ cardCount }) => {
+export const FilterDrawer: React.FC<Props> = () => {
+  const { cardCount } = useCards();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
