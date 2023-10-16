@@ -2,9 +2,9 @@
 import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 import { useState } from 'react';
 
-import { useMetadataContext } from '@/contexts/MetadataContext';
-import type { TClass, TRarity, TType } from '@/types';
-import { getDynamicOptions } from '@/utils/getDynamicOptions';
+// import { useMetadataContext } from '@/contexts/MetadataContext';
+// import type { TClass, TRarity, TType } from '@/types';
+// import { getDynamicOptions } from '@/utils/getDynamicOptions';
 import { getStaticOptions } from '@/utils/getStaticOptions';
 
 import { BaseLayer } from './BaseLayer';
@@ -19,30 +19,30 @@ type Props = {
 };
 
 export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDrawer }) => {
-  const metadata = useMetadataContext();
-  const { classes, types, rarities } = metadata || {};
-  const [defaultClassOption, classOptions] = getDynamicOptions({
-    name: 'All Classes',
-    data: classes || [],
-  });
-  const [defaultCardTypeOption, cardTypeOptions] = getDynamicOptions({
-    name: 'All Type',
-    data: types || [],
-    excludedIds: [10, 40],
-  });
-  const [defaultRarityOption, rarityOptions] = getDynamicOptions({
-    name: 'All Rarity',
-    data: rarities || [],
-  });
+  // const metadata = useMetadataContext();
+  // const { classes, types, rarities } = metadata || {};
+  // const [defaultClassOption, classOptions] = getDynamicOptions({
+  //   name: 'All Classes',
+  //   data: classes || [],
+  // });
+  // const [defaultCardTypeOption, cardTypeOptions] = getDynamicOptions({
+  //   name: 'All Type',
+  //   data: types || [],
+  //   excludedIds: [10, 40],
+  // });
+  // const [defaultRarityOption, rarityOptions] = getDynamicOptions({
+  //   name: 'All Rarity',
+  //   data: rarities || [],
+  // });
   const [defaultSortOption, sortOptions] = getStaticOptions('sort');
-  const [defaultManaOption, manaOptions] = getStaticOptions('mana');
+  // const [defaultManaOption, manaOptions] = getStaticOptions('mana');
 
   const [selectedSortOption, setSelectedSortOption] = useState(defaultSortOption);
-  const [selectedClassOption, setSelectedClassOption] = useState<TClass>(defaultClassOption);
-  const [selectedManaOption, setSelectedManaOption] = useState(defaultManaOption);
-  const [selectedRarityOption, setSelectedRarityOption] = useState<TRarity>(defaultRarityOption);
-  const [selectedCardTypeOption, setSelectedCardTypeOption] =
-    useState<TType>(defaultCardTypeOption);
+  // const [selectedClassOption, setSelectedClassOption] = useState<TClass>(defaultClassOption);
+  // const [selectedManaOption, setSelectedManaOption] = useState(defaultManaOption);
+  // const [selectedRarityOption, setSelectedRarityOption] = useState<TRarity>(defaultRarityOption);
+  // const [selectedCardTypeOption, setSelectedCardTypeOption] =
+  //   useState<TType>(defaultCardTypeOption);
 
   const handleOptionChange = (
     e: React.ChangeEvent<HTMLSelectElement>,
@@ -100,7 +100,7 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
               </BaseLayer>
             </div>
           </div>
-
+          {/*
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
             <label htmlFor="ClassControl" className="mb-2.5 block pl-[15px]">
               Filters:
@@ -160,7 +160,7 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
                 />
               </TopLayerWithHover>
             </BaseLayer>
-          </div>
+          </div> */}
           {/*  */}
         </div>
       </div>
