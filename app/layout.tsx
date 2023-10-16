@@ -16,7 +16,13 @@ const belwe = localFont({
   src: '../public/fonts/Belwe-Bold.woff',
   variable: '--font-belwe',
 });
-const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-opensans' });
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-opensans',
+});
 
 export const metadata: Metadata = {
   title: 'Hearthstone Card Library',
