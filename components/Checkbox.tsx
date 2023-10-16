@@ -33,7 +33,7 @@ export const Checkbox: React.FC<Props> = () => {
 
     const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.set('sort', updatedSortParams);
-    router.replace(`?${currentSearchParams.toString()}`);
+    router.push(`?${currentSearchParams.toString()}`);
 
     setPage(1);
   };

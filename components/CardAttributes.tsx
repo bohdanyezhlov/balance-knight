@@ -33,7 +33,7 @@ export const CardAttributes: React.FC<Props> = ({ card, metadata, setIsOpen }) =
 
     const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.set('textFilter', artistName);
-    router.replace(`?${currentSearchParams.toString()}`);
+    router.push(`?${currentSearchParams.toString()}`);
 
     setIsOpen(false);
     setPage(1);

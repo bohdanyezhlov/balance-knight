@@ -33,7 +33,7 @@ export const Search: React.FC<Props> = () => {
 
     const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.set('textFilter', textFilter);
-    router.replace(`?${currentSearchParams.toString()}`);
+    router.push(`?${currentSearchParams.toString()}`);
 
     setPage(1);
   };
@@ -43,7 +43,7 @@ export const Search: React.FC<Props> = () => {
 
     const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.delete('textFilter');
-    router.replace(`?${currentSearchParams.toString()}`);
+    router.push(`?${currentSearchParams.toString()}`);
 
     setPage(1);
   };

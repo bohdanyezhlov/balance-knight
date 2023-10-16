@@ -33,7 +33,7 @@ export const CardSet: React.FC<Props> = () => {
       const currentSearchParams = new URLSearchParams(searchParams);
       currentSearchParams.set('set', selectedOption.slug);
 
-      router.replace(`?${currentSearchParams.toString()}`);
+      router.push(`?${currentSearchParams.toString()}`);
       setSelectedCardSetOption(selectedOption);
 
       setPage(1);

@@ -21,7 +21,7 @@ export const StatusBar: React.FC<Props> = () => {
   const handleClearSingleParam = (param: string) => () => {
     const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.delete(param);
-    router.replace(`?${currentSearchParams.toString()}`);
+    router.push(`?${currentSearchParams.toString()}`);
   };
 
   const handleClearAllParams = () => {
@@ -35,7 +35,7 @@ export const StatusBar: React.FC<Props> = () => {
       return acc;
     }, new URLSearchParams());
 
-    router.replace(`?${newSearchParams.toString()}`);
+    router.push(`?${newSearchParams.toString()}`);
   };
 
   return (
