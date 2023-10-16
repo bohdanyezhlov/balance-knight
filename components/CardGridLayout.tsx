@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { useCardsContext } from '@/contexts/CardsContext';
 import { useMetadataContext } from '@/contexts/MetadataContext';
-import { SortParamsOptions } from '@/enums';
+import { ESortParamsOptions } from '@/enums';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
@@ -25,13 +25,13 @@ export const CardGridLayout: React.FC<Props> = () => {
   const sortParam =
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW
   const [isGroupByClass, setIsGroupByClass] = useState(
-    extractParameterValue(sortParam, SortParamsOptions.GroupByClass)
+    extractParameterValue(sortParam, ESortParamsOptions.GroupByClass)
   );
 
   useEffect(() => {
     const newSortParam =
       searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc';
-    const newIsGroupByClass = extractParameterValue(newSortParam, SortParamsOptions.GroupByClass);
+    const newIsGroupByClass = extractParameterValue(newSortParam, ESortParamsOptions.GroupByClass);
 
     if (newIsGroupByClass !== isGroupByClass) {
       setIsGroupByClass(newIsGroupByClass);

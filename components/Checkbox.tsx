@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
-import { SortParamsOptions } from '@/enums';
+import { ESortParamsOptions } from '@/enums';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 import { updateSortParam } from '@/utils/updateSortParam';
 
@@ -18,7 +18,7 @@ export const Checkbox: React.FC<Props> = () => {
   const sortParam =
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW
   const [isGroupByClass, setIsGroupByClass] = useState(
-    extractParameterValue(sortParam, SortParamsOptions.GroupByClass)
+    extractParameterValue(sortParam, ESortParamsOptions.GroupByClass)
   );
 
   const handleChange = () => {
@@ -27,7 +27,7 @@ export const Checkbox: React.FC<Props> = () => {
 
     const updatedSortParams = updateSortParam(
       sortParam,
-      SortParamsOptions.GroupByClass,
+      ESortParamsOptions.GroupByClass,
       updatedGroupByClass
     );
 
