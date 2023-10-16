@@ -1,4 +1,4 @@
-export enum FilterableField {
+export enum EFilterableField {
   Collectible = 'collectible',
   CardSetId = 'cardSetId',
   SpellSchoolId = 'spellSchoolId',
@@ -10,15 +10,17 @@ export enum FilterableField {
   Armor = 'armor',
 }
 
-export enum NumericFields {
+export enum ENumericFields {
   ManaCost = 'manaCost',
   Attack = 'attack',
   Health = 'health',
   Armor = 'armor',
 }
 
-export enum CardAttributes {
+export enum ECardPropertiesKeys {
   Type = 'Type',
+  MinionTypeId = 'Minion Type',
+  SpellSchool = 'Spell School',
   Rarity = 'Rarity',
   Set = 'Set',
   Class = 'Class',
@@ -28,10 +30,25 @@ export enum CardAttributes {
   Collectible = 'Collectible',
 }
 
-export enum SortParamsOptions {
+export enum ECardProperties {
+  Type = 'cardTypeId',
+  MinionType = 'minionTypeId',
+  SpellSchool = 'spellSchoolId',
+  Rarity = 'rarityId',
+  Set = 'cardSetId',
+  Class = 'classId',
+  CostToCraft = 'costToCraft',
+  DisenchantingYield = 'disenchantingYield',
+  Artist = 'artistName',
+  Collectible = 'collectible',
+}
+
+export enum ESortParamsOptions {
   ManaCost = 'manaCost',
-  Classes = 'classes',
+  Class = 'class',
   Attack = 'attack',
   Health = 'health',
   GroupByClass = 'groupByClass',
+  DataAdded = 'dataAdded',
+  Name = 'name',
 }

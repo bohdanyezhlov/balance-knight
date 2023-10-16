@@ -1,4 +1,4 @@
-import type { FilterableField, NumericFields } from '@/enums';
+import type { EFilterableField, ENumericFields } from '@/enums';
 
 export type TCardData = {
   cardCount: number;
@@ -9,21 +9,30 @@ export type TCardData = {
 
 export type TCard = {
   artistName: string;
+  attack: number;
   cardSetId: number;
+  childIds: number[];
   cardTypeId: number;
   classId: number;
   collectible: number;
   cropImage: string;
-  duels: { relevant: boolean; constructed: boolean };
   flavorText: string;
+  health: number;
   id: number;
   image: string;
   imageGold: string;
   keywordIds?: number[];
   manaCost: number;
+  minionTypeId: number;
   multiClassIds: number[];
+  multiTypeIds: number[];
   name: string;
   rarityId: number;
+  runeCost?: {
+    blood: number;
+    frost: number;
+    unholy: number;
+  };
   slug: string;
   spellSchoolId: number;
   text: string;
@@ -111,11 +120,11 @@ export type TType = {
 export type TMetadata = {
   cardBackCategories: TCardBackCategory[];
   classes: TClass[];
-  filterableFields: FilterableField;
+  filterableFields: EFilterableField;
   gameModes: TGameMode[];
   keywords: TKeyword[];
   minionTypes: TMinionType[];
-  numericFields: NumericFields;
+  ENumericFields: ENumericFields;
   rarities: TRarity[];
   setGroups: TSetGroup[];
   sets: TCardSet[];
