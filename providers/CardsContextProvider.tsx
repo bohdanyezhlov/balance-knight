@@ -23,6 +23,7 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
   const searchParams = useSearchParams();
   const textFilterParam = searchParams.get('textFilter') || '';
   const cardSetParam = searchParams.get('set') || 'standard';
+  const gameModeParam = cardSetParam === 'duels' || cardSetParam === 'arena' ? cardSetParam : '';
   const sortParam =
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW this string repeats many times
 
@@ -34,7 +35,7 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
         cards: cardsData,
         pageCount: pageCountData,
         cardCount: cardCountData,
-      } = await getCards({ page, textFilterParam, cardSetParam, sortParam });
+      } = await getCards({ page, textFilterParam, cardSetParam, sortParam, gameModeParam });
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);
@@ -46,7 +47,7 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
     }
     // NOTE DO NOT add pageCount to dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, token, textFilterParam, cardSetParam, sortParam]);
+  }, [page, token, textFilterParam, cardSetParam, gameModeParam, sortParam]);
 
   const contextValue = useMemo(() => ({ cards, cardCount }), [cards, cardCount]);
 

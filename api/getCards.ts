@@ -21,22 +21,30 @@ export const getCards = async ({
   cardSetParam = 'standard',
   heroClass = 'all',
   textFilterParam = '',
+  gameModeParam = '',
   sortParam = 'manaCost:asc,name:asc,classes:asc,groupByClass:asc',
 }) => {
   try {
     const accessToken = localStorage.getItem('access_token');
 
+    const params: Record<string, string> = {
+      class: heroClass,
+      textFilter: textFilterParam,
+      manaCost: manaCostParam,
+      locale: 'en_US',
+      page: page.toString(),
+      pageSize: PAGE_SIZE.toString(),
+      sort: sortParam,
+    };
+
+    if (gameModeParam) {
+      params.gameMode = gameModeParam;
+    } else {
+      params.set = cardSetParam;
+    }
+
     const response: AxiosResponse<TCardData> = await axiosInstance.get('', {
-      params: {
-        class: heroClass,
-        textFilter: textFilterParam,
-        manaCost: manaCostParam,
-        locale: 'en_US',
-        page: page.toString(),
-        pageSize: PAGE_SIZE.toString(),
-        set: cardSetParam,
-        sort: sortParam,
-      },
+      params,
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

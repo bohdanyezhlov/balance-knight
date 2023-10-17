@@ -1,35 +1,57 @@
-'use client';
-
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { useMetadataContext } from '@/contexts/MetadataContext';
+// import { useMetadataContext } from '@/contexts/MetadataContext';
 import { usePageContext } from '@/contexts/PageContext';
-import type { TCardSet } from '@/types';
+import type { TMetadata } from '@/types';
 
 import { BaseLayer } from './BaseLayer';
 import { Select } from './Select';
 import { TopLayerWithHover } from './TopLayerWithHover';
 
-type Props = {};
+type TCardSetOption = {
+  slug: string;
+  name: string;
+};
 
-export const CardSet: React.FC<Props> = () => {
+const getCardSetOptions = (metadata: TMetadata): TCardSetOption[] => {
+  const { sets, setGroups, gameModes } = metadata;
+
+  const standardCards = setGroups.find((item) => item.slug === 'standard');
+  const wildCards = setGroups.find((item) => item.slug === 'wild');
+  const classicCards = sets.filter((card) => card.slug === 'classic-cards')[0];
+  const duelsCards = gameModes.find((item) => item.slug === 'duels');
+  const arenaCards = gameModes.find((item) => item.slug === 'arena');
+
+  if (!standardCards || !wildCards || !duelsCards || !arenaCards) return [];
+
+  return [standardCards, wildCards, classicCards, duelsCards, arenaCards];
+};
+
+const getSortOption = (arr: TCardSetOption[], key: string) => arr.find((c) => c.slug === key);
+
+type Props = {
+  metadata: TMetadata;
+};
+
+export const CardSet: React.FC<Props> = ({ metadata }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { setPage } = usePageContext()!; // REVIEW
-  const metadata = useMetadataContext();
+  const cardSetOptions = getCardSetOptions(metadata);
   const cardSetParam = searchParams.get('set') || 'standard';
-  const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSet | string>(
-    cardSetParam
+
+  const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSetOption>(
+    getSortOption(cardSetOptions, cardSetParam)!
   );
 
   if (!metadata || !selectedCardSetOption) return null;
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { selectedIndex } = e.target;
-    const selectedOption = metadata.sets[selectedIndex];
+    const { value } = e.target;
+    const selectedOption = JSON.parse(value) as TCardSetOption;
 
-    if (selectedIndex && selectedOption) {
+    if (value) {
       const currentSearchParams = new URLSearchParams(searchParams);
       currentSearchParams.set('set', selectedOption.slug);
 
@@ -45,7 +67,7 @@ export const CardSet: React.FC<Props> = () => {
       <BaseLayer>
         <TopLayerWithHover hasIcon>
           <Select
-            options={metadata.sets}
+            options={cardSetOptions}
             selectedOption={selectedCardSetOption}
             handleOptionChange={handleOptionChange}
             variant="cardSet"

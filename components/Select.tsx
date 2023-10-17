@@ -1,9 +1,15 @@
-import type { TCardSet } from '@/types';
 import { cn } from '@/utils/cn';
 
 import ArrowIndicatorIcon from '../public/arrowIndicatorIcon.svg';
 
-const getOptionNameBySlug = (slug: string, options: TCardSet[]): string => {
+const getOptionNameBySlug = (
+  slug: string,
+  options: {
+    slug: string;
+    name: string;
+    param?: string;
+  }[]
+): string => {
   const option = options.find((opt) => opt.slug === slug);
 
   return option ? option.name : 'Option not found';
@@ -12,9 +18,17 @@ const getOptionNameBySlug = (slug: string, options: TCardSet[]): string => {
 type Props = {
   id?: string;
   children?: React.ReactNode;
-  options: any; // FIXME
-  selectedOption: any; // FIXME
-  handleOptionChange: any; // FIXME
+  options: {
+    slug: string;
+    name: string;
+    param?: string;
+  }[];
+  selectedOption: {
+    slug: string;
+    name: string;
+    param?: string;
+  };
+  handleOptionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   variant?: 'cardSet';
 };
 
@@ -52,6 +66,7 @@ export const Select: React.FC<Props> = ({
             ? getOptionNameBySlug(selectedOption, options)
             : selectedOption.name}
         </h6>
+
         <div
           className={cn('absolute -right-1 z-[2] mt-px h-[17px] w-[17px] rotate-90', {
             'top-[12px]': variant === 'cardSet',
@@ -65,13 +80,12 @@ export const Select: React.FC<Props> = ({
       <select
         {...(id ? { id } : {})}
         className="absolute -left-6 top-0 z-[2] h-full w-[calc(100%_+_48px)] appearance-none border-0 bg-transparent indent-[-1000em] focus:outline-none"
-        value={selectedOption}
+        value={JSON.stringify(selectedOption)}
         onChange={handleOptionChange}
       >
-        {/* FIXME */}
-        {options.map((option: any) => {
+        {options.map((option) => {
           return (
-            <option key={option.name} value={option}>
+            <option key={option.name} value={JSON.stringify(option)}>
               {option.name}
             </option>
           );
