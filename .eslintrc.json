@@ -52,7 +52,9 @@
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
         "react/function-component-definition": [2, { "namedComponents": "arrow-function" }], // Prefer arrow fn
-        "no-console": "off"
+        "no-console": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "react/no-array-index-key": "off"
       }
     }
   ]
