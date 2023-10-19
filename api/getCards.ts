@@ -18,6 +18,8 @@ const axiosInstance: AxiosInstance = axios.create({
 export const getCards = async ({
   page = 1,
   manaCostParam = '',
+  healthParam = '',
+  attackParam = '',
   cardSetParam = 'standard',
   heroClass = 'all',
   textFilterParam = '',
@@ -31,6 +33,8 @@ export const getCards = async ({
       class: heroClass,
       textFilter: textFilterParam,
       manaCost: manaCostParam,
+      health: healthParam,
+      attack: attackParam,
       locale: 'en_US',
       page: page.toString(),
       pageSize: PAGE_SIZE.toString(),

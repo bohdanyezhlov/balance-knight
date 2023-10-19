@@ -136,3 +136,9 @@ export type TCardsByClassId = {
   classId: number;
   groupOfCards: TCard[];
 };
+
+export type TOption = {
+  slug: string;
+  name: string;
+  param?: string;
+};

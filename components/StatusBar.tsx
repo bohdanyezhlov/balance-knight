@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useCardsContext } from '@/contexts/CardsContext';
 import ClearAllFilters from '@/public/clearAllFilters.svg';
 
-const preservedKeys = ['set', 'sort', 'locale'];
+const preservedKeys = ['attack', 'manaCost', 'health', 'textFilter'];
 
 type Props = {};
 
@@ -16,7 +16,7 @@ export const StatusBar: React.FC<Props> = () => {
   const set = searchParams.get('set') || 'standard';
   const params = Array.from(searchParams).map(([param, value]) => ({ param, value }));
 
-  const activeFilters = params.filter((p) => !preservedKeys.includes(p.param));
+  const activeFilters = params.filter((p) => preservedKeys.includes(p.param));
 
   const handleClearSingleParam = (param: string) => () => {
     const currentSearchParams = new URLSearchParams(searchParams.toString());

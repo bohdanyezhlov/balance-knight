@@ -1,35 +1,25 @@
+import type { TOption } from '@/types';
 import { cn } from '@/utils/cn';
 
 import ArrowIndicatorIcon from '../public/arrowIndicatorIcon.svg';
 
-const getOptionNameBySlug = (
-  slug: string,
-  options: {
-    slug: string;
-    name: string;
-    param?: string;
-  }[]
-): string => {
+const getOptionNameBySlug = (slug: string, options: TOption[]) => {
   const option = options.find((opt) => opt.slug === slug);
+
+  if (option?.name.includes('Any')) {
+    // NOTE Ex: Mana:0 => Mana
+    return options[1].name.split(':')[0];
+  }
 
   return option ? option.name : 'Option not found';
 };
 
 type Props = {
   id?: string;
-  children?: React.ReactNode;
-  options: {
-    slug: string;
-    name: string;
-    param?: string;
-  }[];
-  selectedOption: {
-    slug: string;
-    name: string;
-    param?: string;
-  };
+  options: TOption[];
+  selectedOption: TOption;
   handleOptionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  variant?: 'cardSet';
+  variant?: string;
 };
 
 export const Select: React.FC<Props> = ({
@@ -62,9 +52,7 @@ export const Select: React.FC<Props> = ({
             }
           )}
         >
-          {typeof selectedOption === 'string'
-            ? getOptionNameBySlug(selectedOption, options)
-            : selectedOption.name}
+          {getOptionNameBySlug(selectedOption.slug, options)}
         </h6>
 
         <div
@@ -83,9 +71,9 @@ export const Select: React.FC<Props> = ({
         value={JSON.stringify(selectedOption)}
         onChange={handleOptionChange}
       >
-        {options.map((option) => {
+        {options.map((option, i) => {
           return (
-            <option key={option.name} value={JSON.stringify(option)}>
+            <option key={i} value={JSON.stringify(option)}>
               {option.name}
             </option>
           );

@@ -13,18 +13,36 @@ type TCardSetOption = {
   name: string;
 };
 
+const createSets = (slugs: string[], excludeSlugs: string[]): TCardSetOption[] =>
+  slugs
+    .filter((slug) => !excludeSlugs.includes(slug))
+    .map((slug) => ({
+      slug,
+      name: slug
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' '),
+    }));
+
 const getCardSetOptions = (metadata: TMetadata): TCardSetOption[] => {
   const { sets, setGroups, gameModes } = metadata;
 
-  const standardCards = setGroups.find((item) => item.slug === 'standard');
-  const wildCards = setGroups.find((item) => item.slug === 'wild');
-  const classicCards = sets.filter((card) => card.slug === 'classic-cards')[0];
-  const duelsCards = gameModes.find((item) => item.slug === 'duels');
-  const arenaCards = gameModes.find((item) => item.slug === 'arena');
+  const standardSet = setGroups.find(({ slug }) => slug === 'standard');
+  const wildSet = setGroups.find(({ slug }) => slug === 'wild');
+  const classicSet = sets.filter(({ slug }) => slug === 'classic-cards')[0];
+  const duelsSet = gameModes.find(({ slug }) => slug === 'duels');
+  const arenaSet = gameModes.find(({ slug }) => slug === 'arena');
+  const standardSetSlugs = setGroups.find(({ slug }) => slug === 'standard')?.cardSets;
+  const wildSetSlugs = setGroups.find(({ slug }) => slug === 'wild')?.cardSets;
 
-  if (!standardCards || !wildCards || !duelsCards || !arenaCards) return [];
+  if (!standardSet || !wildSet || !duelsSet || !arenaSet || !standardSetSlugs || !wildSetSlugs) {
+    return [];
+  }
 
-  return [standardCards, wildCards, classicCards, duelsCards, arenaCards];
+  const standardSets = createSets(standardSetSlugs, []);
+  const wildSets = createSets(wildSetSlugs, standardSetSlugs);
+
+  return [standardSet, wildSet, classicSet, duelsSet, arenaSet, ...standardSets, ...wildSets];
 };
 
 const getSortOption = (arr: TCardSetOption[], key: string) => arr.find((c) => c.slug === key);
@@ -40,6 +58,7 @@ export const CardSet: React.FC<Props> = ({ metadata }) => {
   const cardSetOptions = getCardSetOptions(metadata);
   const cardSetParam = searchParams.get('set') || 'standard';
 
+  // FIXME !
   const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSetOption>(
     getSortOption(cardSetOptions, cardSetParam)!
   );

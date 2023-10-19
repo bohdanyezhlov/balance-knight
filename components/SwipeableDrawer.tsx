@@ -1,16 +1,8 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
-import { useState } from 'react';
 
-// import { useMetadataContext } from '@/contexts/MetadataContext';
-// import type { TClass, TRarity, TType } from '@/types';
-// import { getDynamicOptions } from '@/utils/getDynamicOptions';
-import { getStaticOptions } from '@/utils/getStaticOptions';
-
-import { BaseLayer } from './BaseLayer';
 import { Checkbox } from './Checkbox';
-import { Select } from './Select';
-import { TopLayerWithHover } from './TopLayerWithHover';
+import { SortBy } from './SortBy';
+import { StaticFilter } from './StaticFilter';
 
 type Props = {
   cardCount: number;
@@ -34,22 +26,13 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
   //   name: 'All Rarity',
   //   data: rarities || [],
   // });
-  const [defaultSortOption, sortOptions] = getStaticOptions('sort');
   // const [defaultManaOption, manaOptions] = getStaticOptions('mana');
 
-  const [selectedSortOption, setSelectedSortOption] = useState(defaultSortOption);
   // const [selectedClassOption, setSelectedClassOption] = useState<TClass>(defaultClassOption);
   // const [selectedManaOption, setSelectedManaOption] = useState(defaultManaOption);
   // const [selectedRarityOption, setSelectedRarityOption] = useState<TRarity>(defaultRarityOption);
   // const [selectedCardTypeOption, setSelectedCardTypeOption] =
   //   useState<TType>(defaultCardTypeOption);
-
-  const handleOptionChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    setSelectedOption: React.Dispatch<React.SetStateAction<any>>
-  ) => {
-    setSelectedOption(JSON.parse(e.target.value));
-  };
 
   return (
     <SwipeableDrawerMUI
@@ -81,25 +64,14 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
               <Checkbox />
             </div>
 
-            <label htmlFor="CardSortControl" className="mb-2.5 block pl-[15px]">
-              Sort By:
-            </label>
-
-            <div>
-              <BaseLayer>
-                <TopLayerWithHover>
-                  <Select
-                    id="CardSortControl"
-                    options={sortOptions}
-                    selectedOption={selectedSortOption}
-                    handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                      handleOptionChange(e, setSelectedSortOption)
-                    }
-                  />
-                </TopLayerWithHover>
-              </BaseLayer>
-            </div>
+            <SortBy />
           </div>
+
+          <StaticFilter variant="manaCost" />
+
+          <StaticFilter variant="attack" />
+
+          <StaticFilter variant="health" />
           {/*
           <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
             <label htmlFor="ClassControl" className="mb-2.5 block pl-[15px]">

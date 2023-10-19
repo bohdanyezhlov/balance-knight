@@ -22,6 +22,9 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
 
   const searchParams = useSearchParams();
   const textFilterParam = searchParams.get('textFilter') || '';
+  const manaCostParam = searchParams.get('manaCost') || '';
+  const attackParam = searchParams.get('attack') || '';
+  const healthParam = searchParams.get('health') || '';
   const cardSetParam = searchParams.get('set') || 'standard';
   const gameModeParam = cardSetParam === 'duels' || cardSetParam === 'arena' ? cardSetParam : '';
   const sortParam =
@@ -35,7 +38,16 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
         cards: cardsData,
         pageCount: pageCountData,
         cardCount: cardCountData,
-      } = await getCards({ page, textFilterParam, cardSetParam, sortParam, gameModeParam });
+      } = await getCards({
+        page,
+        textFilterParam,
+        cardSetParam,
+        sortParam,
+        gameModeParam,
+        manaCostParam,
+        attackParam,
+        healthParam,
+      });
 
       setCardCount(cardCountData);
       setPageCount(pageCountData);
@@ -47,7 +59,17 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
     }
     // NOTE DO NOT add pageCount to dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, token, textFilterParam, cardSetParam, gameModeParam, sortParam]);
+  }, [
+    page,
+    token,
+    textFilterParam,
+    cardSetParam,
+    sortParam,
+    gameModeParam,
+    manaCostParam,
+    attackParam,
+    healthParam,
+  ]);
 
   const contextValue = useMemo(() => ({ cards, cardCount }), [cards, cardCount]);
 
