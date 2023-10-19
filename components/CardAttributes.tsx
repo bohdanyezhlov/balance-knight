@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import type { Dispatch, SetStateAction } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
 import { ECardProperties } from '@/enums';
@@ -10,13 +11,13 @@ import { getAttributeData } from '@/utils/getAttributeData';
 type Props = {
   card: TCard;
   metadata: TMetadata;
-  setIsOpen: (v: boolean) => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export const CardAttributes: React.FC<Props> = ({ card, metadata, setIsOpen }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext()!; // REVIEW
+  const { setPage } = usePageContext();
   const attributeKeys = [
     ...Object.values(ECardProperties).filter((key) => card[key as keyof TCard]),
     ECardProperties.CostToCraft,

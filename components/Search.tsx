@@ -14,7 +14,7 @@ type Props = {};
 export const Search: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext()!; // REVIEW
+  const { setPage } = usePageContext();
   const textFilterParam = searchParams.get('textFilter') || '';
   const [textFilter, setTextFilter] = useState('');
 

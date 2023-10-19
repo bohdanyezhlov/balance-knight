@@ -35,22 +35,19 @@ export const Card: React.FC<Props> = ({ slug, id, imgSrc, alt, isLast, newLimit,
   };
 
   return (
-    <>
-      {/* FIXME remove ! */}
-      <Link href={slug} ref={cardRef} onClick={handleClick(id)!}>
-        <div className="mb-5 flex h-[220px] w-[150px] items-center min-[531px]:h-[350px] min-[531px]:w-[240px]">
-          <div className="relative h-full w-full">
-            <Image
-              fill
-              sizes="100%, 100%"
-              src={imgSrc}
-              alt={alt}
-              className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)] transition-all duration-300 ease-[ease] hover:scale-110 hover:drop-shadow-[0_0_3px_rgb(255,255,255)]"
-              priority
-            />
-          </div>
+    <Link href={slug} ref={cardRef} onClick={handleClick(id)}>
+      <div className="mb-5 flex h-[220px] w-[150px] items-center min-[531px]:h-[350px] min-[531px]:w-[240px]">
+        <div className="relative h-full w-full">
+          <Image
+            fill
+            sizes="100%, 100%"
+            src={imgSrc}
+            alt={alt}
+            className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)] transition-all duration-300 ease-[ease] hover:scale-110 hover:drop-shadow-[0_0_3px_rgb(255,255,255)]"
+            priority
+          />
         </div>
-      </Link>
-    </>
+      </div>
+    </Link>
   );
 };

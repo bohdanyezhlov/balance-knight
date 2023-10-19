@@ -2,6 +2,7 @@
 /* eslint-disable react/no-danger */
 import { Modal as ModalMUI } from '@mui/material';
 import { motion } from 'framer-motion';
+import type { Dispatch, SetStateAction } from 'react';
 
 import type { TCard, TMetadata } from '@/types';
 
@@ -9,7 +10,7 @@ import { CardAttributes } from './CardAttributes';
 
 type Props = {
   isOpen: boolean;
-  setIsOpen: (v: boolean) => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   id: number;
   cards: TCard[];
   metadata: TMetadata;

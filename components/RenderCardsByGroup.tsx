@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const RenderCardsByGroup: React.FC<Props> = ({ cards, classes, showModal, cardsLength }) => {
-  const { page, setPage } = usePageContext()!;
+  const { page, setPage } = usePageContext();
   let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
 
   return cards.map(({ classId, groupOfCards }) => {

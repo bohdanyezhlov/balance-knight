@@ -14,7 +14,7 @@ type Props = {};
 export const Checkbox: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext()!; // REVIEW
+  const { setPage } = usePageContext();
   const sortParam =
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW
   const [isGroupByClass, setIsGroupByClass] = useState(

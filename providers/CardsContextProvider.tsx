@@ -15,7 +15,7 @@ type Props = {
 
 export const CardsContextProvider: React.FC<Props> = ({ children }) => {
   const token = useTokenContext();
-  const { page } = usePageContext()!;
+  const { page } = usePageContext();
   const [cards, setCards] = useState<TCard[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [pageCount, setPageCount] = useState(1);

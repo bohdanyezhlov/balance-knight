@@ -1,10 +1,19 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { createContext, useContext } from 'react';
 
 type TPageContext = {
   page: number;
-  setPage: (v: number) => void;
+  setPage: Dispatch<SetStateAction<number>>;
 };
 
 export const PageContext = createContext<TPageContext | null>(null);
 
-export const usePageContext = () => useContext(PageContext);
+export const usePageContext = () => {
+  const context = useContext(PageContext);
+
+  if (!context) {
+    throw new Error('usePageContext must be used within a PageContextProvider');
+  }
+
+  return context;
+};

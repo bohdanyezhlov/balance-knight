@@ -1,7 +1,6 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
-// import { useMetadataContext } from '@/contexts/MetadataContext';
 import { usePageContext } from '@/contexts/PageContext';
 import type { TMetadata } from '@/types';
 
@@ -37,7 +36,7 @@ type Props = {
 export const CardSet: React.FC<Props> = ({ metadata }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext()!; // REVIEW
+  const { setPage } = usePageContext();
   const cardSetOptions = getCardSetOptions(metadata);
   const cardSetParam = searchParams.get('set') || 'standard';
 
