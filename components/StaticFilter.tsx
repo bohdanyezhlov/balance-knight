@@ -28,7 +28,7 @@ export const StaticFilter: React.FC<Props> = ({ variant }) => {
     const { value } = e.target;
     const newSelectedOption = JSON.parse(value) as TOption;
 
-    const currentSearchParams = new URLSearchParams(searchParams);
+    const currentSearchParams = new URLSearchParams(searchParams.toString());
     currentSearchParams.set(variant, newSelectedOption.slug);
 
     router.push(`?${currentSearchParams.toString()}`);

@@ -70,7 +70,7 @@ export const CardSet: React.FC<Props> = ({ metadata }) => {
     const selectedOption = JSON.parse(value) as TCardSetOption;
 
     if (value) {
-      const currentSearchParams = new URLSearchParams(searchParams);
+      const currentSearchParams = new URLSearchParams(searchParams.toString());
       currentSearchParams.set('set', selectedOption.slug);
 
       router.push(`?${currentSearchParams.toString()}`);

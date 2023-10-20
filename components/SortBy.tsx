@@ -75,7 +75,7 @@ export const SortBy: React.FC<Props> = () => {
         newSelectedOption.param = `${newSelectedOption.param},groupByClass:asc`;
       }
 
-      const currentSearchParams = new URLSearchParams(searchParams);
+      const currentSearchParams = new URLSearchParams(searchParams.toString());
       currentSearchParams.set('sort', newSelectedOption.param);
 
       router.push(`?${currentSearchParams.toString()}`);
