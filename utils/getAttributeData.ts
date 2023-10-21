@@ -2,7 +2,7 @@ import { ECardProperties, ECardPropertiesKeys } from '@/enums';
 import type { TCard, TMetadata } from '@/types';
 
 // REVIEW https://hearthstone.blizzard.com/en-us/cards/678-treant
-const extractValue = (arr: any, ids: number[]) => {
+const extractValue = <T>(arr: T[], ids: number[]) => {
   const matchingItems = arr.filter((item: any) => ids.includes(item.id));
 
   if (matchingItems.length > 0) {
@@ -37,7 +37,6 @@ export const getAttributeData = (attribute: ECardProperties, card: TCard, metada
     }
 
     case ECardProperties.Set: {
-      // REVIEW custom sets always '-'
       return [ECardPropertiesKeys.Set, extractValue(sets, [card.cardSetId])];
     }
 
@@ -50,8 +49,11 @@ export const getAttributeData = (attribute: ECardProperties, card: TCard, metada
     case ECardProperties.CostToCraft: {
       const rarity = rarities.find((r) => r.id === card.rarityId);
 
-      if (rarity && rarity.craftingCost) {
+      // FIXME
+      // @ts-ignore
+      if (rarity?.craftingCost && !rarity.craftingCost.includes(null)) {
         const [min, max] = rarity.craftingCost;
+
         return [ECardPropertiesKeys.CostToCraft, `${min} / ${max} (Golden)`];
       }
 
@@ -61,8 +63,11 @@ export const getAttributeData = (attribute: ECardProperties, card: TCard, metada
     case ECardProperties.DisenchantingYield: {
       const rarity = rarities.find((r) => r.id === card.rarityId);
 
-      if (rarity && rarity.dustValue) {
+      // FIXME
+      // @ts-ignore
+      if (rarity?.dustValue && !rarity.dustValue.includes(null)) {
         const [min, max] = rarity.dustValue;
+
         return [ECardPropertiesKeys.DisenchantingYield, `${min} / ${max} (Golden)`];
       }
 

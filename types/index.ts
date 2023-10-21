@@ -78,8 +78,8 @@ export type TMinionType = {
 export type TRarity = {
   slug: string;
   id: number | string;
-  craftingCost?: number[];
-  dustValue?: number[];
+  craftingCost?: number[] | null[];
+  dustValue?: number[] | null[];
   name: string;
 };
 
@@ -141,4 +141,5 @@ export type TOption = {
   slug: string;
   name: string;
   param?: string;
+  id: number | string;
 };

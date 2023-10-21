@@ -2,29 +2,25 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
-import type { TMetadata } from '@/types';
+import type { TMetadata, TOption } from '@/types';
 
 import { BaseLayer } from './BaseLayer';
 import { Select } from './Select';
 import { TopLayerWithHover } from './TopLayerWithHover';
 
-type TCardSetOption = {
-  slug: string;
-  name: string;
-};
-
-const createSets = (slugs: string[], excludeSlugs: string[]): TCardSetOption[] =>
+const createSets = (slugs: string[], excludeSlugs: string[]): TOption[] =>
   slugs
     .filter((slug) => !excludeSlugs.includes(slug))
     .map((slug) => ({
       slug,
+      id: slug,
       name: slug
         .split('-')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' '),
     }));
 
-const getCardSetOptions = (metadata: TMetadata): TCardSetOption[] => {
+const getCardSetOptions = (metadata: TMetadata): TOption[] => {
   const { sets, setGroups, gameModes } = metadata;
 
   const standardSet = setGroups.find(({ slug }) => slug === 'standard');
@@ -38,14 +34,30 @@ const getCardSetOptions = (metadata: TMetadata): TCardSetOption[] => {
   if (!standardSet || !wildSet || !duelsSet || !arenaSet || !standardSetSlugs || !wildSetSlugs) {
     return [];
   }
-
   const standardSets = createSets(standardSetSlugs, []);
   const wildSets = createSets(wildSetSlugs, standardSetSlugs);
 
-  return [standardSet, wildSet, classicSet, duelsSet, arenaSet, ...standardSets, ...wildSets];
+  const standardSetWithId = {
+    ...standardSet,
+    id: standardSet.slug,
+  };
+  const wildSetWithId = {
+    ...wildSet,
+    id: wildSet.slug,
+  };
+
+  return [
+    standardSetWithId,
+    wildSetWithId,
+    classicSet,
+    duelsSet,
+    arenaSet,
+    ...standardSets,
+    ...wildSets,
+  ];
 };
 
-const getSortOption = (arr: TCardSetOption[], key: string) => arr.find((c) => c.slug === key);
+const getSortOption = (arr: TOption[], key: string) => arr.find((c) => c.slug === key);
 
 type Props = {
   metadata: TMetadata;
@@ -59,7 +71,7 @@ export const CardSet: React.FC<Props> = ({ metadata }) => {
   const cardSetParam = searchParams.get('set') || 'standard';
 
   // FIXME !
-  const [selectedCardSetOption, setSelectedCardSetOption] = useState<TCardSetOption>(
+  const [selectedCardSetOption, setSelectedCardSetOption] = useState<TOption>(
     getSortOption(cardSetOptions, cardSetParam)!
   );
 
@@ -67,7 +79,7 @@ export const CardSet: React.FC<Props> = ({ metadata }) => {
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
-    const selectedOption = JSON.parse(value) as TCardSetOption;
+    const selectedOption = JSON.parse(value) as TOption;
 
     if (value) {
       const currentSearchParams = new URLSearchParams(searchParams.toString());
