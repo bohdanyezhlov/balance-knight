@@ -21,6 +21,12 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
   const [pageCount, setPageCount] = useState(1);
 
   const searchParams = useSearchParams();
+  const classParam = searchParams.get('class') || 'all';
+  const typeParam = searchParams.get('type') || '';
+  const minionTypeParam = searchParams.get('minionType') || '';
+  const spellSchoolParam = searchParams.get('spellSchool') || '';
+  const rarityParam = searchParams.get('rarity') || '';
+  const keywordParam = searchParams.get('keyword') || '';
   const textFilterParam = searchParams.get('textFilter') || '';
   const manaCostParam = searchParams.get('manaCost') || '';
   const attackParam = searchParams.get('attack') || '';
@@ -40,6 +46,7 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
         cardCount: cardCountData,
       } = await getCards({
         page,
+        classParam,
         textFilterParam,
         cardSetParam,
         sortParam,
@@ -47,6 +54,11 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
         manaCostParam,
         attackParam,
         healthParam,
+        spellSchoolParam,
+        rarityParam,
+        keywordParam,
+        typeParam,
+        minionTypeParam,
       });
 
       setCardCount(cardCountData);
@@ -62,6 +74,7 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
   }, [
     page,
     token,
+    classParam,
     textFilterParam,
     cardSetParam,
     sortParam,
@@ -69,6 +82,11 @@ export const CardsContextProvider: React.FC<Props> = ({ children }) => {
     manaCostParam,
     attackParam,
     healthParam,
+    spellSchoolParam,
+    rarityParam,
+    keywordParam,
+    typeParam,
+    minionTypeParam,
   ]);
 
   const contextValue = useMemo(() => ({ cards, cardCount }), [cards, cardCount]);

@@ -5,12 +5,23 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useCardsContext } from '@/contexts/CardsContext';
 import ClearAllFilters from '@/public/clearAllFilters.svg';
 
-const preservedKeys = ['attack', 'manaCost', 'health', 'textFilter'];
+const preservedKeys = [
+  'class',
+  'attack',
+  'manaCost',
+  'health',
+  'type',
+  'minionType',
+  'spellSchool',
+  'rarity',
+  'keyword',
+  'textFilter',
+];
 
 type Props = {};
 
 export const StatusBar: React.FC<Props> = () => {
-  const { cardCount } = useCardsContext()!; // REVIEW
+  const { cardCount } = useCardsContext()!; // FIXME
   const searchParams = useSearchParams();
   const router = useRouter();
   const set = searchParams.get('set') || 'standard';

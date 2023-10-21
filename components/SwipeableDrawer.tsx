@@ -1,8 +1,8 @@
 import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 
+import { AttributeFilter } from './AttributeFilter';
 import { Checkbox } from './Checkbox';
 import { SortBy } from './SortBy';
-import { StaticFilter } from './StaticFilter';
 
 type Props = {
   cardCount: number;
@@ -11,29 +11,6 @@ type Props = {
 };
 
 export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDrawer }) => {
-  // const metadata = useMetadataContext();
-  // const { classes, types, rarities } = metadata || {};
-  // const [defaultClassOption, classOptions] = getDynamicOptions({
-  //   name: 'All Classes',
-  //   data: classes || [],
-  // });
-  // const [defaultCardTypeOption, cardTypeOptions] = getDynamicOptions({
-  //   name: 'All Type',
-  //   data: types || [],
-  //   excludedIds: [10, 40],
-  // });
-  // const [defaultRarityOption, rarityOptions] = getDynamicOptions({
-  //   name: 'All Rarity',
-  //   data: rarities || [],
-  // });
-  // const [defaultManaOption, manaOptions] = getStaticOptions('mana');
-
-  // const [selectedClassOption, setSelectedClassOption] = useState<TClass>(defaultClassOption);
-  // const [selectedManaOption, setSelectedManaOption] = useState(defaultManaOption);
-  // const [selectedRarityOption, setSelectedRarityOption] = useState<TRarity>(defaultRarityOption);
-  // const [selectedCardTypeOption, setSelectedCardTypeOption] =
-  //   useState<TType>(defaultCardTypeOption);
-
   return (
     <SwipeableDrawerMUI
       anchor="right"
@@ -67,73 +44,30 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
             <SortBy />
           </div>
 
-          <StaticFilter variant="manaCost" />
-
-          <StaticFilter variant="attack" />
-
-          <StaticFilter variant="health" />
-          {/*
-          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
+          <AttributeFilter variant="class" hasIcon labelId="ClassControl">
             <label htmlFor="ClassControl" className="mb-2.5 block pl-[15px]">
               Filters:
             </label>
+          </AttributeFilter>
 
-            <BaseLayer>
-              <TopLayerWithHover hasIcon>
-                <Select
-                  id="ClassControl"
-                  options={classOptions}
-                  selectedOption={selectedClassOption}
-                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    handleOptionChange(e, setSelectedClassOption)
-                  }
-                />
-              </TopLayerWithHover>
-            </BaseLayer>
-          </div>
+          <AttributeFilter variant="manaCost" hasIcon />
 
-          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer>
-              <TopLayerWithHover hasIcon>
-                <Select
-                  options={manaOptions}
-                  selectedOption={selectedManaOption}
-                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    handleOptionChange(e, setSelectedManaOption)
-                  }
-                />
-              </TopLayerWithHover>
-            </BaseLayer>
-          </div>
+          <AttributeFilter variant="attack" hasIcon />
 
-          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer>
-              <TopLayerWithHover>
-                <Select
-                  options={cardTypeOptions}
-                  selectedOption={selectedCardTypeOption}
-                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    handleOptionChange(e, setSelectedCardTypeOption)
-                  }
-                />
-              </TopLayerWithHover>
-            </BaseLayer>
-          </div>
+          <AttributeFilter variant="health" hasIcon />
 
-          <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
-            <BaseLayer>
-              <TopLayerWithHover>
-                <Select
-                  options={rarityOptions}
-                  selectedOption={selectedRarityOption}
-                  handleOptionChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    handleOptionChange(e, setSelectedRarityOption)
-                  }
-                />
-              </TopLayerWithHover>
-            </BaseLayer>
-          </div> */}
-          {/*  */}
+          <AttributeFilter variant="type" excludedIds={[10, 40]} />
+
+          <AttributeFilter
+            variant="minionType"
+            excludedIds={[1, 2, 3, 4, 6, 7, 8, 9, 10, 88, 93, 94, 95]}
+          />
+
+          <AttributeFilter variant="spellSchool" />
+
+          <AttributeFilter variant="rarity" />
+
+          <AttributeFilter variant="keyword" excludedIds={[109, 196, 198, 234, 235, 252, 261]} />
         </div>
       </div>
     </SwipeableDrawerMUI>

@@ -1,5 +1,5 @@
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
 import type { TOption } from '@/types';
@@ -10,46 +10,55 @@ import { TopLayerWithHover } from './TopLayerWithHover';
 
 const sortOptions = [
   {
+    id: 'manaCost:asc',
     slug: 'manaCost:asc',
     param: 'manaCost:asc,name:asc,classes:asc',
     name: 'Mana: low to high',
   },
   {
+    id: 'manaCost:desc',
     slug: 'manaCost:desc',
     param: 'manaCost:desc,name:asc,classes:asc',
     name: 'Mana: high to low',
   },
   {
+    id: 'name:asc',
     slug: 'name:asc',
     param: 'name:asc,classes:asc',
     name: 'Card Name: A to Z',
   },
   {
+    id: 'name:desc',
     slug: 'name:desc',
     param: 'name:desc,classes:asc',
     name: 'Card Name: Z to A',
   },
   {
+    id: 'attack:asc',
     slug: 'attack:asc',
     param: 'attack:asc,name:asc,classes:asc',
     name: 'Attack: low to high',
   },
   {
+    id: 'attack:desc',
     slug: 'attack:desc',
     param: 'attack:desc,name:asc,classes:asc',
     name: 'Attack: high to low',
   },
   {
+    id: 'health:asc',
     slug: 'health:asc',
     param: 'health:asc,name:asc,classes:asc',
     name: 'Health: low to high',
   },
   {
+    id: 'health:desc',
     slug: 'health:desc',
     param: 'health:desc,name:asc,classes:asc',
     name: 'Health: high to low',
   },
 ];
+const defaultOption = sortOptions[0];
 
 type Props = {};
 
@@ -61,10 +70,15 @@ export const SortBy: React.FC<Props> = () => {
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'
   )?.includes('groupByClass');
   const sortParam = searchParams.get('sort')?.replace(/,groupByClass:asc/g, '') || '';
-  const [selectedOption, setSelectedOption] = useState<TOption>(() => {
-    const foundOption = sortOptions.find((option) => option.param === sortParam);
-    return foundOption || sortOptions[0];
-  });
+  const [selectedOption, setSelectedOption] = useState<TOption>(defaultOption);
+
+  useEffect(() => {
+    const foundOption = sortOptions.find((option) => option.slug === sortParam);
+
+    if (foundOption || sortParam === 'manaCost:asc,name:asc,classes:asc,groupByClass:asc') {
+      setSelectedOption(foundOption || defaultOption);
+    }
+  }, [sortParam]);
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;

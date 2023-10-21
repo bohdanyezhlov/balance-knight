@@ -3,12 +3,24 @@ import { cn } from '@/utils/cn';
 
 import ArrowIndicatorIcon from '../public/arrowIndicatorIcon.svg';
 
+const customTextMapping: Record<string, string> = {
+  manaCost: 'Mana',
+  attack: 'Attack',
+  health: 'Health',
+  type: 'Card Type',
+  minionType: 'Minion Type',
+  rarity: 'Rarity',
+  spellSchool: 'Spell school',
+  keyword: 'Keywords',
+};
+
 const getOptionNameBySlug = (slug: string, options: TOption[]) => {
   const option = options.find((opt) => opt.slug === slug);
 
   if (option?.name.includes('Any')) {
-    // NOTE Ex: Mana:0 => Mana
-    return options[1].name.split(':')[0];
+    const customName = customTextMapping[option.id];
+
+    return customName;
   }
 
   return option ? option.name : 'Option not found';

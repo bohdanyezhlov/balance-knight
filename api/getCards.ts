@@ -15,13 +15,20 @@ const axiosInstance: AxiosInstance = axios.create({
   },
 });
 
+type TParams = Record<string, string>;
+
 export const getCards = async ({
   page = 1,
   manaCostParam = '',
   healthParam = '',
   attackParam = '',
   cardSetParam = 'standard',
-  heroClass = 'all',
+  classParam = 'all',
+  spellSchoolParam = '',
+  rarityParam = '',
+  keywordParam = '',
+  typeParam = '',
+  minionTypeParam = '',
   textFilterParam = '',
   gameModeParam = '',
   sortParam = 'manaCost:asc,name:asc,classes:asc,groupByClass:asc',
@@ -29,12 +36,17 @@ export const getCards = async ({
   try {
     const accessToken = localStorage.getItem('access_token');
 
-    const params: Record<string, string> = {
-      class: heroClass,
+    const defaultParams: TParams = {
+      class: classParam,
       textFilter: textFilterParam,
       manaCost: manaCostParam,
       health: healthParam,
       attack: attackParam,
+      spellSchool: spellSchoolParam,
+      rarity: rarityParam,
+      keyword: keywordParam,
+      type: typeParam,
+      minionType: minionTypeParam,
       locale: 'en_US',
       page: page.toString(),
       pageSize: PAGE_SIZE.toString(),
@@ -42,13 +54,22 @@ export const getCards = async ({
     };
 
     if (gameModeParam) {
-      params.gameMode = gameModeParam;
+      defaultParams.gameMode = gameModeParam;
     } else {
-      params.set = cardSetParam;
+      defaultParams.set = cardSetParam;
     }
 
+    // NOTE Filter out empty or undefined values from the params object
+    const validParams = Object.entries(defaultParams).reduce((acc, [key, value]) => {
+      if (value !== '' && value !== undefined) {
+        acc[key] = value;
+      }
+
+      return acc;
+    }, {} as TParams);
+
     const response: AxiosResponse<TCardData> = await axiosInstance.get('', {
-      params,
+      params: validParams,
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
