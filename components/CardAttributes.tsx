@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type { Dispatch, SetStateAction } from 'react';
@@ -23,7 +22,7 @@ export const CardAttributes: React.FC<Props> = ({ card, metadata, setIsOpen }) =
     ECardProperties.CostToCraft,
     ECardProperties.DisenchantingYield,
   ];
-  const sortedKyes = attributeKeys.toSorted((a, b) => {
+  const sortedKeys = attributeKeys.toSorted((a, b) => {
     const indexA = Object.values(ECardProperties).indexOf(a);
     const indexB = Object.values(ECardProperties).indexOf(b);
     return indexA - indexB;
@@ -42,8 +41,14 @@ export const CardAttributes: React.FC<Props> = ({ card, metadata, setIsOpen }) =
 
   return (
     <ul className="mb-6 mt-5 leading-[1.75]">
-      {sortedKyes.map((attribute, i) => {
+      {sortedKeys.map((attribute, i) => {
         const [attributeKey, attributeValue] = getAttributeData(attribute, card, metadata);
+
+        // NOTE https://hearthstone.blizzard.com/en-us/cards/68310-moonfire?set=classic-cards
+        // some cards have Cost to Craft: - / (Golden), some do not render
+        // if (attributeKey === null) {
+        //   return null;
+        // }
 
         return (
           <li key={i} className="ml-5 list-disc font-bold text-lightGold">
