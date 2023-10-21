@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/no-danger */
 import { Modal as ModalMUI } from '@mui/material';
 import { motion } from 'framer-motion';
@@ -42,14 +41,14 @@ export const Modal: React.FC<Props> = ({ isOpen, setIsOpen, id, cards, metadata 
   //   }
   // }, [childIds]);
 
-  if (!card) return null; // REVIEW
-
   const handleClose = () => setIsOpen(false);
 
   const getTooltipContentById = (keywordId: number) => {
     const keyword = keywords.find((entry) => entry.id === keywordId);
     return [keyword?.name, keyword?.text];
   };
+
+  if (!card) return null;
 
   return (
     <ModalMUI
