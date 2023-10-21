@@ -1,5 +1,6 @@
 import type { TOption } from '@/types';
 import { cn } from '@/utils/cn';
+import { getSelectIcon } from '@/utils/getSelectIcon';
 
 import ArrowIndicatorIcon from '../public/arrowIndicatorIcon.svg';
 
@@ -32,6 +33,7 @@ type Props = {
   selectedOption: TOption;
   handleOptionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   variant?: string;
+  hasIcon?: boolean;
 };
 
 export const Select: React.FC<Props> = ({
@@ -40,7 +42,11 @@ export const Select: React.FC<Props> = ({
   selectedOption,
   handleOptionChange,
   variant,
+  hasIcon,
 }) => {
+  const SVGIcon =
+    hasIcon && variant === 'cardSet' ? (getSelectIcon(variant, selectedOption.slug) as any) : null;
+
   return (
     <>
       <div
@@ -53,6 +59,17 @@ export const Select: React.FC<Props> = ({
           'text-ellipsis': variant !== 'cardSet',
         })}
       >
+        {hasIcon && variant && (
+          <div
+            className={cn(
+              'absolute left-[-14px] top-[6px] h-[30px] w-[30px] bg-cover bg-center bg-no-repeat fill-gold',
+              getSelectIcon(variant, variant === 'class' ? selectedOption.slug : '')
+            )}
+          >
+            {SVGIcon && <SVGIcon />}
+          </div>
+        )}
+
         <h6
           className={cn(
             'ml-2.5 mr-[30px] flex-1 font-serif text-[16px] leading-none text-mainBrown',

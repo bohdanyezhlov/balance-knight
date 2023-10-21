@@ -100,6 +100,7 @@ export const CardSet: React.FC<Props> = ({ metadata }) => {
             options={cardSetOptions}
             selectedOption={selectedCardSetOption}
             handleOptionChange={handleOptionChange}
+            hasIcon
             variant="cardSet"
           />
         </TopLayerWithHover>

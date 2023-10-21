@@ -86,6 +86,8 @@ export const AttributeFilter: React.FC<Props> = ({
             options={options}
             selectedOption={selectedOption}
             handleOptionChange={handleOptionChange}
+            hasIcon={hasIcon}
+            variant={variant}
           />
         </TopLayerWithHover>
       </BaseLayer>
