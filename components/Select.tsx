@@ -34,6 +34,7 @@ type Props = {
   handleOptionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   variant?: string;
   hasIcon?: boolean;
+  isDesktopView?: boolean;
 };
 
 export const Select: React.FC<Props> = ({
@@ -43,6 +44,7 @@ export const Select: React.FC<Props> = ({
   handleOptionChange,
   variant,
   hasIcon,
+  isDesktopView,
 }) => {
   const SVGIcon =
     hasIcon && variant === 'cardSet' ? (getSelectIcon(variant, selectedOption.slug) as any) : null;
@@ -50,13 +52,15 @@ export const Select: React.FC<Props> = ({
   return (
     <>
       <div
-        className={cn('flex w-full', {
+        className={cn('flex', {
+          'w-full': !isDesktopView,
+          'min-w-[120px]': isDesktopView,
           'items-center': variant === 'cardSet',
           'min-w-[20px]': variant === 'cardSet',
           'min-[1261px]:min-w-[160px]': variant === 'cardSet',
-          'max-w-[155px]': variant !== 'cardSet',
-          'min-[414px]:max-w-[250px]': variant !== 'cardSet',
-          'text-ellipsis': variant !== 'cardSet',
+          'max-w-[155px]': variant !== 'cardSet' && !isDesktopView,
+          'min-[414px]:max-w-[250px]': variant !== 'cardSet' && !isDesktopView,
+          'text-ellipsis': variant !== 'cardSet' && !isDesktopView,
         })}
       >
         {hasIcon && variant && (

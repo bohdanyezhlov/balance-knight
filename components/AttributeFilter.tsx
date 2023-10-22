@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useMetadataContext } from '@/contexts/MetadataContext';
 import { usePageContext } from '@/contexts/PageContext';
 import type { TOption } from '@/types';
+import { cn } from '@/utils/cn';
 import { getDynamicFilterOptions } from '@/utils/getDynamicFilterOptions';
 import { getStaticFilterOptions } from '@/utils/getStaticFilterOptions';
 
@@ -32,6 +33,7 @@ type Props = {
   labelId?: string;
   children?: React.ReactNode;
   excludedIds?: number[];
+  isDesktopView?: boolean;
 };
 
 export const AttributeFilter: React.FC<Props> = ({
@@ -40,6 +42,7 @@ export const AttributeFilter: React.FC<Props> = ({
   labelId,
   children,
   excludedIds,
+  isDesktopView,
 }) => {
   const metadata = useMetadataContext();
   const searchParams = useSearchParams();
@@ -76,7 +79,12 @@ export const AttributeFilter: React.FC<Props> = ({
   };
 
   return (
-    <div className="relative mb-2.5 mr-[30px] w-full text-lightBrown">
+    <div
+      className={cn('relative mb-2.5 mr-[30px] w-full text-lightBrown', {
+        'w-auto': isDesktopView,
+        'mb-0': isDesktopView,
+      })}
+    >
       {children}
 
       <BaseLayer>
@@ -88,6 +96,7 @@ export const AttributeFilter: React.FC<Props> = ({
             handleOptionChange={handleOptionChange}
             hasIcon={hasIcon}
             variant={variant}
+            isDesktopView={isDesktopView}
           />
         </TopLayerWithHover>
       </BaseLayer>

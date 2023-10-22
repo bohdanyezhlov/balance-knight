@@ -46,10 +46,10 @@ export const Search: React.FC<Props> = () => {
   };
 
   return (
-    <div className="relative mr-[30px] flex-1 md+:flex-none">
+    <div className="relative mr-[30px] flex-1 md+:flex-auto">
       <div className="mx-auto max-w-[300px]">
         <BaseLayer>
-          <TopLayerWithHover imgSet="search">
+          <TopLayerWithHover imgSet="dark">
             {!textFilter && (
               <label
                 htmlFor="textFilter"

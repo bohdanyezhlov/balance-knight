@@ -12,7 +12,7 @@ const iconLeft = 'before:bg-topLayer-left-icon hover:before:bg-topLayer-left-ico
 
 type Props = {
   as?: 'div' | 'button';
-  imgSet?: string;
+  imgSet?: 'dark' | 'light';
   onClick?: (event: React.KeyboardEvent | React.MouseEvent) => void;
   children: React.ReactNode;
   hasIcon?: boolean;
@@ -20,7 +20,7 @@ type Props = {
 
 export const TopLayerWithHover: React.FC<Props> = ({
   as: Component = 'div',
-  imgSet = 'default',
+  imgSet,
   onClick,
   children,
   hasIcon = false,
@@ -32,7 +32,7 @@ export const TopLayerWithHover: React.FC<Props> = ({
         onClick={onClick}
         className={cn(
           `pl-5 focus-visible:outline-none ${middleStyles} ${leftStyles} ${rightStyles}`,
-          imgSet === 'search' ? `${searchMiddle} ${searchLeft} ${searchRight}` : ''
+          imgSet === 'dark' ? `${searchMiddle} ${searchLeft} ${searchRight}` : ''
         )}
       >
         {children}
@@ -44,7 +44,7 @@ export const TopLayerWithHover: React.FC<Props> = ({
     <Component
       className={cn(
         `${middleStyles} ${leftStyles} ${rightStyles}`,
-        imgSet === 'search' ? `${searchMiddle} ${searchLeft} ${searchRight}` : '',
+        imgSet === 'dark' ? `${searchMiddle} ${searchLeft} ${searchRight}` : '',
         hasIcon ? iconLeft : '',
         {
           'pl-5': hasIcon,
