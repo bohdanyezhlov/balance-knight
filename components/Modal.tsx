@@ -7,6 +7,7 @@ import type { TCard, TMetadata } from '@/types';
 
 import { CardAttributes } from './CardAttributes';
 import { LearnMore } from './LearnMore';
+import { RelatedCards } from './RelatedCards';
 
 const ModalContent = ({
   card,
@@ -61,23 +62,7 @@ const ModalContent = ({
 
         <LearnMore card={card} metadata={metadata} />
 
-        {/* {relatedCards.length > 0 ? (
-              <div className="mb-5">
-                <p>Related Cards:</p>
-                <div className="flex flex-wrap">
-                  {relatedCards.map(({ id: cardId, name }) => {
-                    return (
-                      <div
-                        key={cardId}
-                        className="relative mr-2.5 cursor-zoom-in text-white underline"
-                      >
-                        <div>{name}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : null} */}
+        <RelatedCards card={card} />
       </div>
     </div>
   </>
@@ -92,28 +77,7 @@ type Props = {
 };
 
 export const Modal: React.FC<Props> = ({ isOpen, setIsOpen, id, cards, metadata }) => {
-  // const [relatedCards, setRelatedCards] = useState<TCard[]>([]);
   const [card] = cards.filter((c) => c.id === id);
-  // const childIds = card ? card.childIds : null;
-
-  // useEffect(() => {
-  //   const fetchRelatedCards = async () => {
-  //     if (childIds) {
-  //       try {
-  //         const { cards: cardsData } = await getCardById(childIds);
-  //         setRelatedCards(cardsData);
-  //       } catch (error) {
-  //         console.error('Error fetching related cards', error);
-  //       }
-  //     }
-  //   };
-
-  //   if (childIds) {
-  //     fetchRelatedCards();
-  //   } else {
-  //     setRelatedCards([]);
-  //   }
-  // }, [childIds]);
 
   const handleClose = () => setIsOpen(false);
 
