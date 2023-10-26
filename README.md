@@ -21,7 +21,7 @@ Balance-Knight is currently in active development. Please note that some feature
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Material-UI](https://material-ui.com/)
 - [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
+- [Prettier](https://prettier.io/)<br>
   Upcoming Tech Stack Enhancements:
 - [React Query](https://react-query.tanstack.com/)
 - [Jest](https://jestjs.io/)
