@@ -1,7 +1,6 @@
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { Wrapper } from '@/components/Wrapper';
@@ -17,10 +16,17 @@ const belwe = localFont({
   variable: '--font-belwe',
 });
 
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
+const openSans = localFont({
+  src: [
+    {
+      path: '../public/fonts/open-sans-400.woff',
+      weight: '400',
+    },
+    {
+      path: '../public/fonts/open-sans-600.woff',
+      weight: '600',
+    },
+  ],
   variable: '--font-opensans',
 });
 
