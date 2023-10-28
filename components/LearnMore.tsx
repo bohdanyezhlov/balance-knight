@@ -1,4 +1,3 @@
-import { Tooltip } from '@mui/material';
 import { useState } from 'react';
 
 import type { TCard, TMetadata } from '@/types';
@@ -19,14 +18,16 @@ export const TooltipContent: React.FC<TTooltipContent> = ({ tooltipTitle, toolti
   }
 
   return (
-    <div className="relative z-[10000] mb-[35px] w-[228px] bg-transparent bg-[url(../public/tooltipMiddle.png)] bg-center bg-repeat-y px-5 py-2.5 text-left before:absolute before:left-0 before:top-[-15px] before:z-[-1] before:h-[70px] before:w-[228px] before:bg-[url(../public/tooltipTop.png)] before:bg-center before:bg-no-repeat before:content-[''] after:absolute after:bottom-[-15px] after:left-0 after:z-[-1] after:mt-[-45px] after:h-[76px] after:w-[228px] after:bg-[url(../public/tooltipBottom.png)] after:bg-center after:bg-no-repeat after:content-['']">
-      <h6
-        className="mb-2.5 font-serif text-[16px] font-bold leading-[1.1] text-white"
-        style={textShadowStyle}
-      >
-        {tooltipTitle}
-      </h6>
-      <p className="text-[16px] leading-normal text-white">{tooltipDescription}</p>
+    <div className="min[401px]-[1100px]:left-[-30%] fixed bottom-10 left-[5%] top-[82%] z-[200] min-[401px]:absolute min-[401px]:top-auto min-[1001px]:-left-1/2">
+      <div className="relative z-[10000] mb-[35px] w-[228px] bg-transparent bg-[url(../public/tooltipMiddle.png)] bg-center bg-repeat-y px-5 py-2.5 text-left before:absolute before:left-0 before:top-[-15px] before:z-[-1] before:h-[70px] before:w-[228px] before:bg-[url(../public/tooltipTop.png)] before:bg-center before:bg-no-repeat before:content-[''] after:absolute after:bottom-[-15px] after:left-0 after:z-[-1] after:mt-[-45px] after:h-[76px] after:w-[228px] after:bg-[url(../public/tooltipBottom.png)] after:bg-center after:bg-no-repeat after:content-['']">
+        <h6
+          className="mb-2.5 font-serif text-[16px] font-bold leading-[1.1] text-white"
+          style={textShadowStyle}
+        >
+          {tooltipTitle}
+        </h6>
+        <p className="text-[14px] leading-normal text-white">{tooltipDescription}</p>
+      </div>
     </div>
   );
 };
@@ -37,7 +38,7 @@ type Props = {
 };
 
 export const LearnMore: React.FC<Props> = ({ metadata, card }) => {
-  const [showTooltips, setShowTooltips] = useState(new Map<number, boolean>());
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const { keywords } = metadata;
 
   if (!card.keywordIds) return null;
@@ -48,52 +49,30 @@ export const LearnMore: React.FC<Props> = ({ metadata, card }) => {
     return [keyword?.name, keyword?.text];
   };
 
-  const toggleTooltip = (keywordId: number) => {
-    setShowTooltips((prevTooltips) => {
-      const currentStatus = prevTooltips.get(keywordId) || false;
-      const newTooltips = new Map(prevTooltips);
-
-      if (currentStatus) {
-        newTooltips.set(keywordId, false);
-      } else {
-        newTooltips.set(keywordId, true);
-      }
-
-      return newTooltips;
-    });
-  };
-
   return (
     <div className="mb-5">
-      <p className="text-[16px]">Learn more:</p>
+      <p className="text-[16px]">Learn More:</p>
       <div className="flex flex-wrap">
         {card.keywordIds?.map((keyword) => {
           const [tooltipTitle, tooltipDescription] = getTooltipContentById(keyword);
 
           return (
-            <Tooltip
-              title={
+            <button
+              type="button"
+              key={keyword}
+              className="relative mr-2.5 cursor-zoom-in text-[16px] text-white underline"
+              onMouseEnter={() => setHoveredCard(keyword)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {tooltipTitle}
+
+              {hoveredCard === keyword && (
                 <TooltipContent
                   tooltipTitle={tooltipTitle}
                   tooltipDescription={tooltipDescription}
                 />
-              }
-              slotProps={{ tooltip: { className: '!bg-transparent' } }}
-              key={keyword}
-              onOpen={() => toggleTooltip(keyword)}
-              onClose={() => toggleTooltip(keyword)}
-              open={showTooltips.get(keyword) || false}
-              enterDelay={0}
-              disableTouchListener
-            >
-              <button
-                type="button"
-                className="relative mr-2.5 cursor-zoom-in text-[16px] text-white underline"
-                onClick={() => toggleTooltip(keyword)}
-              >
-                {tooltipTitle}
-              </button>
-            </Tooltip>
+              )}
+            </button>
           );
         })}
       </div>
