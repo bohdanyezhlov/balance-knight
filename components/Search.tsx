@@ -46,7 +46,7 @@ export const Search: React.FC<Props> = () => {
   };
 
   return (
-    <div className="relative mr-[30px] flex-1 md+:flex-auto">
+    <div className="relative mr-[30px] flex-1 md+:flex-initial">
       <div className="mx-auto max-w-[300px]">
         <BaseLayer>
           <TopLayerWithHover imgSet="dark">

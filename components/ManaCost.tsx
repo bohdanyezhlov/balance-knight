@@ -9,7 +9,7 @@ import { TopLayerWithHover } from './TopLayerWithHover';
 
 const NUM_OF_MANA_CRYSTALS = 11;
 const manaCrystalNumbers = Array.from({ length: NUM_OF_MANA_CRYSTALS }, (_, i) =>
-  i === NUM_OF_MANA_CRYSTALS - 1 ? '10+' : i.toString()
+  i === NUM_OF_MANA_CRYSTALS - 1 ? '10 +' : i.toString()
 );
 
 const textShadowStyle = {

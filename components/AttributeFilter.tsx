@@ -34,6 +34,7 @@ type Props = {
   children?: React.ReactNode;
   excludedIds?: number[];
   isDesktopView?: boolean;
+  styles?: string;
 };
 
 export const AttributeFilter: React.FC<Props> = ({
@@ -43,6 +44,7 @@ export const AttributeFilter: React.FC<Props> = ({
   children,
   excludedIds,
   isDesktopView,
+  styles,
 }) => {
   const metadata = useMetadataContext();
   const searchParams = useSearchParams();
@@ -80,10 +82,13 @@ export const AttributeFilter: React.FC<Props> = ({
 
   return (
     <div
-      className={cn('relative mb-2.5 mr-[30px] w-full text-lightBrown', {
-        'w-auto': isDesktopView,
-        'mb-0': isDesktopView,
-      })}
+      className={cn(
+        'relative mb-2.5 mr-[30px] w-full text-lightBrown',
+        {
+          'w-auto': isDesktopView,
+        },
+        styles
+      )}
     >
       {children}
 

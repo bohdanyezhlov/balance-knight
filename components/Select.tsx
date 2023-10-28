@@ -54,7 +54,7 @@ export const Select: React.FC<Props> = ({
       <div
         className={cn('flex', {
           'w-full': !isDesktopView,
-          'min-w-[120px]': isDesktopView,
+          'min-w-[120px]': isDesktopView && variant === 'class',
           'items-center': variant === 'cardSet',
           'min-w-[20px]': variant === 'cardSet',
           'min-[1261px]:min-w-[160px]': variant === 'cardSet',

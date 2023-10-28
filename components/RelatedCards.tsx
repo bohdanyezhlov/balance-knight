@@ -32,7 +32,7 @@ export const RelatedCards: React.FC<Props> = ({ card }) => {
     }
   }, [childIds]);
 
-  if (!relatedCards) return null;
+  if (!relatedCards.length) return null;
 
   return (
     <div className="mb-5">
