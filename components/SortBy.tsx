@@ -60,9 +60,12 @@ const sortOptions = [
 ];
 const defaultOption = sortOptions[0];
 
-type Props = {};
+type Props = {
+  id?: string;
+  baseLayer?: boolean;
+};
 
-export const SortBy: React.FC<Props> = () => {
+export const SortBy: React.FC<Props> = ({ id, baseLayer = true }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { setPage } = usePageContext();
@@ -73,7 +76,7 @@ export const SortBy: React.FC<Props> = () => {
   const [selectedOption, setSelectedOption] = useState<TOption>(defaultOption);
 
   useEffect(() => {
-    const foundOption = sortOptions.find((option) => option.slug === sortParam);
+    const foundOption = sortOptions.find((option) => option.param === sortParam);
 
     if (foundOption || sortParam === 'manaCost:asc,name:asc,classes:asc,groupByClass:asc') {
       setSelectedOption(foundOption || defaultOption);
@@ -101,22 +104,29 @@ export const SortBy: React.FC<Props> = () => {
 
   return (
     <>
-      <label htmlFor="CardSortControl" className="mb-2.5 block pl-[15px]">
-        Sort By:
-      </label>
+      {!baseLayer && (
+        <TopLayerWithHover>
+          <Select
+            id={id}
+            options={sortOptions}
+            selectedOption={selectedOption}
+            handleOptionChange={handleOptionChange}
+          />
+        </TopLayerWithHover>
+      )}
 
-      <div>
+      {baseLayer && (
         <BaseLayer>
           <TopLayerWithHover>
             <Select
-              id="CardSortControl"
+              id={id}
               options={sortOptions}
               selectedOption={selectedOption}
               handleOptionChange={handleOptionChange}
             />
           </TopLayerWithHover>
         </BaseLayer>
-      </div>
+      )}
     </>
   );
 };

@@ -3,7 +3,10 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useCardsContext } from '@/contexts/CardsContext';
+import { useScreenSize } from '@/hooks/useScreenSize';
 import ClearAllFilters from '@/public/clearAllFilters.svg';
+
+import { SortBy } from './SortBy';
 
 const preservedKeys = [
   'class',
@@ -22,6 +25,7 @@ type Props = {};
 
 export const StatusBar: React.FC<Props> = () => {
   const { cardCount } = useCardsContext()!; // FIXME
+  const screenSize = useScreenSize();
   const searchParams = useSearchParams();
   const router = useRouter();
   const set = searchParams.get('set') || 'standard';
@@ -50,12 +54,10 @@ export const StatusBar: React.FC<Props> = () => {
   };
 
   return (
-    <div className="relative z-[2] py-10">
+    <div className="relative z-[2] pt-10">
       <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-center px-5 xs:flex-nowrap">
         <div className="flex flex-auto flex-wrap justify-start">
-          <div className="mr-2.5 font-bold text-mainBrown">
-            {`${cardCount} cards found for ${set}`}
-          </div>
+          <div className="mr-2.5 font-bold text-mainBrown">{`${cardCount} cards found for ${set}`}</div>
 
           {activeFilters.map(({ param, value }) => {
             return (
@@ -88,6 +90,16 @@ export const StatusBar: React.FC<Props> = () => {
             </button>
           ) : null}
         </div>
+
+        {screenSize.width > 960 && (
+          <div className="flex min-w-[200px] items-center">
+            <div className="mr-2.5 text-mainBrown">Sort by:</div>
+
+            <div className="mx-[25px]">
+              <SortBy baseLayer={false} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

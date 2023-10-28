@@ -41,7 +41,10 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
               <Checkbox />
             </div>
 
-            <SortBy />
+            <label htmlFor="CardSortControl" className="mb-2.5 block pl-[15px]">
+              Sort By:
+            </label>
+            <SortBy id="CardSortControl" />
           </div>
 
           <AttributeFilter variant="class" hasIcon labelId="ClassControl">
