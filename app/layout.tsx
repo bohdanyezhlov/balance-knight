@@ -32,7 +32,7 @@ const openSans = localFont({
 
 export const metadata: Metadata = {
   title: 'Hearthstone Card Library',
-  description: 'NextJS App',
+  description: 'Explore the latest cards and discover your next big idea!',
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
