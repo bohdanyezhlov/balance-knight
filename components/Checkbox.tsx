@@ -11,7 +11,7 @@ import { updateSortParam } from '@/utils/updateSortParam';
 import CheckIcon from '../public/checkIcon.png';
 
 type Props = {
-  labelStyle: string;
+  labelStyle?: string;
 };
 
 export const Checkbox: React.FC<Props> = ({ labelStyle }) => {
