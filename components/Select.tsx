@@ -100,7 +100,7 @@ export const Select: React.FC<Props> = ({
 
       <select
         {...(id ? { id } : {})}
-        className="absolute -left-6 top-0 z-[2] h-full w-[calc(100%_+_48px)] appearance-none border-0 bg-transparent indent-[-1000em] focus:outline-none"
+        className="absolute -left-6 top-0 z-[2] h-full w-[calc(100%_+_48px)] cursor-pointer appearance-none border-0 bg-transparent indent-[-1000em] focus:outline-none"
         value={JSON.stringify(selectedOption)}
         onChange={handleOptionChange}
       >

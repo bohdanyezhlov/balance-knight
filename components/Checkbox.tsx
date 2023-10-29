@@ -4,14 +4,17 @@ import { useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
 import { ESortParamsOptions } from '@/enums';
+import { cn } from '@/utils/cn';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 import { updateSortParam } from '@/utils/updateSortParam';
 
 import CheckIcon from '../public/checkIcon.png';
 
-type Props = {};
+type Props = {
+  labelStyle: string;
+};
 
-export const Checkbox: React.FC<Props> = () => {
+export const Checkbox: React.FC<Props> = ({ labelStyle }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { setPage } = usePageContext();
@@ -41,7 +44,10 @@ export const Checkbox: React.FC<Props> = () => {
   return (
     <label
       htmlFor="groupByClass"
-      className="mb-2.5 block cursor-pointer text-clip whitespace-nowrap font-serif text-[16px] text-white"
+      className={cn(
+        'mb-2.5 block cursor-pointer text-clip whitespace-nowrap font-serif text-[16px] text-white',
+        labelStyle
+      )}
     >
       <input
         type="checkbox"
