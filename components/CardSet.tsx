@@ -1,5 +1,5 @@
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
 import type { TMetadata, TOption } from '@/types';
@@ -69,11 +69,15 @@ export const CardSet: React.FC<Props> = ({ metadata }) => {
   const { setPage } = usePageContext();
   const cardSetOptions = getCardSetOptions(metadata);
   const cardSetParam = searchParams.get('set') || 'standard';
-
   // FIXME !
   const [selectedCardSetOption, setSelectedCardSetOption] = useState<TOption>(
     getSortOption(cardSetOptions, cardSetParam)!
   );
+
+  useEffect(() => {
+    // @ts-ignore FIXME
+    setSelectedCardSetOption(getSortOption(cardSetOptions, cardSetParam));
+  }, [cardSetParam]);
 
   if (!metadata || !selectedCardSetOption) return null;
 
