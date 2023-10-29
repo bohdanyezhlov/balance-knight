@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
 import { ESortParamsOptions } from '@/enums';
@@ -23,6 +23,10 @@ export const Checkbox: React.FC<Props> = ({ labelStyle }) => {
   const [isGroupByClass, setIsGroupByClass] = useState(
     extractParameterValue(sortParam, ESortParamsOptions.GroupByClass)
   );
+
+  useEffect(() => {
+    setIsGroupByClass(extractParameterValue(sortParam, ESortParamsOptions.GroupByClass));
+  }, [sortParam]);
 
   const handleChange = () => {
     const updatedGroupByClass = !isGroupByClass;
