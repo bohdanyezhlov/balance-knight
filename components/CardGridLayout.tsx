@@ -8,16 +8,32 @@ import { useMetadataContext } from '@/contexts/MetadataContext';
 import { ESortParamsOptions } from '@/enums';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
-import { splitCardsByClassId } from '@/utils/splitCardsByClassId';
 
 import { Modal } from './Modal';
 import { RenderAllCards } from './RenderAllCards';
 import { RenderCardsByGroup } from './RenderCardsByGroup';
 
+const splitCardsByClassId = (cards: TCard[]) => {
+  const cardsByClassId: TCardsByClassId[] = [];
+
+  cards.forEach((card) => {
+    const { classId } = card;
+    const existingEntry = cardsByClassId.find((entry) => entry.classId === classId);
+
+    if (!existingEntry) {
+      cardsByClassId.push({ classId, groupOfCards: [card] });
+    } else {
+      existingEntry.groupOfCards.push(card);
+    }
+  });
+
+  return cardsByClassId;
+};
+
 type Props = {};
 
 export const CardGridLayout: React.FC<Props> = () => {
-  const { cards } = useCardsContext()!; // REVIEW
+  const cardsContext = useCardsContext();
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
   const metadata = useMetadataContext();
@@ -39,8 +55,9 @@ export const CardGridLayout: React.FC<Props> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  if (!metadata || !cards) return null;
+  if (!metadata || !cardsContext) return null;
 
+  const { cards } = cardsContext;
   const { classes } = metadata;
   const cardsData = isGroupByClass ? splitCardsByClassId(cards) : cards;
 

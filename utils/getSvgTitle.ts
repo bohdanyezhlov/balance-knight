@@ -11,7 +11,19 @@ import Rogue from '../public/Rogue.svg';
 import Shaman from '../public/Shaman.svg';
 import Warlock from '../public/Warlock.svg';
 import Warrior from '../public/Warrior.svg';
-import { normalizeWords } from './normalizeWords';
+
+const normalizeWords = (input: string): string => {
+  const words = input.split(' ');
+
+  const capitalizedWords = words.map((word) => {
+    if (word.length === 0) {
+      return '';
+    }
+    return word[0].toUpperCase() + word.slice(1).toLowerCase();
+  });
+
+  return capitalizedWords.join(' ');
+};
 
 type SvgMapping = {
   [className: string]: string;
@@ -33,7 +45,7 @@ const classToSvgMapping: SvgMapping = {
   'All Cards': AllCards,
 };
 
-export const getSvgForTitle = (name: string) => {
+export const getSvgTitle = (name: string) => {
   const className = normalizeWords(name);
 
   if (className in classToSvgMapping) {

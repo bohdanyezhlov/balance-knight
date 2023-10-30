@@ -1,11 +1,11 @@
-import { getSvgForTitle } from '@/utils/getSvgForTitle';
+import { getSvgTitle } from '@/utils/getSvgTitle';
 
 type Props = {
   name: string;
 };
 
 export const ClassTitle: React.FC<Props> = ({ name }) => {
-  const Title = getSvgForTitle(name) as any; // FIXME
+  const Title = getSvgTitle(name) as any; // FIXME
 
   return (
     <div className="-mb-5">

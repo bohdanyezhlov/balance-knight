@@ -1,10 +1,15 @@
 import { usePageContext } from '@/contexts/PageContext';
 import type { TCardsByClassId, TClass } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
-import { getClassNameByClassId } from '@/utils/getClassNameByClassId';
 
 import { Card } from './Card';
 import { ClassTitle } from './ClassTitle';
+
+const getClassNameByClassId = (classId: number, classes: TClass[]) => {
+  const classInfo = classes.find((c) => c.id === classId);
+
+  return classInfo ? classInfo.name : null;
+};
 
 const NUM_GHOST_CARDS = 5;
 
