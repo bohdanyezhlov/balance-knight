@@ -11,7 +11,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const MetadataContextProvider: React.FC<Props> = ({ children }) => {
+export const MetadataProvider: React.FC<Props> = ({ children }) => {
   const token = useTokenContext();
   const [metadata, setMetadata] = useState<TMetadata | null>(null);
 

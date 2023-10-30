@@ -4,12 +4,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
 import { Wrapper } from '@/components/Wrapper';
-import {
-  CardsContextProvider,
-  MetadataContextProvider,
-  PageContextProvider,
-  TokenContextProvider,
-} from '@/providers';
+import { CardsProvider, MetadataProvider, PageProvider, TokenProvider } from '@/providers';
 
 const belwe = localFont({
   src: '../public/fonts/Belwe-Bold.woff',
@@ -39,17 +34,17 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={`${openSans.variable} ${belwe.variable}`}>
       <body className="bg-[#f1d4ab] font-sansSerif text-[14px] font-normal leading-normal text-black">
-        <TokenContextProvider>
-          <MetadataContextProvider>
-            <PageContextProvider>
-              <CardsContextProvider>
+        <TokenProvider>
+          <MetadataProvider>
+            <PageProvider>
+              <CardsProvider>
                 <Wrapper>
                   <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
                 </Wrapper>
-              </CardsContextProvider>
-            </PageContextProvider>
-          </MetadataContextProvider>
-        </TokenContextProvider>
+              </CardsProvider>
+            </PageProvider>
+          </MetadataProvider>
+        </TokenProvider>
       </body>
     </html>
   );

@@ -13,7 +13,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const CardsContextProvider: React.FC<Props> = ({ children }) => {
+export const CardsProvider: React.FC<Props> = ({ children }) => {
   const token = useTokenContext();
   const { page } = usePageContext();
   const [cards, setCards] = useState<TCard[]>([]);

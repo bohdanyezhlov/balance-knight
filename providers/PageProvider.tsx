@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const PageContextProvider: React.FC<Props> = ({ children }) => {
+export const PageProvider: React.FC<Props> = ({ children }) => {
   const [page, setPage] = useState(1);
   const contextValue = useMemo(() => ({ page, setPage }), [page]);
 

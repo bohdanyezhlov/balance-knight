@@ -9,7 +9,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const TokenContextProvider: React.FC<Props> = ({ children }) => {
+export const TokenProvider: React.FC<Props> = ({ children }) => {
   const [isToken, setIsToken] = useState(false);
 
   useEffect(() => {
