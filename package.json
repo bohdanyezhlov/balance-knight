@@ -18,6 +18,8 @@
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
     "@mui/material": "5.14.10",
+    "@react-spring/web": "^9.7.3",
+    "@use-gesture/react": "^10.3.0",
     "axios": "1.5.0",
     "clsx": "2.0.0",
     "framer-motion": "10.16.4",
