@@ -144,7 +144,7 @@ export const StatusBar: React.FC<Props> = () => {
           ) : null}
         </div>
 
-        {screenSize.width > 960 && (
+        {screenSize.width && screenSize.width > 960 && (
           <div className="mr-10 flex min-w-[200px] items-center">
             <div className="mr-2.5 text-mainBrown">Sort by:</div>
 
@@ -154,7 +154,7 @@ export const StatusBar: React.FC<Props> = () => {
           </div>
         )}
 
-        {screenSize.width > 960 && (
+        {screenSize.width && screenSize.width > 960 && (
           <div className="mr-[30px]">
             <Checkbox labelStyle="text-mainBrown" />
           </div>

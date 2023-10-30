@@ -39,22 +39,22 @@ export const FilterBar: React.FC<Props> = () => {
       <div className="relative z-[2] mx-auto flex h-[93px] w-[calc(90%_+_15px)] max-w-[1600px] items-center justify-center py-2.5 md+:w-full md+:p-[0_20px_0_10px]">
         <CardSet metadata={metadata} />
 
-        {screenSize.width >= 960 && (
+        {screenSize.width && screenSize.width >= 960 && (
           <AttributeFilter variant="class" hasIcon isDesktopView styles="mb-0" />
         )}
 
-        {screenSize.width >= 960 && screenSize.width < 1260 && (
+        {screenSize.width && screenSize.width >= 960 && screenSize.width < 1260 && (
           <AttributeFilter variant="manaCost" hasIcon isDesktopView styles="mb-0" />
         )}
 
-        {screenSize.width > 1260 && <ManaCost />}
+        {screenSize.width && screenSize.width > 1260 && <ManaCost />}
 
         <Search />
 
         <FilterDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
       </div>
 
-      {screenSize.width <= 960 ? (
+      {screenSize.width && screenSize.width <= 960 ? (
         <SwipeableDrawer isOpen={isOpen} cardCount={cardCount} toggleDrawer={toggleDrawer} />
       ) : (
         isOpen && (
