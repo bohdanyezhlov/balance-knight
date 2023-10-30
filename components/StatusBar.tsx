@@ -70,7 +70,7 @@ const preservedKeys = [
 type Props = {};
 
 export const StatusBar: React.FC<Props> = () => {
-  const { cardCount } = useCardsContext()!; // FIXME
+  const cardsContext = useCardsContext();
   const metadata = useMetadataContext();
   const screenSize = useScreenSize();
   const searchParams = useSearchParams();
@@ -105,7 +105,7 @@ export const StatusBar: React.FC<Props> = () => {
     <div className="relative z-[2] pt-10">
       <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-center px-5 xs:flex-nowrap">
         <div className="flex flex-1 flex-wrap justify-start">
-          <div className="mr-2.5 font-bold text-mainBrown">{`${cardCount} cards found for ${normalizeActiveFilter(
+          <div className="mr-2.5 font-bold text-mainBrown">{`${cardsContext?.cardCount} cards found for ${normalizeActiveFilter(
             'set',
             set,
             metadata

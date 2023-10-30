@@ -19,7 +19,7 @@ type Props = {};
 export const FilterBar: React.FC<Props> = () => {
   const metadata = useMetadataContext();
   const screenSize = useScreenSize();
-  const { cardCount } = useCardsContext()!; // REVIEW
+  const cardsContext = useCardsContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -30,7 +30,9 @@ export const FilterBar: React.FC<Props> = () => {
     setIsOpen(open);
   };
 
-  if (!metadata) return null;
+  if (!metadata || !cardsContext?.cardCount) return null;
+
+  const { cardCount } = cardsContext;
 
   return (
     <div className="fixed top-0 z-[9] w-full bg-[url(../public/bgFilterMiddleTile.jpeg)] pt-[11px] before:absolute before:top-0 before:h-[60px] before:w-full before:bg-[url(../public/bgFilterTopTile.png)] before:bg-top before:bg-repeat-x before:content-[''] after:absolute after:bottom-[-15px] after:h-[60px] after:w-full after:bg-[url(../public/bgFilterBottomTile.png)] after:bg-top after:bg-repeat-x after:content-['']">
