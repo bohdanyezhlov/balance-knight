@@ -1,6 +1,10 @@
 import { animated, to, useSpring } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
+import type { GetServerSidePropsContext } from 'next/types';
 import { useEffect, useRef } from 'react';
+
+import { useIsMobile } from '@/hooks/useIsMobile';
+import { getIsSsrMobile } from '@/utils/getIsSsrMobile';
 
 const calcX = (y: number, ly: number) => -(y - ly - window.innerHeight / 2) / 20;
 const calcY = (x: number, lx: number) => (x - lx - window.innerWidth / 2) / 20;
@@ -12,6 +16,7 @@ type Props = {
 
 export const CardImage: React.FC<Props> = ({ imgSrc, alt }) => {
   const domTarget = useRef<HTMLImageElement | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const preventDefault = (e: Event) => e.preventDefault();
@@ -50,7 +55,7 @@ export const CardImage: React.FC<Props> = ({ imgSrc, alt }) => {
         }),
       onHover: ({ hovering }) => !hovering && api({ rotateX: 0, rotateY: 0, scale: 1 }),
     },
-    { target: domTarget, eventOptions: { passive: false } }
+    { target: domTarget, eventOptions: { passive: false }, enabled: !isMobile }
   );
 
   return (
@@ -71,3 +76,11 @@ export const CardImage: React.FC<Props> = ({ imgSrc, alt }) => {
     />
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  return {
+    props: {
+      isSsrMobile: getIsSsrMobile(context),
+    },
+  };
+}
