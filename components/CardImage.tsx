@@ -1,7 +1,7 @@
 import { animated, to, useSpring } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import type { GetServerSidePropsContext } from 'next/types';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { getIsSsrMobile } from '@/utils/getIsSsrMobile';
@@ -17,6 +17,7 @@ type Props = {
 export const CardImage: React.FC<Props> = ({ imgSrc, alt }) => {
   const domTarget = useRef<HTMLImageElement | null>(null);
   const isMobile = useIsMobile();
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const preventDefault = (e: Event) => e.preventDefault();
@@ -58,22 +59,36 @@ export const CardImage: React.FC<Props> = ({ imgSrc, alt }) => {
     { target: domTarget, eventOptions: { passive: false }, enabled: !isMobile }
   );
 
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
   return (
-    <animated.img
-      ref={domTarget}
-      style={{
-        transform: 'perspective(600px)',
-        x,
-        y,
-        scale: to([scale, zoom], (s, z) => s + z),
-        rotateX,
-        rotateY,
-        rotateZ,
-      }}
-      src={imgSrc}
-      alt={alt}
-      className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)]"
-    />
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      {hovered ? (
+        <animated.img
+          ref={domTarget}
+          style={{
+            transform: 'perspective(600px)',
+            x,
+            y,
+            scale: to([scale, zoom], (s, z) => s + z),
+            rotateX,
+            rotateY,
+            rotateZ,
+          }}
+          src={imgSrc}
+          alt={alt}
+          className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)]"
+        />
+      ) : (
+        <img src={imgSrc} alt={alt} className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)]" />
+      )}
+    </div>
   );
 };
 
