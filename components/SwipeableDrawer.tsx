@@ -5,7 +5,7 @@ import { Checkbox } from './Checkbox';
 import { SortBy } from './SortBy';
 
 type Props = {
-  cardCount: number;
+  cardCount?: number;
   isOpen: boolean;
   toggleDrawer: (v: boolean) => React.ReactEventHandler<{}>;
 };

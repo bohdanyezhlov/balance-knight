@@ -9,6 +9,7 @@ import { ESortParamsOptions } from '@/enums';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
+import { EmptyCardGrid } from './EmptyCardGrid';
 import { Modal } from './Modal';
 import { RenderAllCards } from './RenderAllCards';
 import { RenderCardsByGroup } from './RenderCardsByGroup';
@@ -65,6 +66,10 @@ export const CardGridLayout: React.FC<Props> = () => {
     setIsOpen(true);
     setModalCardId(id);
   };
+
+  if (cards.length === 0) {
+    return <EmptyCardGrid />;
+  }
 
   return (
     <div className="mx-auto max-w-[1600px] overflow-x-hidden px-2.5 pt-10">

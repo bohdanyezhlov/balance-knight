@@ -32,15 +32,13 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en" className={`${openSans.variable} ${belwe.variable}`}>
-      <body className="bg-[#f1d4ab] font-sansSerif text-[14px] font-normal leading-normal text-black">
+    <html lang="en" className={`${openSans.variable} ${belwe.variable} h-full`}>
+      <body className="h-full font-sansSerif text-[14px] font-normal leading-normal text-black">
         <TokenProvider>
           <MetadataProvider>
             <PageProvider>
               <CardsProvider>
-                <Wrapper>
-                  <div className="bg-[url(../public/parchment.jpeg)] bg-center">{children}</div>
-                </Wrapper>
+                <Wrapper>{children}</Wrapper>
               </CardsProvider>
             </PageProvider>
           </MetadataProvider>

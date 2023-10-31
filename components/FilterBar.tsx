@@ -30,9 +30,7 @@ export const FilterBar: React.FC<Props> = () => {
     setIsOpen(open);
   };
 
-  if (!metadata || !cardsContext?.cardCount) return null;
-
-  const { cardCount } = cardsContext;
+  if (!metadata) return null;
 
   return (
     <div className="fixed top-0 z-[9] w-full bg-[url(../public/bgFilterMiddleTile.jpeg)] pt-[11px] before:absolute before:top-0 before:h-[60px] before:w-full before:bg-[url(../public/bgFilterTopTile.png)] before:bg-top before:bg-repeat-x before:content-[''] after:absolute after:bottom-[-15px] after:h-[60px] after:w-full after:bg-[url(../public/bgFilterBottomTile.png)] after:bg-top after:bg-repeat-x after:content-['']">
@@ -55,7 +53,11 @@ export const FilterBar: React.FC<Props> = () => {
       </div>
 
       {screenSize.width && screenSize.width <= 960 ? (
-        <SwipeableDrawer isOpen={isOpen} cardCount={cardCount} toggleDrawer={toggleDrawer} />
+        <SwipeableDrawer
+          isOpen={isOpen}
+          cardCount={cardsContext?.cardCount}
+          toggleDrawer={toggleDrawer}
+        />
       ) : (
         isOpen && (
           <div
