@@ -28,11 +28,9 @@ export const ManaCost: React.FC<Props> = () => {
 
   useEffect(() => {
     if (manaCostParam === '') {
-      console.log('if', manaCostParam);
       setActiveManaCosts([]);
     } else {
       const currActiveManaCosts = manaCostParam.split(',');
-      console.log('else', currActiveManaCosts);
       setActiveManaCosts(currActiveManaCosts);
     }
   }, [manaCostParam]);
