@@ -24,26 +24,41 @@ export const ManaCost: React.FC<Props> = () => {
   const router = useRouter();
   const { setPage } = usePageContext();
   const manaCostParam = searchParams.get('manaCost') || '';
-
-  const [manaCost, setManaCost] = useState(manaCostParam);
+  const [activeManaCosts, setActiveManaCosts] = useState<string[]>([]);
 
   useEffect(() => {
-    setManaCost(manaCostParam);
+    if (manaCostParam === '') {
+      console.log('if', manaCostParam);
+      setActiveManaCosts([]);
+    } else {
+      const currActiveManaCosts = manaCostParam.split(',');
+      console.log('else', currActiveManaCosts);
+      setActiveManaCosts(currActiveManaCosts);
+    }
   }, [manaCostParam]);
 
-  const handleClick = (id: string) => {
-    let newId = id;
+  useEffect(() => {
+    const newManaCostParam = activeManaCosts.join(',');
+    const currentSearchParams = new URLSearchParams(searchParams.toString());
 
-    if (manaCost === id) {
-      newId = '';
+    if (newManaCostParam === '') {
+      currentSearchParams.delete('manaCost');
+    } else {
+      currentSearchParams.set('manaCost', newManaCostParam);
     }
 
-    const currentSearchParams = new URLSearchParams(searchParams.toString());
-    currentSearchParams.set('manaCost', newId);
     router.push(`?${currentSearchParams.toString()}`);
-
-    setManaCost(newId);
     setPage(1);
+  }, [activeManaCosts, searchParams, router, setPage]);
+
+  const handleButtonClick = (id: string) => {
+    setActiveManaCosts((prevActiveManaCosts) => {
+      if (prevActiveManaCosts.includes(id)) {
+        return prevActiveManaCosts.filter((cost) => cost !== id);
+      }
+
+      return [...prevActiveManaCosts, id];
+    });
   };
 
   return (
@@ -61,10 +76,10 @@ export const ManaCost: React.FC<Props> = () => {
                     'bg-[url(../public/iconManaPlus.png)]': i === manaCrystalNumbers.length - 1,
                     'before:bg-left': i === manaCrystalNumbers.length - 1,
                     'w-[60px]': i === manaCrystalNumbers.length - 1,
-                    'before:opacity-100': number === manaCost,
+                    'before:opacity-100': activeManaCosts.includes(number),
                   }
                 )}
-                onClick={() => handleClick(number)}
+                onClick={() => handleButtonClick(number)}
               >
                 <h4
                   style={textShadowStyle}
