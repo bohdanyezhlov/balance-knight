@@ -45,7 +45,7 @@ export const FilterBar: React.FC<Props> = () => {
           <AttributeFilter variant="manaCost" hasIcon isDesktopView styles="mb-0" />
         )}
 
-        {screenSize.width && screenSize.width > 1260 && <ManaCost />}
+        {screenSize.width && screenSize.width >= 1260 && <ManaCost />}
 
         <Search />
 
