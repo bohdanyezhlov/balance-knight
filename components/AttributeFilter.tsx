@@ -70,9 +70,13 @@ export const AttributeFilter: React.FC<Props> = ({
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     const newSelectedOption = JSON.parse(value) as TOption;
-
     const currentSearchParams = new URLSearchParams(searchParams.toString());
-    currentSearchParams.set(variant, newSelectedOption.slug);
+
+    if (newSelectedOption.slug === '') {
+      currentSearchParams.delete(variant);
+    } else {
+      currentSearchParams.set(variant, newSelectedOption.slug);
+    }
 
     router.push(`?${currentSearchParams.toString()}`);
     setSelectedOption(newSelectedOption);
