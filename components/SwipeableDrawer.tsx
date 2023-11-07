@@ -1,7 +1,11 @@
 import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 
+import { useActiveFilters } from '@/hooks/useActiveFilters';
+import { useScreenSize } from '@/hooks/useScreenSize';
+
 import { AttributeFilter } from './AttributeFilter';
 import { Checkbox } from './Checkbox';
+import { ClearAll } from './ClearAll';
 import { SortBy } from './SortBy';
 
 type Props = {
@@ -11,6 +15,9 @@ type Props = {
 };
 
 export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDrawer }) => {
+  const screenSize = useScreenSize();
+  const activeFilters = useActiveFilters();
+
   return (
     <SwipeableDrawerMUI
       anchor="right"
@@ -34,6 +41,9 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
               </button>
             </div>
             <div className="pl-[15px]">{cardCount} cards found</div>
+            {screenSize.width && screenSize.width < 960 && activeFilters.length > 1 && (
+              <ClearAll isMobile />
+            )}
           </div>
 
           <div className="relative mr-[30px] w-full py-[20px] text-lightBrown">
