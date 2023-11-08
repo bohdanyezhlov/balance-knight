@@ -82,7 +82,7 @@ export const ManaCost: React.FC<Props> = () => {
                 <h4
                   style={textShadowStyle}
                   className={cn(
-                    'relative whitespace-nowrap font-serif text-[25px] font-bold leading-none text-white',
+                    'relative my-0 whitespace-nowrap font-serif text-[25px] font-bold text-white',
                     {
                       'w-full': i === manaCrystalNumbers.length - 1,
                       'text-left': i === manaCrystalNumbers.length - 1,

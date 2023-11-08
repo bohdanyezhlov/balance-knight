@@ -36,7 +36,7 @@ export const RelatedCards: React.FC<Props> = ({ card }) => {
 
   return (
     <div className="mb-5">
-      <p className="text-[16px]">Related Cards:</p>
+      <p className="mb-0 text-[16px]">Related Cards:</p>
 
       <div className="flex flex-wrap pb-2.5">
         {relatedCards.map(({ id, name, image }) => (

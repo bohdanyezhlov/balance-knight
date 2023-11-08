@@ -17,7 +17,7 @@ export const ClassTitle: React.FC<Props> = ({ name }) => {
         <li className="min-w-fit md:px-[30px]">
           <div className="relative top-[-30px] mx-10 h-[75px] w-[300px]">
             <Title className="fill-mainBrown opacity-40" />
-            <h5 className="absolute left-1/2 top-1/2 w-[135px] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-center font-serif text-xl text-mainBrown">
+            <h5 className="absolute left-1/2 top-1/2 m-0 w-[135px] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-center font-serif text-xl text-mainBrown">
               {name}
             </h5>
           </div>

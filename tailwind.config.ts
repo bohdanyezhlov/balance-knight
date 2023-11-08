@@ -30,6 +30,7 @@ const config: Config = {
         darkBrown: 'rgb(71 44 17)',
         gold: 'rgb(252 209 68)',
         lightGold: 'rgb(255 229 172)',
+        blue: '#233a6e',
       },
       listStyleType: {
         square: 'square',

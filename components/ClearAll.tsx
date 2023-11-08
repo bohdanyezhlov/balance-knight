@@ -29,7 +29,7 @@ export const ClearAll: React.FC<Props> = ({ isMobile }) => {
     <button
       type="button"
       className={cn(
-        "group relative inline-flex h-[25px] border-none bg-none px-2.5 py-[3px] text-[14px] text-[#233a6e] before:absolute before:inset-0 before:rounded-[15px] before:border before:border-mainBrown before:bg-[#fff0da] before:opacity-50 before:content-[''] hover:text-white hover:before:border-[#233a6e] hover:before:bg-[#233a6e] hover:before:opacity-100",
+        "group relative inline-flex h-[25px] border-none bg-none px-2.5 py-[3px] text-[14px] text-blue before:absolute before:inset-0 before:rounded-[15px] before:border before:border-mainBrown before:bg-[#fff0da] before:opacity-50 before:content-[''] hover:text-white hover:before:border-blue hover:before:bg-blue hover:before:opacity-100",
         {
           'text-gold': isMobile,
         }
@@ -37,7 +37,7 @@ export const ClearAll: React.FC<Props> = ({ isMobile }) => {
       onClick={handleClearAllParams}
     >
       <div
-        className={cn('relative h-[18px] w-[18px] fill-[#233a6e] group-hover:fill-white', {
+        className={cn('relative h-[18px] w-[18px] fill-blue group-hover:fill-white', {
           'fill-gold': isMobile,
         })}
       >

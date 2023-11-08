@@ -29,7 +29,7 @@ export const FilterTags: React.FC<Props> = () => {
           <button
             type="button"
             key={param}
-            className="group mb-2.5 mr-[5px] inline-flex rounded-[15px] bg-mainBrown px-2.5 py-[3px] text-[14px] text-white hover:bg-[#233a6e]"
+            className="group mb-2.5 mr-[5px] inline-flex rounded-[15px] bg-mainBrown px-2.5 py-[3px] text-[14px] text-white hover:bg-blue"
             onClick={handleClearSingleParam(param)}
           >
             {normalizeActiveFilter(param, value, metadata)}

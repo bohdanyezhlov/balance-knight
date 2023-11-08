@@ -21,12 +21,12 @@ export const TooltipContent: React.FC<TTooltipContent> = ({ tooltipTitle, toolti
     <div className="min[401px]-[1100px]:left-[-30%] fixed bottom-10 left-[5%] top-[82%] z-[200] min-[401px]:absolute min-[401px]:top-auto min-[1001px]:-left-1/2">
       <div className="relative z-[10000] mb-[35px] w-[228px] bg-transparent bg-[url(../public/tooltipMiddle.png)] bg-center bg-repeat-y px-5 py-2.5 text-left before:absolute before:left-0 before:top-[-15px] before:z-[-1] before:h-[70px] before:w-[228px] before:bg-[url(../public/tooltipTop.png)] before:bg-center before:bg-no-repeat before:content-[''] after:absolute after:bottom-[-15px] after:left-0 after:z-[-1] after:mt-[-45px] after:h-[76px] after:w-[228px] after:bg-[url(../public/tooltipBottom.png)] after:bg-center after:bg-no-repeat after:content-['']">
         <h6
-          className="mb-2.5 font-serif text-[16px] font-bold leading-[1.1] text-white"
+          className="mb-2.5 mt-0 font-serif text-[16px] font-bold leading-[1.1] text-white"
           style={textShadowStyle}
         >
           {tooltipTitle}
         </h6>
-        <p className="text-[14px] leading-normal text-white">{tooltipDescription}</p>
+        <p className="mb-0 text-[14px] leading-normal text-white">{tooltipDescription}</p>
       </div>
     </div>
   );
@@ -51,7 +51,7 @@ export const LearnMore: React.FC<Props> = ({ metadata, card }) => {
 
   return (
     <div className="mb-5">
-      <p className="text-[16px]">Learn More:</p>
+      <p className="mb-0 text-[16px]">Learn More:</p>
       <div className="flex flex-wrap">
         {card.keywordIds?.map((keyword) => {
           const [tooltipTitle, tooltipDescription] = getTooltipContentById(keyword);

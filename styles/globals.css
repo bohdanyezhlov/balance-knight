@@ -16,3 +16,16 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #fff;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply leading-none my-[0.15em];
+}
+
+p {
+  @apply mt-0 mb-6;
+}

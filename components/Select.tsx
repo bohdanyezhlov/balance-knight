@@ -75,15 +75,12 @@ export const Select: React.FC<Props> = ({
         )}
 
         <h6
-          className={cn(
-            'ml-2.5 mr-[30px] flex-1 font-serif text-[16px] leading-none text-mainBrown',
-            {
-              truncate: variant !== 'cardSet',
-              hidden: variant === 'cardSet',
-              'min-[1261px]:block': variant === 'cardSet',
-              'mr-[15px]': variant === 'cardSet',
-            }
-          )}
+          className={cn('my-0 ml-2.5 mr-[30px] flex-1 font-serif text-[16px] text-mainBrown', {
+            truncate: variant !== 'cardSet',
+            hidden: variant === 'cardSet',
+            'min-[1261px]:block': variant === 'cardSet',
+            'mr-[15px]': variant === 'cardSet',
+          })}
         >
           {getOptionNameBySlug(selectedOption.slug, options)}
         </h6>

@@ -9,8 +9,8 @@ export const EmptyCardGrid: React.FC<Props> = () => {
       <div className="h-[34px] bg-[url('../public/divider.png')] bg-center bg-no-repeat" />
 
       <div className="px-[15px] py-10">
-        <h5 className="font-serif text-[18px] text-mainBrown">No cards found</h5>
-        <p className="mb-6 text-mainBrown">Try removing search item(s) for better results</p>
+        <h5 className="mb-0 font-serif text-[18px] text-mainBrown">No cards found</h5>
+        <p className="text-mainBrown">Try removing search item(s) for better results</p>
 
         <div className="flex flex-wrap justify-center">
           <FilterTags />

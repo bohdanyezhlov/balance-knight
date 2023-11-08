@@ -39,7 +39,7 @@ const ModalContent = ({
         </div>
 
         <div className="mb-10 select-text overflow-y-visible pb-[30px] pt-[25px] text-white min-[420px]:w-[460px] min-[420px]:pt-[50px] md+:max-h-[518px]">
-          <h3 className="mt-[0.15em] break-keep font-serif text-[22.781px] font-normal leading-[1] min-[375px]:text-[calc(22.781px_+_8.219_*_((100vw_-_375px)_/_1225))]">
+          <h3 className="mb-0 break-keep font-serif text-[22.781px] font-normal min-[375px]:text-[calc(22.781px_+_8.219_*_((100vw_-_375px)_/_1225))]">
             {card.name}
           </h3>
 

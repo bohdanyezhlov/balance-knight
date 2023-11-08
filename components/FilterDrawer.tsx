@@ -41,7 +41,7 @@ export const FilterDrawer: React.FC<Props> = ({ isOpen, toggleDrawer }) => {
             <SettingsIcon />
           </div>
 
-          <h6 className="mx-2.5 hidden font-serif text-[16px] font-bold text-mainBrown min-[1261px]:block">
+          <h6 className="mx-2.5 my-0 hidden font-serif text-[16px] font-bold text-mainBrown min-[1261px]:block">
             Filters
           </h6>
 
