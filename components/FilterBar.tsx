@@ -7,11 +7,11 @@ import { useMetadataContext } from '@/contexts/MetadataContext';
 import { useScreenSize } from '@/hooks/useScreenSize';
 import { cn } from '@/utils/cn';
 
-import { AttributeFilter } from './AttributeFilter';
-import { CardSet } from './CardSet';
-import { FilterDrawer } from './FilterDrawer';
+import { AttributeFilter } from './AttributeFilter/AttributeFilter';
+import { CardSet } from './CardSet/CardSet';
+import { FilterDrawer } from './FilterDrawer/FilterDrawer';
 import { ManaCost } from './ManaCost';
-import { Search } from './Search';
+import { Search } from './Search/Search';
 import { SwipeableDrawer } from './SwipeableDrawer';
 
 type Props = {};

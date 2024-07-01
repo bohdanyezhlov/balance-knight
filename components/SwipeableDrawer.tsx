@@ -3,7 +3,7 @@ import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 import { useActiveFilters } from '@/hooks/useActiveFilters';
 import { useScreenSize } from '@/hooks/useScreenSize';
 
-import { AttributeFilter } from './AttributeFilter';
+import { AttributeFilter } from './AttributeFilter/AttributeFilter';
 import { Checkbox } from './Checkbox';
 import { ClearAll } from './ClearAll';
 import { SortBy } from './SortBy';

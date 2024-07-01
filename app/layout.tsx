@@ -3,7 +3,7 @@ import '@/styles/globals.scss';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
-import { Wrapper } from '@/components/layout/Wrapper';
+import { Wrapper } from '@/components/Wrapper/Wrapper';
 import { CardsProvider, MetadataProvider, PageProvider, TokenProvider } from '@/providers';
 
 const belwe = localFont({

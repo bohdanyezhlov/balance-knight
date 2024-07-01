@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import { usePageContext } from '@/contexts/PageContext';
 import type { TMetadata, TOption } from '@/types';
 
-import { BaseLayer } from './BaseLayer';
-import { Select } from './Select';
-import { TopLayerWithHover } from './TopLayerWithHover';
+import { BaseLayer } from '../BaseLayer/BaseLayer';
+import { Select } from '../Select';
+import { TopLayerWithHover } from '../TopLayerWithHover';
+import styles from './style.module.scss';
 
 const createSets = (slugs: string[], excludeSlugs: string[]): TOption[] =>
   slugs
@@ -97,7 +98,7 @@ export const CardSet: React.FC<Props> = ({ metadata }) => {
   };
 
   return (
-    <div className="relative mr-[30px]">
+    <div className={styles.root}>
       <BaseLayer>
         <TopLayerWithHover hasIcon>
           <Select

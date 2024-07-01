@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePageContext } from '@/contexts/PageContext';
 import type { TOption } from '@/types';
 
-import { BaseLayer } from './BaseLayer';
+import { BaseLayer } from './BaseLayer/BaseLayer';
 import { Select } from './Select';
 import { TopLayerWithHover } from './TopLayerWithHover';
 

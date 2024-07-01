@@ -5,8 +5,9 @@ import { usePageContext } from '@/contexts/PageContext';
 import ClearSearchIcon from '@/public/clearSearchIcon.svg';
 import SearchIcon from '@/public/searchIcon.svg';
 
-import { BaseLayer } from './BaseLayer';
-import { TopLayerWithHover } from './TopLayerWithHover';
+import { BaseLayer } from '../BaseLayer/BaseLayer';
+import { TopLayerWithHover } from '../TopLayerWithHover';
+import styles from './style.module.scss';
 
 type Props = {};
 
@@ -46,15 +47,12 @@ export const Search: React.FC<Props> = () => {
   };
 
   return (
-    <div className="relative mr-[30px] flex-1 md+:flex-initial">
-      <div className="mx-auto max-w-[300px]">
+    <div className={styles.root}>
+      <div className={styles.container}>
         <BaseLayer>
           <TopLayerWithHover imgSet="dark">
             {!textFilter && (
-              <label
-                htmlFor="textFilter"
-                className="absolute right-[-9px] top-[9px] z-[1] h-[24px] w-[24px] cursor-pointer bg-contain fill-[gold]"
-              >
+              <label htmlFor="textFilter" className={styles.label}>
                 <SearchIcon />
               </label>
             )}
@@ -67,7 +65,7 @@ export const Search: React.FC<Props> = () => {
                 onChange={handleInputChange}
                 value={textFilter}
                 placeholder="Search"
-                className="w-[calc(100%_-_20px)] appearance-none border-none bg-transparent font-serif text-white placeholder:text-[#967464] focus:outline-none"
+                className={styles.input}
               />
             </form>
           </TopLayerWithHover>
@@ -76,7 +74,7 @@ export const Search: React.FC<Props> = () => {
             <button
               type="button"
               aria-label="Clear Search"
-              className="absolute right-[-14px] top-1/2 z-[101] w-[25px] -translate-y-1/2 cursor-pointer fill-[gold]"
+              className={styles.clearButton}
               onClick={handleClearSearch}
             >
               <ClearSearchIcon />

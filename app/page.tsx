@@ -2,12 +2,14 @@ import { CardGridLayout } from '@/components/CardGridLayout';
 import { FilterBar } from '@/components/FilterBar';
 import { StatusBar } from '@/components/StatusBar';
 
+import styles from './page.module.scss';
+
 const Home: React.FC = () => {
   return (
     <>
       <FilterBar />
 
-      <div className="mt-[104px]">
+      <div className={styles.root}>
         <StatusBar />
         <CardGridLayout />
       </div>

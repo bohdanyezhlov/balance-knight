@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePageContext } from '@/contexts/PageContext';
 import { cn } from '@/utils/cn';
 
-import { BaseLayer } from './BaseLayer';
+import { BaseLayer } from './BaseLayer/BaseLayer';
 import { TopLayerWithHover } from './TopLayerWithHover';
 
 const NUM_OF_MANA_CRYSTALS = 11;

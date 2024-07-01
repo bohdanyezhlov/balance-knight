@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  width: 100%;
+  margin-right: 30px;
+  margin-bottom: 0.625rem;
+  color: $colorLightBrown;
+
+  &.isDesktopView {
+    width: auto;
+  }
+}

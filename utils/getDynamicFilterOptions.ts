@@ -1,4 +1,4 @@
-import type { TDynamicVariant } from '@/components/AttributeFilter';
+import type { TDynamicVariant } from '@/components/AttributeFilter/AttributeFilter';
 import type { TMetadata, TOption } from '@/types';
 
 const getData = (variant: TDynamicVariant, metadata: TMetadata) => {

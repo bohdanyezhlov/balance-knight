@@ -1,16 +1,17 @@
+import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { useMetadataContext } from '@/contexts/MetadataContext';
 import { usePageContext } from '@/contexts/PageContext';
 import type { TOption } from '@/types';
-import { cn } from '@/utils/cn';
 import { getDynamicFilterOptions } from '@/utils/getDynamicFilterOptions';
 import { getStaticFilterOptions } from '@/utils/getStaticFilterOptions';
 
-import { BaseLayer } from './BaseLayer';
-import { Select } from './Select';
-import { TopLayerWithHover } from './TopLayerWithHover';
+import { BaseLayer } from '../BaseLayer/BaseLayer';
+import { Select } from '../Select';
+import { TopLayerWithHover } from '../TopLayerWithHover';
+import temp from './style.module.scss'; // TODO rename temp to styles, styles to className
 
 type TVariant =
   | 'class'
@@ -85,15 +86,7 @@ export const AttributeFilter: React.FC<Props> = ({
   };
 
   return (
-    <div
-      className={cn(
-        'relative mb-2.5 mr-[30px] w-full text-lightBrown',
-        {
-          'w-auto': isDesktopView,
-        },
-        styles
-      )}
-    >
+    <div className={clsx(temp.root, [temp.isDesktopView && isDesktopView], styles)}>
       {children}
 
       <BaseLayer>
