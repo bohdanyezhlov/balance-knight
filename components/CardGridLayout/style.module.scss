@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.root {
+  max-width: $mediaXxl;
+  margin: 0 auto;
+  padding-top: 2.5rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  overflow-x: hidden;
+}

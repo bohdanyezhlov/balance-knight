@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 
-import { CardImage } from './CardImage';
+import { CardImage } from '../CardImage';
+import styles from './style.module.scss';
 
 type Props = {
   slug: string;
@@ -37,8 +38,8 @@ export const Card: React.FC<Props> = ({ slug, id, imgSrc, alt, isLast, newLimit,
 
   return (
     <Link href={slug} ref={cardRef} onClick={handleClick(id)}>
-      <div className="mb-5 flex h-[220px] w-[150px] items-center min-[531px]:h-[350px] min-[531px]:w-[240px]">
-        <div className="relative h-full w-full">
+      <div className={styles.card}>
+        <div className={styles.container}>
           <CardImage imgSrc={imgSrc} alt={alt} />
         </div>
       </div>

@@ -2,8 +2,9 @@ import { usePageContext } from '@/contexts/PageContext';
 import type { TCard } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 
-import { Card } from './Card';
-import { ClassTitle } from './ClassTitle';
+import { Card } from '../Card/Card';
+import { ClassTitle } from '../ClassTitle';
+import styles from './style.module.scss';
 
 const NUM_GHOST_CARDS = 5;
 
@@ -18,10 +19,10 @@ export const RenderAllCards: React.FC<Props> = ({ cards, showModal, cardsLength 
   let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
 
   return (
-    <div className="mb-[50px]">
+    <div className={styles.root}>
       <ClassTitle name="All Cards" />
 
-      <div className="flex flex-wrap justify-evenly">
+      <div className={styles.cards}>
         {cards.map(({ image, id, slug, name }) => {
           globalCardIndex += 1;
 

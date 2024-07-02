@@ -2,8 +2,9 @@ import { usePageContext } from '@/contexts/PageContext';
 import type { TCardsByClassId, TClass } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 
-import { Card } from './Card';
-import { ClassTitle } from './ClassTitle';
+import { Card } from '../Card/Card';
+import { ClassTitle } from '../ClassTitle';
+import styles from './style.module.css';
 
 const getClassNameByClassId = (classId: number, classes: TClass[]) => {
   const classInfo = classes.find((c) => c.id === classId);
@@ -28,10 +29,10 @@ export const RenderCardsByGroup: React.FC<Props> = ({ cards, classes, showModal,
     const classname = getClassNameByClassId(classId, classes);
 
     return (
-      <div key={classId} className="mb-[50px]">
+      <div key={classId} className={styles.root}>
         {classname && <ClassTitle name={classname} />}
 
-        <div className="flex flex-wrap justify-evenly">
+        <div className={styles.cards}>
           {groupOfCards.map(({ image, id, slug, name }) => {
             globalCardIndex += 1;
 

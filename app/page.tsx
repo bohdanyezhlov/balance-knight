@@ -1,4 +1,4 @@
-import { CardGridLayout } from '@/components/CardGridLayout';
+import { CardGridLayout } from '@/components/CardGridLayout/CardGridLayout';
 import { FilterBar } from '@/components/FilterBar';
 import { StatusBar } from '@/components/StatusBar';
 

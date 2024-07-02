@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.root {
+  margin-bottom: 1.5rem;
+  margin-top: 1.25rem;
+  line-height: 1.75;
+}
+
+.attribute {
+  margin-left: 1.25rem;
+  list-style-type: disc;
+  font-weight: bold;
+  color: $lightGold;
+}
+
+.title {
+  font-weight: normal;
+  color: $white;
+}
+
+.link {
+  color: $gold;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: $gold;
+    text-decoration: underline;
+    text-underline-offset: 1px;
+  }
+}

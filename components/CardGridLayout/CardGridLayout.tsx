@@ -9,10 +9,11 @@ import { ESortParamsOptions } from '@/enums';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
-import { EmptyCardGrid } from './EmptyCardGrid';
-import { Modal } from './Modal';
-import { RenderAllCards } from './RenderAllCards';
-import { RenderCardsByGroup } from './RenderCardsByGroup';
+import { EmptyCardGrid } from '../EmptyCardGrid';
+import { Modal } from '../Modal/Modal';
+import { RenderAllCards } from '../RenderAllCards/RenderAllCards';
+import { RenderCardsByGroup } from '../RenderCardsByGroup/RenderCardsByGroup';
+import styles from './style.module.scss';
 
 const splitCardsByClassId = (cards: TCard[]) => {
   const cardsByClassId: TCardsByClassId[] = [];
@@ -72,7 +73,7 @@ export const CardGridLayout: React.FC<Props> = () => {
   }
 
   return (
-    <div className="mx-auto max-w-[1600px] overflow-x-hidden px-2.5 pt-10">
+    <div className={styles.root}>
       {isGroupByClass ? (
         <RenderCardsByGroup
           cards={cardsData as TCardsByClassId[]}

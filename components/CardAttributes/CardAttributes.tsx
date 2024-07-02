@@ -6,6 +6,8 @@ import { usePageContext } from '@/contexts/PageContext';
 import { ECardProperties, ECardPropertiesKeys } from '@/enums';
 import type { TCard, TMetadata } from '@/types';
 
+import styles from './style.module.scss';
+
 // FIXME https://hearthstone.blizzard.com/en-us/cards/678-treant
 const extractValue = (arr: any[], ids: number[]) => {
   const matchingItems = arr.filter((item) => ids.includes(item.id));
@@ -126,7 +128,7 @@ export const CardAttributes: React.FC<Props> = ({ card, metadata, setIsOpen }) =
   };
 
   return (
-    <ul className="mb-6 mt-5 leading-[1.75]">
+    <ul className={styles.root}>
       {sortedKeys.map((attribute, i) => {
         const [attributeKey, attributeValue] = getAttributeData(attribute, card, metadata);
 
@@ -137,18 +139,18 @@ export const CardAttributes: React.FC<Props> = ({ card, metadata, setIsOpen }) =
         // }
 
         return (
-          <li key={i} className="ml-5 list-disc font-bold text-lightGold">
+          <li key={i} className={styles.attribute}>
             {/* eslint-disable-next-line no-nested-ternary */}
             {attributeValue === null ? (
               attributeKey
             ) : (
               <>
                 {attributeKey}:{' '}
-                <span className="font-normal text-white">
+                <span className={styles.title}>
                   {attributeKey === 'Artist' ? (
                     <Link
                       href="/"
-                      className="text-gold hover:underline hover:underline-offset-1"
+                      className={styles.link}
                       onClick={handleArtistClick(attributeValue as string)}
                     >
                       {attributeValue}
