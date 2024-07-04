@@ -9,7 +9,7 @@ import { ESortParamsOptions } from '@/enums';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
-import { EmptyCardGrid } from '../EmptyCardGrid';
+import { EmptyCardGrid } from '../EmptyCardGrid/EmptyCardGrid';
 import { Modal } from '../Modal/Modal';
 import { RenderAllCards } from '../RenderAllCards/RenderAllCards';
 import { RenderCardsByGroup } from '../RenderCardsByGroup/RenderCardsByGroup';

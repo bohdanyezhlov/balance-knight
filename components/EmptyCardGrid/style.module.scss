@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.emptyArt {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  margin-bottom: -60px;
+  height: 288px;
+  width: 296px;
+  background-image: url('../../public/emptyArt.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.divider {
+  height: 34px;
+  background-image: url('../../public/divider.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.content {
+  padding: 10px 2.5rem;
+}
+
+.title {
+  margin-bottom: 0;
+  font-size: 18px;
+  color: $mainBrown;
+}
+
+.text {
+  color: $mainBrown;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.line {
+  height: 3px;
+  background-image: url('../../public/Line.png');
+}
