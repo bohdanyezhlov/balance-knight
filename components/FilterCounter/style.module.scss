@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: absolute;
+  left: -1.25rem;
+  right: -1.25rem;
+  bottom: -15px;
+  z-index: 102;
+  margin-left: auto;
+  margin-right: auto;
+  height: 26px;
+  width: 32px;
+  background: url('../../public/filterNumberBg.png');
+  text-align: center;
+  font-family: $serif;
+  font-size: 16px;
+  color: white;
+  text-shadow: $shadow;
+
+  @media (min-width: 421px) {
+    bottom: 0;
+    left: auto;
+    right: -32px;
+  }
+}

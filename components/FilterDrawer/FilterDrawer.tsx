@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import { useScreenSize } from '@/hooks/useScreenSize';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
-import { FilterCounter } from '../FilterCounter';
+import { FilterCounter } from '../FilterCounter/FilterCounter';
 import SettingsIcon from '../public/settingsIcon.svg';
 import { TopLayerWithHover } from '../TopLayerWithHover';
 import styles from './style.module.scss';

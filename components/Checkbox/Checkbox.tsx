@@ -8,6 +8,7 @@ import { cn } from '@/utils/cn';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
 import CheckIcon from '../public/checkIcon.png';
+import styles from './style.module.scss';
 
 const updateSortParam = (sortParam: string, criteriaName: string, isAscending: boolean) => {
   const sortParamsObject: Record<string, string> = sortParam
@@ -71,31 +72,22 @@ export const Checkbox: React.FC<Props> = ({ labelStyle }) => {
   };
 
   return (
-    <label
-      htmlFor="groupByClass"
-      className={cn(
-        'mb-2.5 block cursor-pointer text-clip whitespace-nowrap font-serif text-[16px] text-white',
-        labelStyle
-      )}
-    >
+    <label htmlFor="groupByClass" className={cn(styles.root, labelStyle)}>
       <input
         type="checkbox"
         name="groupByClass"
         id="groupByClass"
-        className="sr-only"
+        className={styles.input}
         checked={isGroupByClass}
         onChange={handleChange}
       />
-      <div
-        aria-hidden="true"
-        className="relative top-[7px] mr-2.5 inline-block h-[26px] w-[26px] rounded-[5px] border-2 border-solid border-[#ffffff33] bg-[#000000cc]"
-      >
+      <div aria-hidden="true" className={styles.checkbox}>
         <Image
           width={23}
           height={23}
           src={CheckIcon}
           alt="Checkbox"
-          className={`${isGroupByClass ? 'opacity-100' : 'opacity-0'} absolute inset-0 h-[23px]`}
+          className={cn(styles.image, isGroupByClass && styles.checked)}
         />
       </div>
       Group By Class

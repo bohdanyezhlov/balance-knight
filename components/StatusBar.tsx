@@ -7,7 +7,7 @@ import { useMetadataContext } from '@/contexts/MetadataContext';
 import { useScreenSize } from '@/hooks/useScreenSize';
 import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
-import { Checkbox } from './Checkbox';
+import { Checkbox } from './Checkbox/Checkbox';
 import { FilterTags } from './FilterTags';
 import { SortBy } from './SortBy';
 

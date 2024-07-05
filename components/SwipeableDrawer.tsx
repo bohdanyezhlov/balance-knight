@@ -4,7 +4,7 @@ import { useActiveFilters } from '@/hooks/useActiveFilters';
 import { useScreenSize } from '@/hooks/useScreenSize';
 
 import { AttributeFilter } from './AttributeFilter/AttributeFilter';
-import { Checkbox } from './Checkbox';
+import { Checkbox } from './Checkbox/Checkbox';
 import { ClearAll } from './ClearAll';
 import { SortBy } from './SortBy';
 
