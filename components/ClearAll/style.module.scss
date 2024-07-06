@@ -1,0 +1,55 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  display: inline-flex;
+  height: 25px;
+  border: none;
+  background: none;
+  padding: 3px 0.625rem;
+  font-size: 14px;
+  color: $blue;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    border: 1px solid $mainBrown;
+    background: #fff0da;
+    opacity: 0.5;
+  }
+
+  &.isMobile {
+    color: $gold;
+  }
+
+  .icon {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    fill: $blue;
+
+    &.isMobile {
+      fill: $gold;
+    }
+  }
+
+  &:hover {
+    color: white;
+
+    .icon {
+      fill: white;
+    }
+
+    &::before {
+      border-color: $blue;
+      background: $blue;
+      opacity: 1;
+    }
+  }
+}
+
+.title {
+  position: relative;
+}

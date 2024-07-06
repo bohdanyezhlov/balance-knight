@@ -9,7 +9,7 @@ import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
 import { Checkbox } from './Checkbox/Checkbox';
 import { FilterTags } from './FilterTags';
-import { SortBy } from './SortBy';
+import { SortBy } from './SortBy/SortBy';
 
 type Props = {};
 

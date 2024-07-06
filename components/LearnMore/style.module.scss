@@ -1,0 +1,97 @@
+@import '../../styles/variables.scss';
+
+.root {
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.keywordButton {
+  position: relative;
+  margin-right: 0.625rem;
+  cursor: zoom-in;
+  font-size: 16px;
+  color: $white;
+  text-decoration: underline;
+}
+
+.tooltipRoot {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 5%;
+  top: 82%;
+  z-index: 200;
+
+  @media (min-width: 401px) {
+    position: absolute;
+    top: auto;
+    left: -30%; // REVIEW there was a mistake in tw class
+  }
+
+  @media (min-width: 1001px) {
+    left: -50%;
+  }
+}
+
+.content {
+  //  after:absolute after:bottom-[-15px] after:left-0 after:z-[-1] after:mt-[-45px] after:h-[76px] after:w-[228px] after:bg-[url(../public/tooltipBottom.png)] after:bg-center after:bg-no-repeat after:content-['']"
+  position: relative;
+  z-index: 10000;
+  margin-bottom: 35px;
+  width: 228px;
+  background-image: url('../../public/tooltipMiddle.png');
+  background-color: transparent;
+  background-position: center;
+  background-repeat: repeat-y;
+  padding: 0.625rem 1.25rem;
+  text-align: left;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    width: 228px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &::before {
+    top: -15px;
+    height: 70px;
+    background-image: url('../../public/tooltipTop.png');
+  }
+
+  &::after {
+    bottom: -15px;
+    margin-top: -45px;
+    height: 76px;
+    background-image: url('../../public/tooltipBottom.png');
+  }
+}
+
+.tooltipTitle {
+  margin-bottom: 0.625rem;
+  margin-top: 0;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.1;
+  color: $white;
+  text-shadow: $shadow;
+}
+
+.description {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $white;
+}

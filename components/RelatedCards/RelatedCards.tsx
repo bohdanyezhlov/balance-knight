@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { getCardById } from '@/api/getCardById';
 import type { TCard } from '@/types';
 
+import styles from './style.module.scss';
+
 type Props = {
   card: TCard;
 };
@@ -35,27 +37,21 @@ export const RelatedCards: React.FC<Props> = ({ card }) => {
   if (!relatedCards.length) return null;
 
   return (
-    <div className="mb-5">
-      <p className="mb-0 text-[16px]">Related Cards:</p>
+    <div className={styles.root}>
+      <p className={styles.title}>Related Cards:</p>
 
-      <div className="flex flex-wrap pb-2.5">
+      <div className={styles.flexContainer}>
         {relatedCards.map(({ id, name, image }) => (
           <button
             type="button"
             key={id}
-            className="relative mr-2.5 cursor-zoom-in text-[16px] text-white underline"
+            className={styles.card}
             onMouseEnter={() => setHoveredCard(id)}
             onMouseLeave={() => setHoveredCard(null)}
           >
             {name}
 
-            {hoveredCard === id && (
-              <img
-                src={image}
-                alt={name}
-                className="fixed inset-x-0 bottom-10 top-1/2 z-[200] w-[250px] max-w-[unset] min-[401px]:absolute min-[401px]:top-auto"
-              />
-            )}
+            {hoveredCard === id && <img src={image} alt={name} className={styles.image} />}
           </button>
         ))}
       </div>

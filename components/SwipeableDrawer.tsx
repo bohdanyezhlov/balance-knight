@@ -5,8 +5,8 @@ import { useScreenSize } from '@/hooks/useScreenSize';
 
 import { AttributeFilter } from './AttributeFilter/AttributeFilter';
 import { Checkbox } from './Checkbox/Checkbox';
-import { ClearAll } from './ClearAll';
-import { SortBy } from './SortBy';
+import { ClearAll } from './ClearAll/ClearAll';
+import { SortBy } from './SortBy/SortBy';
 
 type Props = {
   cardCount?: number;

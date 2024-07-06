@@ -4,7 +4,7 @@ import { useMetadataContext } from '@/contexts/MetadataContext';
 import { useActiveFilters } from '@/hooks/useActiveFilters';
 import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
-import { ClearAll } from './ClearAll';
+import { ClearAll } from './ClearAll/ClearAll';
 
 type Props = {};
 
