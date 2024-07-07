@@ -3,7 +3,7 @@ import type { TCard } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 
 import { Card } from '../Card/Card';
-import { ClassTitle } from '../ClassTitle';
+import { ClassTitle } from '../ClassTitle/ClassTitle';
 import styles from './style.module.scss';
 
 const NUM_GHOST_CARDS = 5;

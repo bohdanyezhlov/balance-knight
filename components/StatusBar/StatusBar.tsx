@@ -7,9 +7,10 @@ import { useMetadataContext } from '@/contexts/MetadataContext';
 import { useScreenSize } from '@/hooks/useScreenSize';
 import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
-import { Checkbox } from './Checkbox/Checkbox';
-import { FilterTags } from './FilterTags';
-import { SortBy } from './SortBy/SortBy';
+import { Checkbox } from '../Checkbox/Checkbox';
+import { FilterTags } from '../FilterTags';
+import { SortBy } from '../SortBy/SortBy';
+import styles from './style.module.scss';
 
 type Props = {};
 
@@ -23,10 +24,10 @@ export const StatusBar: React.FC<Props> = () => {
   if (!metadata) return null;
 
   return (
-    <div className="relative z-[2] pt-10">
-      <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-center px-5 xs:flex-nowrap">
-        <div className="flex flex-1 flex-wrap justify-start">
-          <div className="mr-2.5 font-bold text-mainBrown">
+    <div className={styles.root}>
+      <div className={styles.container}>
+        <div className={styles.flexContainer}>
+          <div className={styles.cardCount}>
             {`${cardsContext?.cardCount} cards found for ${normalizeActiveFilter(
               'set',
               set,
@@ -38,18 +39,18 @@ export const StatusBar: React.FC<Props> = () => {
         </div>
 
         {screenSize.width && screenSize.width > 960 && (
-          <div className="mr-10 flex min-w-[200px] items-center">
-            <div className="mr-2.5 text-mainBrown">Sort by:</div>
+          <div className={styles.sortWrapper}>
+            <div className={styles.sortTitle}>Sort by:</div>
 
-            <div className="mx-[25px]">
+            <div className={styles.sortWrapper}>
               <SortBy baseLayer={false} />
             </div>
           </div>
         )}
 
         {screenSize.width && screenSize.width > 960 && (
-          <div className="mr-[30px]">
-            <Checkbox labelStyle="text-mainBrown" />
+          <div className={styles.checkboxWrapper}>
+            <Checkbox labelStyle={styles.checkbox} />
           </div>
         )}
       </div>

@@ -3,7 +3,7 @@ import type { TCardsByClassId, TClass } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 
 import { Card } from '../Card/Card';
-import { ClassTitle } from '../ClassTitle';
+import { ClassTitle } from '../ClassTitle/ClassTitle';
 import styles from './style.module.css';
 
 const getClassNameByClassId = (classId: number, classes: TClass[]) => {

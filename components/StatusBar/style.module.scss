@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  z-index: 2;
+  padding-top: 2.5rem;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  max-width: $mediaXxl;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.25rem;
+
+  @media (min-width: $mediaXs) {
+    flex-wrap: nowrap;
+  }
+}
+
+.flexContainer {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.cardCount {
+  margin-right: 0.625rem;
+  font-weight: bold;
+  color: $colorMainBrown;
+}
+
+.sortWrapper {
+  margin-right: 0.625rem;
+  display: flex;
+  min-width: 200px;
+  align-items: center;
+}
+
+.sortTitle {
+  margin-right: 0.625rem;
+  color: $colorMainBrown;
+}
+
+.sortWrapper {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.checkboxWrapper {
+  margin-right: 30px;
+}
+
+.checkbox {
+  color: $colorMainBrown;
+}

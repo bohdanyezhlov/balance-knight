@@ -3,10 +3,11 @@ import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 import { useActiveFilters } from '@/hooks/useActiveFilters';
 import { useScreenSize } from '@/hooks/useScreenSize';
 
-import { AttributeFilter } from './AttributeFilter/AttributeFilter';
-import { Checkbox } from './Checkbox/Checkbox';
-import { ClearAll } from './ClearAll/ClearAll';
-import { SortBy } from './SortBy/SortBy';
+import { AttributeFilter } from '../AttributeFilter/AttributeFilter';
+import { Checkbox } from '../Checkbox/Checkbox';
+import { ClearAll } from '../ClearAll/ClearAll';
+import { SortBy } from '../SortBy/SortBy';
+import styles from './style.module.scss';
 
 type Props = {
   cardCount?: number;
@@ -25,40 +26,34 @@ export const SwipeableDrawer: React.FC<Props> = ({ cardCount, isOpen, toggleDraw
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
     >
-      <div className="h-full w-[300px] overflow-y-scroll bg-transparent bg-[url(../public/bgFilterTabletMobile.jpeg)] bg-left-top bg-repeat-y">
-        <div className="flex touch-pan-y select-none flex-wrap px-5 pb-[100px] pt-5">
-          <div className="flex w-full flex-wrap border-b border-solid border-[#450f0f] py-2.5 text-white">
-            <div className="mb-[15px] w-full">
-              <button
-                type="button"
-                className="inline pl-[5px] text-[16px] font-bold hover:underline hover:underline-offset-1"
-                onClick={toggleDrawer(false)}
-              >
-                <span className="relative top-1 mr-[5px] inline-block text-[25px] text-gold">
-                  ✕
-                </span>
+      <div className={styles.root}>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <div className={styles.buttonWrapper}>
+              <button type="button" className={styles.closeButton} onClick={toggleDrawer(false)}>
+                <span className={styles.closeIcon}>✕</span>
                 Close
               </button>
             </div>
-            <div className="pl-[15px]">{cardCount} cards found</div>
+            <div className={styles.cardCount}>{cardCount} cards found</div>
             {screenSize.width && screenSize.width < 960 && activeFilters.length > 1 && (
               <ClearAll isMobile />
             )}
           </div>
 
-          <div className="relative mr-[30px] w-full py-[20px] text-lightBrown">
-            <div className="pl-[15px]">
+          <div className={styles.controls}>
+            <div className={styles.checkboxWrapper}>
               <Checkbox />
             </div>
 
-            <label htmlFor="CardSortControl" className="mb-2.5 block pl-[15px]">
+            <label htmlFor="CardSortControl" className={styles.label}>
               Sort By:
             </label>
             <SortBy id="CardSortControl" />
           </div>
 
           <AttributeFilter variant="class" hasIcon labelId="ClassControl">
-            <label htmlFor="ClassControl" className="mb-2.5 block pl-[15px]">
+            <label htmlFor="ClassControl" className={styles.label}>
               Filters:
             </label>
           </AttributeFilter>
