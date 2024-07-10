@@ -1,0 +1,74 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  margin-right: 30px;
+}
+
+.manaCrystalsContainer {
+  display: flex;
+  align-items: center;
+  margin-left: -0.625rem;
+}
+
+.manaCrystal {
+  position: relative;
+  z-index: 101;
+  display: flex;
+  height: 34px;
+  width: 36px;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../public/iconMana.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 150ms ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0.625rem;
+    background-image: url(../../public/iconManaHoverSelected.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  .last {
+    width: 60px;
+    background-image: url(../../public/iconManaPlus.png);
+
+    &::before {
+      background-position: left;
+    }
+  }
+
+  .active {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.value {
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+  white-space: nowrap;
+  font-size: 25px;
+  font-weight: bold;
+  color: $colorWhite;
+  text-shadow: $shadow;
+
+  .last {
+    width: 100%;
+    margin-left: 5px;
+    text-align: left;
+  }
+}

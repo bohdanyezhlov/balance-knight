@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 
-import { CardImage } from '../CardImage';
+import { CardImage } from '../CardImage/CardImage';
 import styles from './style.module.scss';
 
 type Props = {

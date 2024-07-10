@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { getIsSsrMobile } from '@/utils/getIsSsrMobile';
 
+import styles from './style.module.scss';
+
 const calcX = (y: number, ly: number) => -(y - ly - window.innerHeight / 2) / 20;
 const calcY = (x: number, lx: number) => (x - lx - window.innerWidth / 2) / 20;
 
@@ -83,10 +85,10 @@ export const CardImage: React.FC<Props> = ({ imgSrc, alt }) => {
           }}
           src={imgSrc}
           alt={alt}
-          className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)]"
+          className={styles.shadow}
         />
       ) : (
-        <img src={imgSrc} alt={alt} className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.6)]" />
+        <img src={imgSrc} alt={alt} className={styles.shadow} />
       )}
     </div>
   );

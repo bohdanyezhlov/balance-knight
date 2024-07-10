@@ -4,7 +4,8 @@ import { useMetadataContext } from '@/contexts/MetadataContext';
 import { useActiveFilters } from '@/hooks/useActiveFilters';
 import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
-import { ClearAll } from './ClearAll/ClearAll';
+import { ClearAll } from '../ClearAll/ClearAll';
+import styles from './style.module.scss';
 
 type Props = {};
 
@@ -29,11 +30,11 @@ export const FilterTags: React.FC<Props> = () => {
           <button
             type="button"
             key={param}
-            className="group mb-2.5 mr-[5px] inline-flex rounded-[15px] bg-mainBrown px-2.5 py-[3px] text-[14px] text-white hover:bg-blue"
+            className={styles.root}
             onClick={handleClearSingleParam(param)}
           >
             {normalizeActiveFilter(param, value, metadata)}
-            <span className="ml-2.5 inline text-gold group-hover:text-white">✕</span>
+            <span className={styles.clear}>✕</span>
           </button>
         );
       })}

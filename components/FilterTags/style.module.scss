@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.root {
+  display: inline-flex;
+  margin-bottom: 0.625rem;
+  margin-right: 5px;
+  border-radius: 15px;
+  background-color: $colorMainBrown;
+  padding: 3px 0.625rem;
+  font-size: 14px;
+  color: $colorWhite;
+
+  &:hover {
+    background-color: $colorBlue;
+
+    .clear {
+      color: $colorWhite;
+    }
+  }
+}
+
+.clear {
+  margin-left: 0.625rem;
+  display: inline;
+  color: $colorGold;
+}

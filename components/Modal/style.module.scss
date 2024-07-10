@@ -24,7 +24,7 @@
   cursor: pointer;
   font-size: 36px;
   font-weight: bold;
-  color: $gold;
+  color: $colorGold;
 
   @media (min-width: 1280px) {
     right: 35px;
@@ -79,7 +79,7 @@
   overflow-y: visible;
   padding-bottom: 30px;
   padding-top: 25px;
-  color: $white;
+  color: $colorWhite;
 
   @media (min-width: 420px) {
     padding-top: 50px;

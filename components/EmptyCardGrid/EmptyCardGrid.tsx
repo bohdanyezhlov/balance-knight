@@ -1,4 +1,4 @@
-import { FilterTags } from '../FilterTags';
+import { FilterTags } from '../FilterTags/FilterTags';
 import styles from './style.module.scss';
 
 type Props = {};

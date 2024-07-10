@@ -10,7 +10,7 @@ import { useScreenSize } from '@/hooks/useScreenSize';
 import { AttributeFilter } from '../AttributeFilter/AttributeFilter';
 import { CardSet } from '../CardSet/CardSet';
 import { FilterDrawer } from '../FilterDrawer/FilterDrawer';
-import { ManaCost } from '../ManaCost';
+import { ManaCost } from '../ManaCost/ManaCost';
 import { Search } from '../Search/Search';
 import { SwipeableDrawer } from '../SwipeableDrawer/SwipeableDrawer';
 import styles from './style.module.scss';

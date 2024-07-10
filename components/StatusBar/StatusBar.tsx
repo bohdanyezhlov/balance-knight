@@ -8,7 +8,7 @@ import { useScreenSize } from '@/hooks/useScreenSize';
 import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
 import { Checkbox } from '../Checkbox/Checkbox';
-import { FilterTags } from '../FilterTags';
+import { FilterTags } from '../FilterTags/FilterTags';
 import { SortBy } from '../SortBy/SortBy';
 import styles from './style.module.scss';
 

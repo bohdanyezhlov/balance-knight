@@ -5,7 +5,7 @@ import { type Dispatch, type SetStateAction } from 'react';
 import type { TCard, TMetadata } from '@/types';
 
 import { CardAttributes } from '../CardAttributes/CardAttributes';
-import { CardImage } from '../CardImage';
+import { CardImage } from '../CardImage/CardImage';
 import { LearnMore } from '../LearnMore/LearnMore';
 import { RelatedCards } from '../RelatedCards/RelatedCards';
 import styles from './style.module.css';

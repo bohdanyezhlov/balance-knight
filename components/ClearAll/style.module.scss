@@ -8,30 +8,30 @@
   background: none;
   padding: 3px 0.625rem;
   font-size: 14px;
-  color: $blue;
+  color: $colorBlue;
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 15px;
-    border: 1px solid $mainBrown;
+    border: 1px solid $colorMainBrown;
     background: #fff0da;
     opacity: 0.5;
   }
 
   &.isMobile {
-    color: $gold;
+    color: $colorGold;
   }
 
   .icon {
     position: relative;
     height: 18px;
     width: 18px;
-    fill: $blue;
+    fill: $colorBlue;
 
     &.isMobile {
-      fill: $gold;
+      fill: $colorGold;
     }
   }
 
@@ -43,8 +43,8 @@
     }
 
     &::before {
-      border-color: $blue;
-      background: $blue;
+      border-color: $colorBlue;
+      background: $colorBlue;
       opacity: 1;
     }
   }
