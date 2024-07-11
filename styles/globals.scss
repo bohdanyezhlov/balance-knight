@@ -4,6 +4,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  border: 0 solid #e5e7eb;
 }
 
 html {
@@ -55,4 +56,23 @@ p {
 img {
   max-width: 100%;
   height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
 }
