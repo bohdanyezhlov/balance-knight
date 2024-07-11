@@ -6,7 +6,7 @@ import ClearSearchIcon from '@/public/clearSearchIcon.svg';
 import SearchIcon from '@/public/searchIcon.svg';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
-import { TopLayerWithHover } from '../TopLayerWithHover';
+import { TopLayerWithHover } from '../TopLayerWithHover/TopLayerWithHover';
 import styles from './style.module.scss';
 
 type Props = {};

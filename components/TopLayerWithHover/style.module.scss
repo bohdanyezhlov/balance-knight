@@ -1,0 +1,99 @@
+@import '../../styles/variables.scss';
+
+.dropdown {
+  position: relative;
+  z-index: 1;
+  margin-left: -3px;
+  margin-right: -3px;
+  display: flex;
+  height: 42px;
+  cursor: pointer;
+  align-items: center;
+  background-position: top center;
+  background-image: url('../../public/dropdownMiddleStretch.png');
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    background-image: url('../../public/dropdownMiddleStretchHoverSelected.png');
+
+    &::before {
+      background-image: url('../../public/dropdownLeftHoverSelected.png');
+    }
+
+    &::after {
+      background-image: url('../../public/dropdownRightHoverSelected.png');
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 42px;
+    width: 24px;
+    background-repeat: no-repeat;
+    transition: all 150ms ease-in-out;
+  }
+
+  &::before {
+    left: -24px;
+    background-position: left;
+    background-image: url('../../public/dropdownLeft.png');
+  }
+
+  &::after {
+    right: -24px;
+    background-position: right;
+    background-image: url('../../public/dropdownRight.png');
+  }
+
+  .button {
+    padding-left: 1.25rem;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}
+
+.iconLeft {
+  padding-left: 1.25rem;
+
+  &::before {
+    left: -2.5rem;
+    width: 50px;
+    margin-left: 15px;
+    background-image: url('../../public/dropdownWithIconLeft.png');
+  }
+
+  &:hover {
+    &::before {
+      background-image: url('../../public/dropdownWithIconLeftHoverSelected.png');
+    }
+  }
+}
+
+.search {
+  background-image: url('../../public/searchMiddleStretch.png');
+
+  &:hover {
+    background-image: url('../../public/searchMiddleStretchHoverSelected.png');
+
+    &::before {
+      background-image: url('../../public/searchLeftHoverSelected.png');
+    }
+
+    &::after {
+      background-image: url('../../public/searchRightHoverSelected.png');
+    }
+  }
+
+  &::before {
+    background-image: url('../../public/searchLeft.png');
+  }
+
+  &::after {
+    background-image: url('../../public/searchRight.png');
+  }
+}

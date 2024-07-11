@@ -9,8 +9,8 @@ import { getDynamicFilterOptions } from '@/utils/getDynamicFilterOptions';
 import { getStaticFilterOptions } from '@/utils/getStaticFilterOptions';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
-import { Select } from '../Select';
-import { TopLayerWithHover } from '../TopLayerWithHover';
+import { Select } from '../Select/Select';
+import { TopLayerWithHover } from '../TopLayerWithHover/TopLayerWithHover';
 import temp from './style.module.scss'; // TODO rename temp to styles, styles to className
 
 type TVariant =

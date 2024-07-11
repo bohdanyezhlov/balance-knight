@@ -1,5 +1,5 @@
 import { CardGridLayout } from '@/components/CardGridLayout/CardGridLayout';
-import { FilterBar } from '@/components/FilterBar';
+import { FilterBar } from '@/components/FilterBar/FilterBar';
 import { StatusBar } from '@/components/StatusBar/StatusBar';
 
 import styles from './page.module.scss';

@@ -1,0 +1,165 @@
+@import '../../styles/variables.scss';
+
+.icon {
+  position: absolute;
+  left: -14px;
+  top: 6px;
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  fill: $colorGold;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0.625rem;
+  margin-right: 30px;
+  flex: 1;
+  font-size: 16px;
+  color: $colorMainBrown;
+
+  &.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.cardSet {
+    display: none;
+    margin-right: 15px;
+
+    @media (min-width: 1261px) {
+      display: block;
+    }
+  }
+}
+
+.arrowIndicatorIcon {
+  position: absolute;
+  right: -0.25rem;
+  z-index: 2;
+  margin-top: 1px;
+  height: 17px;
+  width: 17px;
+  transform: rotate(90deg);
+
+  &.cardSet {
+    top: 12px;
+    right: -6px;
+  }
+}
+
+.select {
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  z-index: 2;
+  height: 100%;
+  width: calc(100% + 48px);
+  cursor: pointer;
+  appearance: none;
+  border: 0;
+  background-color: transparent;
+  text-indent: -1000em;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.manaCost {
+  background-image: url('../../public/iconMana.png');
+}
+
+.attack {
+  background-image: url('../../public/iconAttack.png');
+}
+
+.health {
+  background-image: url('../../public/iconHealth.png');
+}
+
+.class {
+  background-image: url('../../public/iconClassAll.png');
+}
+
+.demonhunter {
+  background-image: url('../../public/iconClassDemonHunter.png');
+}
+
+.deathknight {
+  background-image: url('../../public/iconClassDeathKnight.png');
+}
+
+.druid {
+  background-image: url('../../public/iconClassDruid.png');
+}
+
+.hunter {
+  background-image: url('../../public/iconClassHunter.png');
+}
+
+.mage {
+  background-image: url('../../public/iconClassMage.png');
+}
+
+.paladin {
+  background-image: url('../../public/iconClassPaladin.png');
+}
+
+.priest {
+  background-image: url('../../public/iconClassPriest.png');
+}
+
+.rogue {
+  background-image: url('../../public/iconClassRogue.png');
+}
+
+.shaman {
+  background-image: url('../../public/iconClassShaman.png');
+}
+
+.warlock {
+  background-image: url('../../public/iconClassWarlock.png');
+}
+
+.warrior {
+  background-image: url('../../public/iconClassWarrior.png');
+}
+
+.neutral {
+  background-image: url('../../public/iconClassNeutral.png');
+}
+
+.root {
+  display: flex;
+}
+
+.mobile {
+  width: 100%;
+
+  &.notCardSet {
+    max-width: 155px;
+    text-overflow: ellipsis;
+
+    @media (min-width: 414px) {
+      max-width: 250px;
+    }
+  }
+}
+
+.desktopClass {
+  min-width: 120px;
+}
+
+.cardSet {
+  align-items: center;
+  min-width: 20px;
+
+  @media (min-width: 1261px) {
+    min-width: 160px;
+  }
+}

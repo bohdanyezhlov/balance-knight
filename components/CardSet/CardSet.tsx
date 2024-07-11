@@ -5,8 +5,8 @@ import { usePageContext } from '@/contexts/PageContext';
 import type { TMetadata, TOption } from '@/types';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
-import { Select } from '../Select';
-import { TopLayerWithHover } from '../TopLayerWithHover';
+import { Select } from '../Select/Select';
+import { TopLayerWithHover } from '../TopLayerWithHover/TopLayerWithHover';
 import styles from './style.module.scss';
 
 const createSets = (slugs: string[], excludeSlugs: string[]): TOption[] =>

@@ -5,7 +5,7 @@ import { useScreenSize } from '@/hooks/useScreenSize';
 import { BaseLayer } from '../BaseLayer/BaseLayer';
 import { FilterCounter } from '../FilterCounter/FilterCounter';
 import SettingsIcon from '../public/settingsIcon.svg';
-import { TopLayerWithHover } from '../TopLayerWithHover';
+import { TopLayerWithHover } from '../TopLayerWithHover/TopLayerWithHover';
 import styles from './style.module.scss';
 
 const mobileKeys = [

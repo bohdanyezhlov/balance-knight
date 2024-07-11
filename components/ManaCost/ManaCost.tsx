@@ -1,11 +1,11 @@
+import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
-import { cn } from '@/utils/cn';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
-import { TopLayerWithHover } from '../TopLayerWithHover';
+import { TopLayerWithHover } from '../TopLayerWithHover/TopLayerWithHover';
 import styles from './style.module.scss';
 
 const NUM_OF_MANA_CRYSTALS = 11;
@@ -64,14 +64,14 @@ export const ManaCost: React.FC<Props> = () => {
               <button
                 type="button"
                 key={i}
-                className={cn(styles.manaCrystal, {
+                className={clsx(styles.manaCrystal, {
                   [styles.last]: i === manaCrystalNumbers.length - 1,
                   [styles.active]: activeManaCosts.includes(number),
                 })}
                 onClick={() => handleButtonClick(number)}
               >
                 <h4
-                  className={cn(styles.value, {
+                  className={clsx(styles.value, {
                     [styles.last]: i === manaCrystalNumbers.length - 1,
                   })}
                 >

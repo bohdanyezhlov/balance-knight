@@ -1,10 +1,10 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { usePageContext } from '@/contexts/PageContext';
 import { ESortParamsOptions } from '@/enums';
-import { cn } from '@/utils/cn';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
 import CheckIcon from '../public/checkIcon.png';
@@ -72,7 +72,7 @@ export const Checkbox: React.FC<Props> = ({ labelStyle }) => {
   };
 
   return (
-    <label htmlFor="groupByClass" className={cn(styles.root, labelStyle)}>
+    <label htmlFor="groupByClass" className={clsx(styles.root, labelStyle)}>
       <input
         type="checkbox"
         name="groupByClass"
@@ -87,7 +87,7 @@ export const Checkbox: React.FC<Props> = ({ labelStyle }) => {
           height={23}
           src={CheckIcon}
           alt="Checkbox"
-          className={cn(styles.image, isGroupByClass && styles.checked)}
+          className={clsx(styles.image, isGroupByClass && styles.checked)}
         />
       </div>
       Group By Class
