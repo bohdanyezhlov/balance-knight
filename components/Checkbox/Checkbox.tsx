@@ -7,7 +7,7 @@ import { usePageContext } from '@/contexts/PageContext';
 import { ESortParamsOptions } from '@/enums';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
-import CheckIcon from '../public/checkIcon.png';
+import CheckIcon from '../../public/checkIcon.png';
 import styles from './style.module.scss';
 
 const updateSortParam = (sortParam: string, criteriaName: string, isAscending: boolean) => {

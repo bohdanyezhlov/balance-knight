@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import type { TOption } from '@/types';
 import { getSelectIcon } from '@/utils/getSelectIcon';
 
-import ArrowIndicatorIcon from '../public/arrowIndicatorIcon.svg';
+import ArrowIndicatorIcon from '../../public/arrowIndicatorIcon.svg';
 import styles from './style.module.scss';
 
 const customTextMapping: Record<string, string> = {

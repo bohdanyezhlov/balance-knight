@@ -8,7 +8,7 @@ import { CardAttributes } from '../CardAttributes/CardAttributes';
 import { CardImage } from '../CardImage/CardImage';
 import { LearnMore } from '../LearnMore/LearnMore';
 import { RelatedCards } from '../RelatedCards/RelatedCards';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 const ModalContent = ({
   card,

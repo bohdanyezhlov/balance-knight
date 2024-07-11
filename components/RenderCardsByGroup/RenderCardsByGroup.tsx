@@ -4,7 +4,7 @@ import { generateGhostCards } from '@/utils/generateGhostCards';
 
 import { Card } from '../Card/Card';
 import { ClassTitle } from '../ClassTitle/ClassTitle';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 const getClassNameByClassId = (classId: number, classes: TClass[]) => {
   const classInfo = classes.find((c) => c.id === classId);

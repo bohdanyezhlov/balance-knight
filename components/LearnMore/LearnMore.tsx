@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { TCard, TMetadata } from '@/types';
 
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 type TTooltipContent = {
   tooltipTitle: string | undefined;

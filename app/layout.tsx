@@ -2,6 +2,7 @@ import '@/styles/globals.scss';
 
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { Suspense } from 'react';
 
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import { CardsProvider, MetadataProvider, PageProvider, TokenProvider } from '@/providers';
@@ -34,15 +35,17 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={`${openSans.variable} ${belwe.variable} `}>
       <body>
-        <TokenProvider>
-          <MetadataProvider>
-            <PageProvider>
-              <CardsProvider>
-                <Wrapper>{children}</Wrapper>
-              </CardsProvider>
-            </PageProvider>
-          </MetadataProvider>
-        </TokenProvider>
+        <Suspense>
+          <TokenProvider>
+            <MetadataProvider>
+              <PageProvider>
+                <CardsProvider>
+                  <Wrapper>{children}</Wrapper>
+                </CardsProvider>
+              </PageProvider>
+            </MetadataProvider>
+          </TokenProvider>
+        </Suspense>
       </body>
     </html>
   );
