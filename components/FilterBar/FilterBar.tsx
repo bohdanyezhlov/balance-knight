@@ -35,7 +35,7 @@ export const FilterBar: React.FC<Props> = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.desktopFilterBar}>
+      <div className={styles.filterBar}>
         <CardSet metadata={metadata} />
 
         {screenSize.width && screenSize.width >= 960 && (
@@ -61,8 +61,8 @@ export const FilterBar: React.FC<Props> = () => {
         />
       ) : (
         isOpen && (
-          <div className={clsx(styles.mobileFilterBar, [styles.isOpen && isOpen])}>
-            <div className={styles.mobileContainer}>
+          <div className={clsx(styles.filters, { [styles.isOpen]: isOpen })}>
+            <div className={styles.container}>
               <AttributeFilter variant="attack" hasIcon isDesktopView />
 
               <AttributeFilter variant="health" hasIcon isDesktopView />

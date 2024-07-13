@@ -72,7 +72,7 @@ export const ManaCost: React.FC<Props> = () => {
               >
                 <h4
                   className={clsx(styles.value, {
-                    [styles.last]: i === manaCrystalNumbers.length - 1,
+                    [styles.lastValue]: i === manaCrystalNumbers.length - 1,
                   })}
                 >
                   {number}

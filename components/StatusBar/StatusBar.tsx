@@ -39,7 +39,7 @@ export const StatusBar: React.FC<Props> = () => {
         </div>
 
         {screenSize.width && screenSize.width > 960 && (
-          <div className={styles.sortWrapper}>
+          <div className={styles.wrapper}>
             <div className={styles.sortTitle}>Sort by:</div>
 
             <div className={styles.sortWrapper}>

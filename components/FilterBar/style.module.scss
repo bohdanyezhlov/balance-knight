@@ -29,7 +29,7 @@
   }
 }
 
-.desktopFilterBar {
+.filterBar {
   position: relative;
   z-index: 2;
   margin-left: auto;
@@ -41,6 +41,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 2.5px;
+  padding-bottom: 2.5px;
 
   @media ($mediaMdUp) {
     width: 100%;
@@ -52,7 +53,7 @@
   margin-bottom: 0;
 }
 
-.mobileFilterBar {
+.filters {
   position: relative;
   height: 0;
   min-height: 0;
@@ -75,12 +76,12 @@
   }
 }
 
-.mobileContainer {
+.container {
   margin-left: auto;
   margin-right: auto;
   display: flex;
   width: 100%;
-  max-width: $mediaXxl;
+  max-width: 1600px;
   flex-wrap: wrap;
   align-items: center;
   transition-property: opacity;

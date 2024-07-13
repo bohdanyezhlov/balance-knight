@@ -81,7 +81,7 @@ export const Select: React.FC<Props> = ({
         <h6
           className={clsx(styles.title, {
             [styles.truncate]: variant !== 'cardSet',
-            [styles.cardSet]: variant === 'cardSet',
+            [styles.titleCardSet]: variant === 'cardSet',
           })}
         >
           {getOptionNameBySlug(selectedOption.slug, options)}
@@ -89,7 +89,7 @@ export const Select: React.FC<Props> = ({
 
         <div
           className={clsx(styles.arrowIndicatorIcon, {
-            [styles.cardSet]: variant === 'cardSet',
+            [styles.iconCardSet]: variant === 'cardSet',
           })}
         >
           <ArrowIndicatorIcon />

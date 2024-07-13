@@ -86,7 +86,15 @@ export const AttributeFilter: React.FC<Props> = ({
   };
 
   return (
-    <div className={clsx(temp.root, [temp.isDesktopView && isDesktopView], styles)}>
+    <div
+      className={clsx(
+        temp.root,
+        {
+          [temp.isDesktopView]: isDesktopView,
+        },
+        styles
+      )}
+    >
       {children}
 
       <BaseLayer>

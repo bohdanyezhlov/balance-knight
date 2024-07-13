@@ -24,6 +24,7 @@ export const TopLayerWithHover: React.FC<Props> = ({
         onClick={onClick}
         className={clsx(styles.dropdown, styles.button, {
           [styles.search]: imgSet === 'dark',
+          [styles.buttonIconLeft]: Component === 'button',
         })}
       >
         {children}

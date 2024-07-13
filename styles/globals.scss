@@ -71,8 +71,16 @@ textarea {
   color: inherit;
   margin: 0;
   padding: 0;
+  background-color: transparent;
 }
 
 button {
   cursor: pointer;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

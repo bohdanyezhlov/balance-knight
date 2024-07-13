@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   margin-left: -0.625rem;
+  margin-right: -0.625rem;
 }
 
 .manaCrystal {
@@ -28,7 +29,7 @@
   &::before {
     content: '';
     position: absolute;
-    inset: 0.625rem;
+    inset: -0.625rem;
     background-image: url(../../public/iconManaHoverSelected.png);
     background-size: contain;
     background-position: center;
@@ -40,7 +41,7 @@
     opacity: 1;
   }
 
-  .last {
+  &.last {
     width: 60px;
     background-image: url(../../public/iconManaPlus.png);
 
@@ -49,7 +50,7 @@
     }
   }
 
-  .active {
+  &.active {
     &::before {
       opacity: 1;
     }
@@ -66,7 +67,7 @@
   color: $colorWhite;
   text-shadow: $shadow;
 
-  .last {
+  &.lastValue {
     width: 100%;
     margin-left: 5px;
     text-align: left;
