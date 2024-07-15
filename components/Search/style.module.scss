@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  margin-right: 30px;
+  flex: 1 1 0%;
+
+  @media ($mediaMdUp) {
+    flex: 0 1 auto;
+  }
+}
+
+.container {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+  position: absolute;
+  right: -9px;
+  top: 9px;
+  z-index: 1;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  background-size: contain;
+  fill: $colorGold;
+}
+
+.input {
+  width: calc(100% - 20px);
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  font-family: $serif;
+  color: $colorWhite;
+
+  &::placeholder {
+    color: rgb(150, 116, 100);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.clearButton {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  z-index: 101;
+  display: flex;
+  width: 25px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  fill: $colorGold;
+}

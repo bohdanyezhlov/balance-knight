@@ -1,0 +1,87 @@
+@import '../styles/variables.scss';
+
+.bgImage {
+  background-image: url('../public/hsLogoSm.jpeg');
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  padding-bottom: 50px;
+
+  @media (min-width: 640px) {
+    background-image: url('../public/hsLogoLg.jpeg');
+  }
+}
+
+.imageLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  max-width: 80%;
+  width: 753px;
+  margin: 0 auto;
+
+  @media (min-width: 640px) {
+    height: 250px;
+  }
+
+  @media (min-width: 960px) {
+    height: 280px;
+  }
+}
+
+.parchment {
+  position: relative;
+  height: 96px;
+  margin-bottom: -118px;
+  margin-left: 0;
+  transform: translateY(-50%);
+  background-image: url('../public/ParchmentTop.png');
+  background-position: center -2px;
+
+  @media (min-width: 992px) {
+    height: 143px;
+    width: calc(100% - 25px);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: -25px;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-image: url('../public/ParchmentTopRight.png');
+    background-position: center;
+
+    @media (min-width: 992px) {
+      width: 120px;
+    }
+  }
+}
+
+.contentSection {
+  position: relative;
+  margin: 0 auto;
+  min-height: 500px;
+  max-width: 986px;
+  padding: 1em;
+  text-align: center;
+}
+
+.title {
+  font-size: 37px;
+  font-weight: bold;
+  color: $colorBlue;
+}
+
+.subtitle {
+  font-size: 22px;
+  font-weight: bold;
+  color: $colorBlue;
+}
+
+.errorImage {
+  margin: 0 auto;
+}

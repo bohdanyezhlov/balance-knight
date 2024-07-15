@@ -1,0 +1,120 @@
+@import '../../styles/variables.scss';
+
+.customClassName {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.root {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+}
+
+.closeButton {
+  pointer-events: auto;
+  position: fixed;
+  right: 19px;
+  top: 52px;
+  z-index: 10000;
+  display: block;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: bold;
+  color: $colorGold;
+
+  @media (min-width: 1280px) {
+    right: 35px;
+    top: 35px;
+  }
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  width: 100%;
+  max-width: 980px;
+  transform: translateX(-50%);
+  padding: 50px 30px 30px;
+
+  @media ($mediaMdUp) {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.startBlock {
+  pointer-events: auto;
+  position: relative;
+
+  @media ($mediaMdUp) {
+    margin-right: 25px;
+    width: 375px;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+
+  @media ($mediaMdUp) {
+    width: 100%;
+  }
+}
+
+.details {
+  margin-bottom: 2.5rem;
+  user-select: text;
+  overflow-y: visible;
+  padding-bottom: 30px;
+  padding-top: 25px;
+  color: $colorWhite;
+
+  @media (min-width: 420px) {
+    padding-top: 50px;
+    width: 460px;
+  }
+
+  @media ($mediaMdUp) {
+    max-height: 518px;
+  }
+}
+
+.name {
+  margin-bottom: 0;
+  word-break: keep;
+  font-family: $serif;
+  font-size: 22.781px;
+  font-weight: normal;
+
+  @media (min-width: 375px) {
+    font-size: calc(22.781px + 8.219 * ((100vw - 375px) / 1225));
+  }
+}
+
+.flavorText {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  word-break: break-word;
+  font-size: 18px;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  word-break: break-word;
+  font-size: 18px;
+}

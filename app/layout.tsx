@@ -1,9 +1,10 @@
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
 
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { Suspense } from 'react';
 
-import { Wrapper } from '@/components/Wrapper';
+import { Wrapper } from '@/components/Wrapper/Wrapper';
 import { CardsProvider, MetadataProvider, PageProvider, TokenProvider } from '@/providers';
 
 const belwe = localFont({
@@ -32,17 +33,19 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en" className={`${openSans.variable} ${belwe.variable} h-full`}>
-      <body className="h-full font-sansSerif text-[14px] font-normal leading-normal text-black">
-        <TokenProvider>
-          <MetadataProvider>
-            <PageProvider>
-              <CardsProvider>
-                <Wrapper>{children}</Wrapper>
-              </CardsProvider>
-            </PageProvider>
-          </MetadataProvider>
-        </TokenProvider>
+    <html lang="en" className={`${openSans.variable} ${belwe.variable} `}>
+      <body>
+        <Suspense>
+          <TokenProvider>
+            <MetadataProvider>
+              <PageProvider>
+                <CardsProvider>
+                  <Wrapper>{children}</Wrapper>
+                </CardsProvider>
+              </PageProvider>
+            </MetadataProvider>
+          </TokenProvider>
+        </Suspense>
       </body>
     </html>
   );

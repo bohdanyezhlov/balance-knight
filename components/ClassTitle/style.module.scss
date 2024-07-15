@@ -1,0 +1,108 @@
+@import '../../styles/variables.scss';
+
+.root {
+  margin-bottom: -1.25rem;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  height: 1.125rem;
+  background-position: top;
+  opacity: 0.4;
+
+  &.leftStart,
+  &.leftEnd,
+  &.rightStart,
+  &.rightEnd {
+    width: 1.25rem;
+  }
+
+  &.leftEnd,
+  &.rightStart,
+  &.rightEnd {
+    min-width: 20px;
+  }
+
+  &.leftStart,
+  &.rightEnd {
+    min-width: 22px;
+  }
+
+  &.middle {
+    min-width: 70px;
+    flex-grow: 2;
+    background-size: 100% 66.2%;
+    background-repeat: no-repeat;
+  }
+
+  &.start,
+  &.end {
+    padding-bottom: 30px;
+    flex-grow: 0;
+    background-repeat: no-repeat;
+  }
+
+  &.leftStart {
+    background-image: url('../../public/titleLeftStart.png');
+  }
+
+  &.leftMiddle {
+    background-image: url('../../public/titleLeftMiddle.png');
+  }
+
+  &.leftEnd {
+    background-image: url('../../public/titleLeftEnd.png');
+  }
+
+  &.rightStart {
+    background-image: url('../../public/titleRightStart.png');
+  }
+
+  &.rightMiddle {
+    background-image: url('../../public/titleRightMiddle.png');
+  }
+
+  &.rightEnd {
+    background-image: url('../../public/titleRightEnd.png');
+  }
+}
+
+.itemTitle {
+  min-width: fit-content;
+
+  @media ($mediaMd) {
+    padding: 0 30px;
+  }
+}
+
+.titleContent {
+  position: relative;
+  top: -30px;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  height: 75px;
+  width: 300px;
+}
+
+.title {
+  fill: $colorMainBrown;
+  opacity: 0.4;
+}
+
+.subtitle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  width: 135px;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+  color: $colorMainBrown;
+}

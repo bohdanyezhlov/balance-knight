@@ -88,23 +88,23 @@ const variantToSvgMapping: SvgMapping = {
 
 const variantToUrlMapping: SvgMapping = {
   // static filter icons
-  manaCost: 'bg-[url("../public/iconMana.png")]',
-  attack: 'bg-[url("../public/iconAttack.png")]',
-  health: 'bg-[url("../public/iconHealth.png")]',
-  class: 'bg-[url("../public/iconClassAll.png")]',
+  manaCost: 'manaCost',
+  attack: 'attack',
+  health: 'health',
+  class: 'class',
   // class icons
-  demonhunter: 'bg-[url("../public/iconClassDemonHunter.png")]',
-  deathknight: 'bg-[url("../public/iconClassDeathKnight.png")]',
-  druid: 'bg-[url("../public/iconClassDruid.png")]',
-  hunter: 'bg-[url("../public/iconClassHunter.png")]',
-  mage: 'bg-[url("../public/iconClassMage.png")]',
-  paladin: 'bg-[url("../public/iconClassPaladin.png")]',
-  priest: 'bg-[url("../public/iconClassPriest.png")]',
-  rogue: 'bg-[url("../public/iconClassRogue.png")]',
-  shaman: 'bg-[url("../public/iconClassShaman.png")]',
-  warlock: 'bg-[url("../public/iconClassWarlock.png")]',
-  warrior: 'bg-[url("../public/iconClassWarrior.png")]',
-  neutral: 'bg-[url("../public/iconClassNeutral.png")]',
+  demonhunter: 'demonhunter',
+  deathknight: 'deathknight',
+  druid: 'druid',
+  hunter: 'hunter',
+  mage: 'mage',
+  paladin: 'paladin',
+  priest: 'priest',
+  rogue: 'rogue',
+  shaman: 'shaman',
+  warlock: 'warlock',
+  warrior: 'warrior',
+  neutral: 'neutral',
 };
 
 export const getSelectIcon = (variant: string, slug?: string) => {

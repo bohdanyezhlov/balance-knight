@@ -1,0 +1,77 @@
+@import '../../styles/variables.scss';
+
+.root {
+  height: 100%;
+  width: 300px;
+  overflow-y: scroll;
+  background-color: transparent;
+  background-image: url(../../public/bgFilterTabletMobile.jpeg);
+  background-position: left top;
+  background-repeat: repeat-y;
+}
+
+.container {
+  display: flex;
+  touch-action: pan-y;
+  user-select: none;
+  flex-wrap: wrap;
+  padding: 1.25rem 1.25rem 100px;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #450f0f;
+  padding: 0.625rem 0;
+  color: $colorWhite;
+}
+
+.buttonWrapper {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.closeButton {
+  display: inline;
+  padding-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 1px;
+  }
+}
+
+.closeIcon {
+  position: relative;
+  top: 0.25rem;
+  margin-right: 5px;
+  display: inline-block;
+  font-size: 25px;
+  color: $colorGold;
+}
+
+.cardCount {
+  padding-left: 15px;
+}
+
+.controls {
+  position: relative;
+  margin-right: 30px;
+  width: 100%;
+  padding: 20px 0;
+  color: $colorMainBrown;
+}
+
+.checkboxWrapper {
+  padding-left: 15px;
+}
+
+.label {
+  margin-bottom: 0.625rem;
+  display: block;
+  padding-left: 15px;
+  color: #8f6e6e;
+}
