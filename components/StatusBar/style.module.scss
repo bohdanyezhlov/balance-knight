@@ -9,7 +9,7 @@
 .container {
   margin: 0 auto;
   display: flex;
-  max-width: $mediaXxl;
+  max-width: 1600px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -25,6 +25,7 @@
   flex: 1;
   flex-wrap: wrap;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .cardCount {
