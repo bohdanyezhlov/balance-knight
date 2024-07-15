@@ -1,0 +1,44 @@
+// media
+$mediaMin: 'min-width: 320px';
+$mediaXs: 'min-width: 480px';
+$mediaSm: 'min-width: 720px';
+$mediaMd: 'min-width: 960px';
+$mediaMdUp: 'min-width: 961px';
+$mediaLg: 'min-width: 1200px';
+$mediaXl: 'min-width: 1400px'; // why do we need this?
+$mediaXxl: 'max-width: 1600px'; // why do we need this?
+$mediaMax: 'max-width: 2600px'; // why do we need this?
+
+// colors
+$colorMainBrown: rgb(97 67 38);
+$colorLightBrown: rgb(143 110 110);
+$colorDarkBrown: rgb(71 44 17);
+$colorGold: rgb(252 209 68);
+$colorLightGold: rgb(255 229 172);
+$colorBlue: rgb(35 58 110);
+
+$colorBlack: rgb(2 2 2);
+$colorWhite: rgb(255 255 255);
+
+$shadow:
+  rgb(0, 0, 0) 2px 0px 0px,
+  rgb(0, 0, 0) 1.75517px 0.95885px 0px,
+  rgb(0, 0, 0) 1.0806px 1.68294px 0px,
+  rgb(0, 0, 0) 0.14147px 1.99499px 0px,
+  rgb(0, 0, 0) -0.83229px 1.81859px 0px,
+  rgb(0, 0, 0) -1.60229px 1.19694px 0px,
+  rgb(0, 0, 0) -1.97998px 0.28224px 0px,
+  rgb(0, 0, 0) -1.87291px -0.70157px 0px,
+  rgb(0, 0, 0) -1.30729px -1.5136px 0px,
+  rgb(0, 0, 0) -0.42159px -1.95506px 0px,
+  rgb(0, 0, 0) 0.56732px -1.91785px 0px,
+  rgb(0, 0, 0) 1.41734px -1.41108px 0px,
+  rgb(0, 0, 0) 1.92034px -0.55883px 0px;
+
+$sansSerif: var(--font-opensans), Helvetica, Arial, sans-serif;
+$serif:
+  var(--font-belwe),
+  Georgia,
+  Times,
+  Times New Roman,
+  serif;
