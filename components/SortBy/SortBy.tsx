@@ -1,7 +1,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { usePageContext } from '@/contexts/PageContext';
+import { useStore } from '@/shared/store/store';
 import type { TOption } from '@/types';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
@@ -68,7 +68,7 @@ type Props = {
 export const SortBy: React.FC<Props> = ({ id, baseLayer = true }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext();
+  const setPage = useStore((state) => state.setPage);
   const isGroupByClass = (
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'
   )?.includes('groupByClass');

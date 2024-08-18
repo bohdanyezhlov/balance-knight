@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { usePageContext } from '@/contexts/PageContext';
 import { ESortParamsOptions } from '@/enums';
+import { useStore } from '@/shared/store/store';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
 import CheckIcon from '../../public/checkIcon.png';
@@ -43,7 +43,7 @@ type Props = {
 export const Checkbox: React.FC<Props> = ({ labelStyle }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext();
+  const setPage = useStore((state) => state.setPage);
   const sortParam =
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW
   const [isGroupByClass, setIsGroupByClass] = useState(

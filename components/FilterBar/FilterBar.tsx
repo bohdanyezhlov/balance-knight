@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { useState } from 'react';
 
 import { useCardsContext } from '@/contexts/CardsContext';
-import { useMetadataContext } from '@/contexts/MetadataContext';
-import { useScreenSize } from '@/hooks/useScreenSize';
+import { useScreenSize } from '@/shared/hooks/useScreenSize';
+import { useStore } from '@/shared/store/store';
 
 import { AttributeFilter } from '../AttributeFilter/AttributeFilter';
 import { CardSet } from '../CardSet/CardSet';
@@ -18,7 +18,7 @@ import styles from './style.module.scss';
 type Props = {};
 
 export const FilterBar: React.FC<Props> = () => {
-  const metadata = useMetadataContext();
+  const metadata = useStore((state) => state.metadata);
   const screenSize = useScreenSize();
   const cardsContext = useCardsContext();
   const [isOpen, setIsOpen] = useState(false);

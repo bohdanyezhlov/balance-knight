@@ -1,9 +1,9 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { usePageContext } from '@/contexts/PageContext';
 import ClearSearchIcon from '@/public/clearSearchIcon.svg';
 import SearchIcon from '@/public/searchIcon.svg';
+import { useStore } from '@/shared/store/store';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
 import { TopLayerWithHover } from '../TopLayerWithHover/TopLayerWithHover';
@@ -14,7 +14,7 @@ type Props = {};
 export const Search: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext();
+  const setPage = useStore((state) => state.setPage);
   const textFilterParam = searchParams.get('textFilter') || '';
   const [textFilter, setTextFilter] = useState('');
 

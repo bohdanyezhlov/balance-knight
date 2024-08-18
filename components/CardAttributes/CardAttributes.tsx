@@ -2,9 +2,10 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type { Dispatch, SetStateAction } from 'react';
 
-import { usePageContext } from '@/contexts/PageContext';
 import { ECardProperties, ECardPropertiesKeys } from '@/enums';
-import type { TCard, TMetadata } from '@/types';
+import { useStore } from '@/shared/store/store';
+import type { TMetadata } from '@/shared/types/metadata.type';
+import type { TCard } from '@/types';
 
 import styles from './style.module.scss';
 
@@ -104,7 +105,7 @@ type Props = {
 export const CardAttributes: React.FC<Props> = ({ card, metadata, setIsOpen }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext();
+  const setPage = useStore((state) => state.setPage);
   const attributeKeys = [
     ...Object.values(ECardProperties).filter((key) => card[key as keyof TCard]),
     ECardProperties.CostToCraft,

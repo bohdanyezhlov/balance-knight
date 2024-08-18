@@ -3,19 +3,13 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
-import { getCards } from '@/api/getCards';
-import { CardsContext } from '@/contexts/CardsContext';
-import { usePageContext } from '@/contexts/PageContext';
-import { useTokenContext } from '@/contexts/TokenContext';
+import { getCards } from '@/shared/network/getCards';
+import { useStore } from '@/shared/store/store';
 import type { TCard } from '@/types';
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export const CardsProvider: React.FC<Props> = ({ children }) => {
-  const token = useTokenContext();
-  const { page } = usePageContext();
+export const useCards = () => {
+  const hasToken = useStore((state) => state.hasToken);
+  const page = useStore((state) => state.page);
   const [cards, setCards] = useState<TCard[]>([]);
   const [cardCount, setCardCount] = useState(0);
   const [pageCount, setPageCount] = useState(1);
@@ -66,14 +60,14 @@ export const CardsProvider: React.FC<Props> = ({ children }) => {
       setCards(page === 1 ? cardsData : (prev) => [...prev, ...cardsData]);
     };
 
-    if (token) {
+    if (hasToken) {
       fetchCards();
     }
     // NOTE DO NOT add pageCount to dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     page,
-    token,
+    hasToken,
     classParam,
     textFilterParam,
     cardSetParam,

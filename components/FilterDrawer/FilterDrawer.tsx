@@ -1,6 +1,6 @@
 import { useSearchParams } from 'next/navigation';
 
-import { useScreenSize } from '@/hooks/useScreenSize';
+import { useScreenSize } from '@/shared/hooks/useScreenSize';
 
 import SettingsIcon from '../../public/settingsIcon.svg';
 import { BaseLayer } from '../BaseLayer/BaseLayer';
