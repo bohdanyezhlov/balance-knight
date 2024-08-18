@@ -1,4 +1,4 @@
-import { usePageContext } from '@/contexts/PageContext';
+import { useStore } from '@/shared/store/store';
 import type { TCard } from '@/types';
 import { generateGhostCards } from '@/utils/generateGhostCards';
 
@@ -15,7 +15,8 @@ type Props = {
 };
 
 export const RenderAllCards: React.FC<Props> = ({ cards, showModal, cardsLength }) => {
-  const { page, setPage } = usePageContext();
+  const page = useStore((state) => state.page);
+  const setPage = useStore((state) => state.setPage);
   let globalCardIndex = -1; // NOTE count global card index for each class array, to be able to detect the last one (it needs for infinity scroll)
 
   return (

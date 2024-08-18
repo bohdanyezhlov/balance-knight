@@ -1,7 +1,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useMetadataContext } from '@/contexts/MetadataContext';
-import { useActiveFilters } from '@/hooks/useActiveFilters';
+import { useActiveFilters } from '@/shared/hooks/useActiveFilters';
+import { useStore } from '@/shared/store/store';
 import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
 import { ClearAll } from '../ClearAll/ClearAll';
@@ -10,7 +10,7 @@ import styles from './style.module.scss';
 type Props = {};
 
 export const FilterTags: React.FC<Props> = () => {
-  const metadata = useMetadataContext();
+  const metadata = useStore((state) => state.metadata);
   const searchParams = useSearchParams();
   const router = useRouter();
   const activeFilters = useActiveFilters();

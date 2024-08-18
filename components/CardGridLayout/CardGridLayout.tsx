@@ -4,8 +4,8 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { useCardsContext } from '@/contexts/CardsContext';
-import { useMetadataContext } from '@/contexts/MetadataContext';
 import { ESortParamsOptions } from '@/enums';
+import { useStore } from '@/shared/store/store';
 import type { TCard, TCardsByClassId } from '@/types';
 import { extractParameterValue } from '@/utils/extractParameterValue';
 
@@ -38,7 +38,7 @@ export const CardGridLayout: React.FC<Props> = () => {
   const cardsContext = useCardsContext();
   const [isOpen, setIsOpen] = useState(false);
   const [modalCardId, setModalCardId] = useState(0);
-  const metadata = useMetadataContext();
+  const metadata = useStore((state) => state.metadata);
   const searchParams = useSearchParams();
   const sortParam =
     searchParams.get('sort') || 'manaCost:asc,name:asc,classes:asc,groupByClass:asc'; // REVIEW

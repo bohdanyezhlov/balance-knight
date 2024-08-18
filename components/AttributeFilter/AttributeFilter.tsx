@@ -2,8 +2,7 @@ import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { useMetadataContext } from '@/contexts/MetadataContext';
-import { usePageContext } from '@/contexts/PageContext';
+import { useStore } from '@/shared/store/store';
 import type { TOption } from '@/types';
 import { getDynamicFilterOptions } from '@/utils/getDynamicFilterOptions';
 import { getStaticFilterOptions } from '@/utils/getStaticFilterOptions';
@@ -47,10 +46,10 @@ export const AttributeFilter: React.FC<Props> = ({
   isDesktopView,
   styles,
 }) => {
-  const metadata = useMetadataContext();
+  const metadata = useStore((state) => state.metadata);
+  const setPage = useStore((state) => state.setPage);
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext();
   const currentParam = searchParams.get(variant) || '';
 
   const [defaultOption, options] = staticOptions.includes(variant)

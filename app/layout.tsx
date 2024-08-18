@@ -5,7 +5,6 @@ import localFont from 'next/font/local';
 import { Suspense } from 'react';
 
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import { CardsProvider, MetadataProvider, PageProvider, TokenProvider } from '@/providers';
 
 const belwe = localFont({
   src: '../public/fonts/Belwe-Bold.woff',
@@ -36,15 +35,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="en" className={`${openSans.variable} ${belwe.variable} `}>
       <body>
         <Suspense>
-          <TokenProvider>
-            <MetadataProvider>
-              <PageProvider>
-                <CardsProvider>
-                  <Wrapper>{children}</Wrapper>
-                </CardsProvider>
-              </PageProvider>
-            </MetadataProvider>
-          </TokenProvider>
+          <Wrapper>{children}</Wrapper>
         </Suspense>
       </body>
     </html>

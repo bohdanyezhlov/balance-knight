@@ -1,7 +1,7 @@
 import SwipeableDrawerMUI from '@mui/material/SwipeableDrawer';
 
-import { useActiveFilters } from '@/hooks/useActiveFilters';
-import { useScreenSize } from '@/hooks/useScreenSize';
+import { useActiveFilters } from '@/shared/hooks/useActiveFilters';
+import { useScreenSize } from '@/shared/hooks/useScreenSize';
 
 import { AttributeFilter } from '../AttributeFilter/AttributeFilter';
 import { Checkbox } from '../Checkbox/Checkbox';

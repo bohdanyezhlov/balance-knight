@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { usePageContext } from '@/contexts/PageContext';
+import { useStore } from '@/shared/store/store';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
 import { TopLayerWithHover } from '../TopLayerWithHover/TopLayerWithHover';
@@ -18,7 +18,7 @@ type Props = {};
 export const ManaCost: React.FC<Props> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext();
+  const setPage = useStore((state) => state.setPage);
   const manaCostParam = searchParams.get('manaCost') || '';
   const [activeManaCosts, setActiveManaCosts] = useState<string[]>([]);
 

@@ -3,7 +3,7 @@ import { useGesture } from '@use-gesture/react';
 import type { GetServerSidePropsContext } from 'next/types';
 import { useEffect, useRef, useState } from 'react';
 
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { useIsMobile } from '@/shared/hooks/useIsMobile';
 import { getIsSsrMobile } from '@/utils/getIsSsrMobile';
 
 import styles from './style.module.scss';

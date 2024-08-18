@@ -1,8 +1,9 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { usePageContext } from '@/contexts/PageContext';
-import type { TMetadata, TOption } from '@/types';
+import { useStore } from '@/shared/store/store';
+import type { TMetadata } from '@/shared/types/metadata.type';
+import type { TOption } from '@/types';
 
 import { BaseLayer } from '../BaseLayer/BaseLayer';
 import { Select } from '../Select/Select';
@@ -67,7 +68,7 @@ type Props = {
 export const CardSet: React.FC<Props> = ({ metadata }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { setPage } = usePageContext();
+  const setPage = useStore((state) => state.setPage);
   const cardSetOptions = getCardSetOptions(metadata);
   const cardSetParam = searchParams.get('set') || 'standard';
   // FIXME !

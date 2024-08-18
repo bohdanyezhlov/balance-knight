@@ -3,8 +3,8 @@
 import { useSearchParams } from 'next/navigation';
 
 import { useCardsContext } from '@/contexts/CardsContext';
-import { useMetadataContext } from '@/contexts/MetadataContext';
-import { useScreenSize } from '@/hooks/useScreenSize';
+import { useScreenSize } from '@/shared/hooks/useScreenSize';
+import { useStore } from '@/shared/store/store';
 import { normalizeActiveFilter } from '@/utils/normalizeActiveFilter';
 
 import { Checkbox } from '../Checkbox/Checkbox';
@@ -17,7 +17,7 @@ type Props = {};
 export const StatusBar: React.FC<Props> = () => {
   const screenSize = useScreenSize();
   const cardsContext = useCardsContext();
-  const metadata = useMetadataContext();
+  const metadata = useStore((state) => state.metadata);
   const searchParams = useSearchParams();
   const set = searchParams.get('set') || 'standard';
 

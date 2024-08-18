@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getCardById } from '@/api/getCardById';
+import { getCardById } from '@/shared/network/getCardById';
 import type { TCard } from '@/types';
 
 import styles from './style.module.scss';
